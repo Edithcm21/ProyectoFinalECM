@@ -8,7 +8,7 @@
                         <div class="col-lg-12  " >
                             <div class="card-body p-md-4 mx-md-4 ">
                                 <div class="text-center">
-                                    <img src="Images/Logo3.png"
+                                    <img src="{{ asset('images/Logo.png') }}"
                                          style="width: 200px;" alt="logo">
                                     <h3 class="mt-1 mb-3 pb-1">Iniciar Sesion</h3>
                                 </div>

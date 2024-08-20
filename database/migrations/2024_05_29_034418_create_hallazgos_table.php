@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hallazgos', function (Blueprint $table) {
+            $table->unsignedInteger('id_hallazgo')->autoIncrement();
+            $table->unsignedInteger('fk_tipo');
+            $table->foreign('fk_tipo')->references('id_tipo')->on('tipo_residuos');
             $table->unsignedInteger('fk_muestreo');
             $table->foreign('fk_muestreo')->references('id_muestreo')->on('muestreos');
-            $table->unsignedInteger('fk_residuos');
-            $table->foreign('fk_residuos')->references('id_residuo')->on('residuos');
+            $table->unsignedInteger('cantidad');
+            $table->unsignedInteger('porcentaje');
+            $table->timestamps();
+            
             
            
             $table->timestamps();

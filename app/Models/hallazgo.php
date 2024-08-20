@@ -7,20 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class hallazgo extends Model
 {
-    use HasFactory;
-    protected $fillable=['fk_muestreo','fk_residuos','fk_capturista'];
 
+    protected $primaryKey = 'id_hallazgo';
+    protected $fillable = ['fk_tipo','fk_muestreo','cantidad','porcentaje'];
+    public function tipo_residuo()
+    {
+        return $this->belongsTo(tipo_residuo::class, 'fk_tipo');
+    }
+   
     public function muestreo()
     {
         return $this->belongsTo(muestreo::class, 'fk_muestreo');
     }
-    public function residuo()
-    {
-        return $this->belongsTo(residuo::class, 'fk_residuos');
-    }
-    public function capturista()
-    {
-        return $this->belongsTo(User::class, 'fk_capturista');
-    }
+    
 
 }

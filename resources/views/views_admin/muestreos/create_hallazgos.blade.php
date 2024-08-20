@@ -1,4 +1,4 @@
-@extends('views_admin.app')
+{{-- @extends('views_admin.app')
 
 @section('title', 'Hallazgos')
 
@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-sm-2 mb-3" >
                                 <label  class="form-label size15">Numero de muestreo:</label>
-                                <input type="number" class="form-control"  name="Nmuestreo" placeholder="Nmuestreo" required >
+                                <input type="number" class="form-control"  name="Nmuestreo" placeholder="Numero de muestreo" required >
                             </div>
                             <div class=" col-sm-2 mb-3 ">
                                 <label  class="form-label ">Playa:</label>
@@ -61,10 +61,10 @@
                                 <label  class="form-label">Zona:</label>
                                 <select class="form-select" aria-label="Default select example" name="zona"  >
                                     <option  >Selecciona zona</option>
-                                    <option value="1">Debajo pleamar</option>
-                                    <option value="2">Encima pleamar</option>
-                                    <option value="3">Encima de la pleamar, hasta estructura fija</option>
-                                    <option value="4">Sobre y debajo de la pleamar</option>
+                                    <option value="Debajo pleamar">Debajo pleamar</option>
+                                    <option value="Encima pleamar">Encima pleamar</option>
+                                    <option value="Encima de la pleamar, hasta estructura fija">Encima de la pleamar, hasta estructura fija</option>
+                                    <option value="Sobre y debajo de la pleamar">Sobre y debajo de la pleamar</option>
                                 </select>
                             </div>
                         </div> 
@@ -89,8 +89,8 @@
                                 @foreach($residuosAgrupados[$clasificacion->id_clasificacion] as $residuo)
                                     <tr class="size12">
                                         <td>{{ $residuo->nombre_tipo}}</td>
-                                        <td><input class="inputC borde" type="number" name="c{{$residuo->id_tipo}} " value="0" min="0" onchange="updateTotals()"></td>
-                                        <td><input class="inputC borde" type="text" name="p{{$residuo->id_tipo}}" value="0 %" min="0" onchange="updateTotals()"></td>
+                                        <td><input class="inputC borde" type="number" name="cantidades[{{ $residuo->id_tipo }}] " value="0" min="0" onchange="updateTotals()"></td>
+                                        <td><input class="inputC borde" type="text"   name="porcentajes[{{ $residuo->id_tipo }}]" value="0 %" min="0" onchange="updateTotals()"></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -117,7 +117,10 @@
                 </div> 
             </form>
     </div>       
-</div>
+    </div>
+
+
+
 @endsection
 
 <script>
@@ -148,4 +151,65 @@
     </script>
     
 
-    
+     --}}
+     @extends('layouts.app')
+
+     @section('content')
+     <div class="container">
+         <h1>Agregar Residuos</h1>
+         
+         <form id="residuos-form">
+             <div id="residuos-container">
+                 <div class="form-group row align-items-center mb-3">
+                     <label class="col-sm-2 col-form-label">Selecciona un residuo:</label>
+                     <div class="col-sm-8">
+                         <select class="form-control" name="residuos[]">
+                             <option value="">Seleccione un residuo</option>
+                             @foreach($residuos as $residuo)
+                                 <option value="{{ $residuo->id }}">{{ $residuo->nombre }}</option>
+                             @endforeach
+                         </select>
+                     </div>
+                     <div class="col-sm-2">
+                         <input type="number" class="form-control" name="cantidades[]" placeholder="Cantidad" min="0">
+                     </div>
+                 </div>
+             </div>
+             
+             <button type="button" class="btn btn-primary" id="agregar-residuo">Agregar Residuo</button>
+             <button type="submit" class="btn btn-success mt-3">Guardar Registro</button>
+         </form>
+     </div>
+     @endsection
+     
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             var botonAgregar = document.getElementById('agregar-residuo');
+             if (botonAgregar) {
+                 botonAgregar.addEventListener('click', function() {
+                     var container = document.getElementById('residuos-container');
+     
+                     // Crear un nuevo div para el nuevo par de select e input
+                     var newRow = document.createElement('div');
+                     newRow.className = 'form-group row align-items-center mb-3';
+                     newRow.innerHTML = `
+                         <label class="col-sm-2 col-form-label">Selecciona un residuo:</label>
+                         <div class="col-sm-8">
+                             <select class="form-control" name="residuos[]">
+                                 <option value="">Seleccione un residuo</option>
+                                 @foreach($residuos as $residuo)
+                                     <option value="{{ $residuo->id }}">{{ $residuo->nombre }}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         <div class="col-sm-2">
+                             <input type="number" class="form-control" name="cantidades[]" placeholder="Cantidad" min="0">
+                         </div>
+                     `;
+     
+                     // Agregar la nueva fila al contenedor
+                     container.appendChild(newRow);
+                 });
+             }
+         });
+     </script>
