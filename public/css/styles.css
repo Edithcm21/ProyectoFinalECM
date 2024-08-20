@@ -1,0 +1,270 @@
+:root{
+    /* --azul:#31869A; */
+     --azul:#31869A; 
+    --gris: #5E5C5C;
+    --rojo: #B72223;
+    --negro:#000000;
+    /* --rojo:#ac0e28;
+    --cafe:#96785B;
+    --celeste:#6B99C3;
+    --cafe2: #65483D;
+    --gris: #9E8279;
+    --gris2: #564C55; */
+    --biryani:font-family: 'Berlin Sans FB', sans-serif;
+}
+
+ 
+ .navbar_user{
+    position:fixed;
+    background-color:white; 
+    width: 100%;
+    z-index: 1;
+    padding: 20px 0;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--negro);
+    font-weight: bold; 
+    border-radius: 0 0 15px 15px; 
+} 
+.navbar_user .nav-link {
+    padding: 0 10px;
+}
+.navbar_user .navbar-nav .nav-item {
+    margin-right: 15px; 
+}
+
+.espacio{
+    margin-top: 115px; 
+    padding-top: 1rem ;  
+}
+
+.navbar_user a{
+    font-size: 1.2rem;
+    color: var(--negro);
+    padding: 0 10px;
+}
+.navbar_user a:hover{
+    color: var(--negro);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.navbar_user .active{
+    font-size: 1.1 rem;
+    color: var(--rojo);
+    font-style: italic; 
+}
+.navbar_user a.nav-link.active {
+    font-weight: bold;
+    color: var(--rojo);
+    border-bottom: 2px solid var(--rojo);
+} 
+
+.navbar_admin{
+    background-color: black;
+    
+}
+
+.navbar_admin .active{
+    color: white; 
+
+}
+/* Estilo para el enlace activo */
+.navbar_admin a.nav-link.active {
+    font-weight: bold;
+    color: white;
+}
+.dropdown-item{
+    background-color: var(--negro);
+    color: white;
+}
+
+ 
+
+
+.dropdown-menu{
+    border: 0;
+    background-color: var(--negro);
+}
+.dropdown-menu a:hover{
+    color: var(--negro);
+    border: 0;
+}
+
+.portada{
+    background-image: url("../images/Portada2.jpg");
+    /* background-color: var(--azul); */
+    min-height: 95vh;
+    background-size: cover;
+    background-position:center center;
+    padding: 20px;
+} 
+.contenido_portada{
+    
+    font-family: Epilogue, sans-serif;
+}
+.contenido_portada .titulo{
+    font-size: 6rem;
+    color:white;
+    font-weight: bold; 
+}
+.contenido_portada .subtitulo{
+    font-size: 2rem;
+    color: white;
+
+}
+.playas{
+    background-color: var(--azul);
+    align-items: center;
+    padding: 30px;
+    color: white;
+}
+
+.card_residuos{
+    align-content: center;
+    border-radius:0 0 30px 0;
+    width: 200px;
+    text-align: center;
+}
+.card_residuos a{
+    color: black;
+    font-style: normal;
+}
+
+
+.card_consultas{
+    background-color: var(--azul);
+    color: white;
+
+}
+
+.btn-filtro {
+    color: white; /* Color del texto */
+    border: 2px solid white;
+    width: 200px;
+    
+  }
+  
+  /* Estilo al pasar el cursor sobre el botón */
+.btn-filtro:hover {
+    /*color: var(--color-5); /* Color del texto al pasar el cursor */
+    color: var();
+    background-color: var(--rojo); /* Color de fondo al pasar el cursor */
+  }
+  
+  /* Estilo cuando el botón está activo (haciendo clic) */
+.btn-filtro:active{
+    /*color: var(--color-5); /* Color del texto al hacer clic */
+    color: #b84f0b;
+    background-color: var(--color-4); /* Color de fondo al hacer clic */
+    border-color: var(--color-5); /* Color del borde al hacer clic */
+  }
+
+footer {
+    background-color: var(--negro);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Login */
+.login{
+     background-image: url("../images/imagen_login.jpg"); 
+     background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+     background-position: center;
+     
+}
+
+
+
+
+.btn-ingresar:hover {
+        background-color: var(--rojo); /* Color de fondo al pasar el cursor */
+        border-color: var(--rojo);
+}
+      
+.color-login{
+        background-color: rgba(255, 255, 255, 0.5); /* Blanco con 50% de transparencia */
+}
+
+
+.btn-outline-danger{
+    background-color: var(--rojo);
+    color: white;
+    border-color: var(--rojo);
+    border-radius: 8px;
+   
+}
+
+
+ .btn-outline-danger:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s;
+
+} 
+.btn-largo{
+    width: 100%;
+} 
+.btn-secondary{
+    width: 70px;
+}
+.btn-secondary:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s;
+
+}
+.btn-danger{
+    color: white;
+    background-color: var(--rojo);
+    width: 70px;
+
+}
+
+.btn-danger:hover{
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+    transform: scale(1.1);
+    transition: transform 0.2s;
+
+}
+.btn-largo{
+    width: 120px;
+}
+
+.btn-rojo:hover {
+        background-color: var(--azul); /* Cambio de color al pasar el mouse */
+        color: #B72223;
+}
+
+.tabla1{ 
+    overflow-x: auto;
+     
+}
+.pagination .page-item .page-link {
+    color: var(--gris); 
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--gris); 
+    border-color: var(--gris); 
+    color: white;
+}
+.centrarh {
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center; 
+}
+.size15{
+    font-size: 15px;
+}
+.size12{
+    font-size: 12px;
+}
+
+
+.inputC{
+    width: 80%;
+
+}
