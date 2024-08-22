@@ -23,7 +23,8 @@ class hallazgosController extends Controller
      */
     public function index()
     {
-        return view('views_admin.muestreos.index');
+        $muestreos=muestreo::all();
+        return view('views_admin.muestreos.index',compact('muestreos'));
     }
 
     /**
@@ -94,13 +95,13 @@ class hallazgosController extends Controller
             }
 
             
-            return redirect()->route('admin.hallazgos')->with('success', 'Registro creado correctamente.');
+            return redirect()->route('admin.hallazgos.create')->with('success', 'Registro creado correctamente.');
 
             }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al crear el muestreo: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.hallazgos')->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
+                return redirect()->route('admin.hallazgos.create')->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
             }
         
     }

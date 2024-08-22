@@ -12,8 +12,25 @@
     --gris2: #564C55; */
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
 }
+body{
+    background-image: url("../images/Portada4.jpg");
+    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+  }
 
- 
+  .navbar_inicio{
+    min-height: 80px;
+    font-family: "Cera Pro", Sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 1050; 
+  }
+  .n-transparent{
+    background-color: rgba(1, 115,175, 0.5); 
+  }
  .navbar_user{
     position:fixed;
     background-color:white; 
@@ -21,10 +38,12 @@
     z-index: 1;
     padding: 20px 0;
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     color: var(--negro);
-    font-weight: bold; 
-    border-radius: 0 0 15px 15px; 
+    border-radius: 0 0 15px 15px;
+    font-family: "Cera Pro", Sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase; 
 } 
 .navbar_user .nav-link {
     padding: 0 10px;
@@ -34,7 +53,7 @@
 }
 
 .espacio{
-    margin-top: 115px; 
+    margin-top: 25vh; 
     padding-top: 1rem ;  
 }
 
@@ -92,12 +111,10 @@
 }
 
 .portada{
-    background-image: url("../images/Portada2.jpg");
-    /* background-color: var(--azul); */
-    min-height: 95vh;
+    height: 110vh;
     background-size: cover;
     background-position:center center;
-    padding: 20px;
+   
 } 
 .contenido_portada{
     

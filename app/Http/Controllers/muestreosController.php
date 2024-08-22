@@ -3,18 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\muestreo;
+use App\Models\Playa;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 class muestreosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index()
+    // {
+    //     // $muestreos=muestreo::all();
+    //     // return view('views_admin.muestreos.index',compact('muestreos'));
+        
+    // }
+    public function index(Request $request)
     {
-        //
+        $playaId = $request->input('playa');
+        
+        $query = Muestreo::query();
+    
+        if ($playaId) {
+            $query->where('fk_playa', $playaId);
+        }
+        $muestreos = $query->get();
+        $playas = Playa::all();
+    
+        return view('views_admin.muestreos.view_muestreo', compact('muestreos', 'playas'));
     }
-
     /**
      * Show the form for creating a new resource.
      */

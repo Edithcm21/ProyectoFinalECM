@@ -1,4 +1,6 @@
-<nav class="navbar_user navbar navbar-expand-lg">
+{{-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top"> --}}
+    <nav id="navbar" class="navbar navbar-expand-lg n-transparent navbar-dark fixed-top">
+ 
   <div class="container-fluid">
       <div class="row p-0 w-100">
           <div class="col-lg-1 col-sm-2">

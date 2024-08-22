@@ -1,4 +1,4 @@
-{{-- @extends('views_admin.app')
+ @extends('views_admin.app')
 
 @section('title', 'Hallazgos')
 
@@ -11,7 +11,7 @@
     <div class="col-md-10 p-2 " style=" background-color:white;min-height: 74vh  " >
         <div class="container  " >
             <div class="row">
-                <div class="col-12 "  style=" height: 8vh">
+                <div class="col-12 "  style=" height: 10vh">
                     @if (session('error'))
                         <div class="alert alert-danger alert-dismissible fade show myAlert" role="alert" id="myAlert"> 
                              {{ session('error') }}
@@ -25,7 +25,9 @@
                     @endif
                 </div>
             </div>
-            <h3 style="color: #B72223">Nuevo registro</h3>
+            <div class="row">
+                <div class="col-12 " >
+                    <h3 style="color: #B72223">Nuevo registro</h3>
             <form class=" mb-3"method="POST" action="{{route('admin.hallazgos.store')}}" >
                 @csrf
                 <div class="row"  >
@@ -38,7 +40,7 @@
                             </div>
                             <div class=" col-sm-2 mb-3 ">
                                 <label  class="form-label ">Playa:</label>
-                                <select class="form-select" aria-label="Default select example" name="playa"  >
+                                <select class="form-select" aria-label="Default select example" name="playa"  required>
                                     <option  >Selecciona playa</option>
                                   @foreach ( $playas as $playa)
                                     <option value="{{$playa->id_playa}}">{{ $playa->nombre_playa}}</option>
@@ -47,11 +49,11 @@
                             </div>
                             <div class=" col-sm-2 mb-3" >
                                 <label  class="form-label">Fecha:</label>
-                                <input type="date" class="form-control" id="date" name="date" placeholder="Fecha" >
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Fecha" required>
                             </div>
                             <div class=" col-sm-2 mb-3 ">
                                 <label  class="form-label">Día:</label>
-                                <select class="form-select" aria-label="Default select example" name="dia"  >
+                                <select class="form-select" aria-label="Default select example" name="dia"  required>
                                     <option  >Selecciona día</option>
                                     <option value="sabado">sabado</option>
                                     <option value="domingo">domingo</option>
@@ -59,7 +61,7 @@
                             </div>
                             <div class=" col-sm-3 mb-3 ">
                                 <label  class="form-label">Zona:</label>
-                                <select class="form-select" aria-label="Default select example" name="zona"  >
+                                <select class="form-select" aria-label="Default select example" name="zona"  required>
                                     <option  >Selecciona zona</option>
                                     <option value="Debajo pleamar">Debajo pleamar</option>
                                     <option value="Encima pleamar">Encima pleamar</option>
@@ -116,6 +118,9 @@
                     </div> 
                 </div> 
             </form>
+                </div>
+            </div>
+            
     </div>       
     </div>
 
@@ -150,66 +155,3 @@
     }
     </script>
     
-
-     --}}
-     @extends('layouts.app')
-
-     @section('content')
-     <div class="container">
-         <h1>Agregar Residuos</h1>
-         
-         <form id="residuos-form">
-             <div id="residuos-container">
-                 <div class="form-group row align-items-center mb-3">
-                     <label class="col-sm-2 col-form-label">Selecciona un residuo:</label>
-                     <div class="col-sm-8">
-                         <select class="form-control" name="residuos[]">
-                             <option value="">Seleccione un residuo</option>
-                             @foreach($residuos as $residuo)
-                                 <option value="{{ $residuo->id }}">{{ $residuo->nombre }}</option>
-                             @endforeach
-                         </select>
-                     </div>
-                     <div class="col-sm-2">
-                         <input type="number" class="form-control" name="cantidades[]" placeholder="Cantidad" min="0">
-                     </div>
-                 </div>
-             </div>
-             
-             <button type="button" class="btn btn-primary" id="agregar-residuo">Agregar Residuo</button>
-             <button type="submit" class="btn btn-success mt-3">Guardar Registro</button>
-         </form>
-     </div>
-     @endsection
-     
-     <script>
-         document.addEventListener('DOMContentLoaded', function() {
-             var botonAgregar = document.getElementById('agregar-residuo');
-             if (botonAgregar) {
-                 botonAgregar.addEventListener('click', function() {
-                     var container = document.getElementById('residuos-container');
-     
-                     // Crear un nuevo div para el nuevo par de select e input
-                     var newRow = document.createElement('div');
-                     newRow.className = 'form-group row align-items-center mb-3';
-                     newRow.innerHTML = `
-                         <label class="col-sm-2 col-form-label">Selecciona un residuo:</label>
-                         <div class="col-sm-8">
-                             <select class="form-control" name="residuos[]">
-                                 <option value="">Seleccione un residuo</option>
-                                 @foreach($residuos as $residuo)
-                                     <option value="{{ $residuo->id }}">{{ $residuo->nombre }}</option>
-                                 @endforeach
-                             </select>
-                         </div>
-                         <div class="col-sm-2">
-                             <input type="number" class="form-control" name="cantidades[]" placeholder="Cantidad" min="0">
-                         </div>
-                     `;
-     
-                     // Agregar la nueva fila al contenedor
-                     container.appendChild(newRow);
-                 });
-             }
-         });
-     </script>

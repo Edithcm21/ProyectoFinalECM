@@ -53,3 +53,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // console.console.log(action);
      })
 })
+
+
+//Cambio de color del navbar al hacer scroll 
+window.addEventListener('scroll', function() {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.remove('navbar-dark');
+    navbar.classList.add('navbar-light', 'bg-light','border');
+  } else {
+    navbar.classList.remove('navbar-light', 'bg-light','border');
+    navbar.classList.add('navbar-dark');
+  }
+});

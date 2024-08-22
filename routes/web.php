@@ -8,6 +8,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LocalidadesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\muestreosController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PlayasController;
 use App\Http\Controllers\RegionesController;
@@ -84,6 +85,12 @@ Route::middleware(['auth'])->group(function () {
         // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
         // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
         
+        
+        Route::get('/admin/muestreos',[muestreosController::class,'index'])->name('admin.muestreos');
+        // Route::get('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
+        // Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
+        // // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
+        // // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
         
         
 

@@ -1,25 +1,32 @@
-<section class="portada ">
+{{-- <section class="portada ">
     <div class="container ">
-        <div class="row justify-content-lefth espacio">
-            <div class="col-md-12 text- contenido_portada ">
+        <div class="row justify-content-lefth ">
+            <div class="col-md-12 text- contenido_portada espacio">
                 <div class="titulo">Residuos  Costeros 
 
                 </div>
                 <br><br>
-                <div class="subtitulo">Esta pagina
-                             muestra los resultados obtenidos por investigadores de la UAM Azcapotzalco a playas mexicanas, 
-                            invitándote a tomar conciencia y acción para mantener nuestras 
-                            costas limpias y saludables.
-                </div>
+                
             </div>
         </div>
     </div>
-</section>
+</section> --}}
+<div class="container-fluid portada">
+  <div class="container ">
+    <div class="row justify-content-lefth ">
+        <div class="col-md-12 text- contenido_portada espacio">
+            <div class="titulo">Residuos  Costeros 
+
+            </div>
+            <br><br>
+            
+        </div>
+    </div>
+</div>
+</div>
 <section class="clasificacion">
             <div class="container ">
-
-            
-            <div class="row ">
+              <div class="row ">
                 <div class="col-12 text-center p-3">
                     <h3>Clasificacion de residuos</h3>
                 </div>
