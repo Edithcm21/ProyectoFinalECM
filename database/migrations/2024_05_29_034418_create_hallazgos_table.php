@@ -21,9 +21,6 @@ return new class extends Migration
             $table->unsignedInteger('porcentaje');
             $table->timestamps();
             
-            
-           
-            $table->timestamps();
         });
     }
 

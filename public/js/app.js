@@ -58,11 +58,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //Cambio de color del navbar al hacer scroll 
 window.addEventListener('scroll', function() {
   const navbar = document.getElementById('navbar');
+  const btn=this.document.getElementById('navbutton');
   if (window.scrollY > 50) {
     navbar.classList.remove('navbar-dark');
-    navbar.classList.add('navbar-light', 'bg-light','border');
+    navbar.classList.add('navbar-light', 'border');
+    btn.classList.remove('btn-white')
+    btn.classList.add('btn-blue')
   } else {
-    navbar.classList.remove('navbar-light', 'bg-light','border');
+    navbar.classList.remove('navbar-light','border');
     navbar.classList.add('navbar-dark');
+    btn.classList.remove('btn-blue')
+    btn.classList.add('btn-white')
   }
 });
+
+
+
+  //Para efectos de textos 
+  // Intersection Observer
+  document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    });
+
+    const elements = document.querySelectorAll('.fade-in-text, .slide-in-left, .zoom-in, .rotate-in, .bounce-in, .imagen-fade-in');
+    elements.forEach(element => observer.observe(element));
+});
+

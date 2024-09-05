@@ -7,28 +7,29 @@
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Informacion</a>
+        <a class="nav-link active" href="#">Informacion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Quienes somos</a>
+        <a class="nav-link active" href="#">Quienes somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Consultas</a>
+        <a class="nav-link active" href="#">Consultas</a>
       </li>
     </ul>
-    <div class="nav-item " style="margin-right: 50px;color: black; " >
+    <div class="nav-item text" style="margin-right: 50px; " >
           Fecha de consulta
     </div>
-    <div class="navbar-item " style="margin-right: 30px">
+    <div class="navbar-item  " style="margin-right: 30px">
       <a href="{{ route('login') }}">
-        <button id="navbutton" type="button" class=" navbutton btn btn-outline-danger">Iniciar sesión</button>
+        <button id="navbutton" type="button" class=" btn-white">Iniciar sesión</button>
+       
+
       </a>
     </div>
   </div> 

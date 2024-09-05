@@ -9,28 +9,24 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 
 class muestreosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     // $muestreos=muestreo::all();
-    //     // return view('views_admin.muestreos.index',compact('muestreos'));
-        
-    // }
+    
     public function index(Request $request)
     {
-        $playaId = $request->input('playa');
+        // $playaId = $request->input('playa');
         
-        $query = Muestreo::query();
+        // $query = Muestreo::query();
     
-        if ($playaId) {
-            $query->where('fk_playa', $playaId);
-        }
-        $muestreos = $query->get();
-        $playas = Playa::all();
+        // if ($playaId) {
+        //     $query->where('fk_playa', $playaId);
+        // }
+        // $muestreos = $query->get();
+        // $playas = Playa::all();
+        // $puntos = Playa::all(['latitud', 'longitud', 'nombre', 'muestreo', 'fecha', 'dia_muestreo', 'zona', 'piezas']);
+        $puntos = Playa::all(['latitud','longitud','nombre_playa']);
+        return response()->json($puntos);
+        
     
-        return view('views_admin.muestreos.view_muestreo', compact('muestreos', 'playas'));
+        // return view('views_admin.muestreos.view_muestreo', compact('muestreos', 'playas'));
     }
     /**
      * Show the form for creating a new resource.
