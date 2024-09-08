@@ -130,7 +130,11 @@ body{
     z-index: 2;
     bottom: 0;
   }
-
+  #map {
+    height: 100%;
+    width: 100%;
+    
+  }
 .contenido_portada {
     color:white;
     font-weight: bold; 

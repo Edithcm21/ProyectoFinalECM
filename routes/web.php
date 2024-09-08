@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClasificacionesController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\hallazgosController;
 use App\Http\Controllers\IndexAdmin;
 use App\Http\Controllers\IndexCapturista;
@@ -29,6 +30,7 @@ use App\Http\Middleware\CheckRole;
 */
 //Pagina principal
 Route::resource('/',IndexController::class);
+Route::resource('/mapa',Controller::class);
 //Ruta que funciona para la llamada AJAX de obtener los datos de filtros
 Route::get('estados/{id_estado}', [MunicipioController::class, 'getMunicipios']);
 //muestra el formulario
