@@ -7,6 +7,7 @@
     --gris: #5E5C5C;
     --rojo: #B72223;
     --negro:#000000;
+    --cafe:#96785B;
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
 }
 .btn-white {
@@ -45,7 +46,7 @@
 
 .h1{
     
-font-family: 'Montserrat', sans-serif; /* Aplicar la fuente Montserrat */
+font-family: 'Montserrat', sans-serif; 
 }
 
 .text-blue{
@@ -54,15 +55,14 @@ color: var(--azul);
 .text-blue2{
 color: var(--azul2);
 }
+
+.titulo{
+    font-size: 6rem;
+}
 .text-justify {
     text-align: justify;
 }
-.card-info{
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-    padding: 20px;
-}
+
   .text-muted {
     color: #B72223;
     font-size: 18px;
@@ -73,3 +73,47 @@ color: var(--azul2);
     font-size: 19px;
 }
   
+
+
+.info-window{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0,0,0,.2);
+    max-width: 250px;
+}
+
+.info-window .title{
+    color: var(--azul2);
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.info-window .details{
+    text-align: start;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.info .buttons{
+    width: 100%;
+    margin: 5px 0;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn-mostrarmas{
+    background-color: var(--azul) ;
+    color: white;
+    border: 1px solid var(--azul); 
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.btn-mostrarmas:hover{
+    border: var(--cafe);
+    transform: scale(1);
+    background-color: var(--cafe);
+}

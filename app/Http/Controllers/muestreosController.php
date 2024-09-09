@@ -10,7 +10,7 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 class muestreosController extends Controller
 {
     
-    public function index(Request $request)
+    public function index()
     {
         // $playaId = $request->input('playa');
         

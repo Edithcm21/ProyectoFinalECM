@@ -93,96 +93,6 @@ window.addEventListener('scroll', function() {
 });
 
 
-// async function initMap() {
-// console.log('entro a cargar la funcion ');
-
-//   // Request needed libraries.
-//   const { Map } = await google.maps.importLibrary("maps");
-//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-//   const map = new Map(document.getElementById("map"), {
-//     center: { lat: 37.4239163, lng: -122.0947209 },
-//     zoom: 14,
-//     mapId: "a947c81ef05926d8",
-//   });
-//   console.log('Genero el mapa ');
-//   const marker = new AdvancedMarkerElement({
-//     map,
-//     position: { lat: 37.4239163, lng: -122.0947209 },
-//     title: "Ejemplo",
-//   });
-// }
-
-// initMap();
-
-// async function initMap() {
-//   // Request needed libraries.
-//   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-//   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-//     "marker",
-//   );
-//   const map = new Map(document.getElementById("map"), {
-//     zoom: 12,
-//     center: { lat: 34.84555, lng: -111.8035 },
-//     mapId: "4504f8b37365c3d0",
-//   });
-//   // Set LatLng and title text for the markers. The first marker (Boynton Pass)
-//   // receives the initial focus when tab is pressed. Use arrow keys to move
-//   // between markers; press tab again to cycle through the map controls.
-//   const tourStops = [
-//     {
-//       position: { lat: 34.8791806, lng: -111.8265049 },
-//       title: "Boynton Pass",
-//     },
-//     {
-//       position: { lat: 34.8559195, lng: -111.7988186 },
-//       title: "Airport Mesa",
-//     },
-//     {
-//       position: { lat: 34.832149, lng: -111.7695277 },
-//       title: "Chapel of the Holy Cross",
-//     },
-//     {
-//       position: { lat: 34.823736, lng: -111.8001857 },
-//       title: "Red Rock Crossing",
-//     },
-//     {
-//       position: { lat: 34.800326, lng: -111.7665047 },
-//       title: "Bell Rock",
-//     },
-//   ];
-//   // Create an info window to share between markers.
-//   const infoWindow = new InfoWindow();
-
-//   // Create the markers.
-//   tourStops.forEach(({ position, title }, i) => {
-//     const pin = new PinElement({
-//       glyph: `${i + 1}`,
-//       scale: 1.5,
-//     });
-//     const marker = new AdvancedMarkerElement({
-//       position,
-//       map,
-//       title: `${i + 1}. ${title}`,
-//       content: pin.element,
-//       // gmpClickable: true,
-//     });
-
-//     // Add a click listener for each marker, and set up the info window.
-//     marker.addListener("click", ({ domEvent, latLng }) => {
-//       const { target } = domEvent;
-
-//       infoWindow.close();
-//       infoWindow.setContent(marker.title);
-//       infoWindow.open(marker.map, marker);
-//     });
-//   });
-// }
-
-// initMap();
-
-
-
-
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
@@ -193,7 +103,7 @@ async function initMap() {
   console.log(puntos);
   
   const map = new Map(document.getElementById("map"), {
-    zoom: 4,
+    zoom: 5,
     center: { lat: 23.6345, lng: -102.5528 },
     mapId: "a947c81ef05926d8",
   });
@@ -203,34 +113,39 @@ async function initMap() {
   const infoWindow = new InfoWindow();
 
   // Create the markers.
-  puntos.forEach(({ nombre_playa,latitud, longitud}, i) => {
+  puntos.forEach((punto) => {
 
     const marker = new AdvancedMarkerElement({
-      position:{lat:parseFloat(latitud), lng: parseFloat(longitud)},
+      position:{lat:parseFloat(punto.latitud), lng: parseFloat(punto.longitud)},
       map,
-      title: `${nombre_playa}`,
+      title: `playa ${punto.nombre_playa}`,
     });
 
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", ({ domEvent, latLng }) => {
       const { target } = domEvent;
-
+      
       infoWindow.close();
-      var contenidoInfowindow = '<div style="color: blue;">Nombre de la playa </div>' +
-                                              '<div>No. muestreo: 1 </div>' +
-                                              '<div>año/fecha: 2018 </div>' +
-                                              '<div>dia de muestreo: sabado</div>' +
-                                              '<div>zona: debajo pleamar</div>' +
-                                              '<div>No. piezas: 3</div>' +
-                                              '<hr>' +
-                                              '<p style="font-style: italic;">ver piezas encontradas </p>';
+      var contenidoInfowindow=`<div class="info-window ">
+                                <h5 class="title "><strong>Playa ${punto.nombre_playa}</strong> </h5>
+                                <p class="details ">Estado: ${punto.nombre_estado}</p>
+                                <p class="details ">Municipio :${punto.nombre_municipio}</p>
+                                <p class="details ">Muestreos realizados: ${punto.muestreos}</p>
+                                <div class="info-buttons ">
+                                  <button type="button" class="btn-mostrarmas" >Ver piezas encontradas</button>
+                                
+                                </div>
+                                <br><br>
+                               </div>`;
 
       infoWindow.setContent(contenidoInfowindow);
       infoWindow.open(marker.map, marker);
+      
     });
+
+     
   });
 }
 
 initMap();
-
 
