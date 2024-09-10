@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estado;
+use App\Models\hallazgo;
 use App\Models\Index;
+use App\Models\Muestreo;
 use App\Models\Municipio; // Importa el modelo Municipio
 use App\Models\Playa;
+use App\Models\tipo_residuo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -28,6 +31,27 @@ class IndexController extends Controller
         // $estados = Estado::all();
         return view('welcome', compact('puntos'));
       
+    }
+    public function showResultados(){
+        $anios = DB::table('muestreos')->distinct()->pluck('anio');
+        $zonas = DB::table('muestreos')->distinct()->pluck('zona');
+        $dias = DB::table('muestreos')->distinct()->pluck('dia');
+        $num_muestreos = DB::table('muestreos')->distinct()->pluck('num_muestreo');
+        $playas= Playa::all();
+        // $hallazgos= hallazgo::all();
+
+        $hallazgos = DB::table('hallazgos')
+        ->select('nombre_playa','id_muestreo','zona','anio','dia', 'id_tipo', 'nombre_tipo', 'cantidad', 'porcentaje', 'num_muestreo',)
+        ->join('muestreos', 'fk_muestreo', '=', 'id_muestreo')
+        ->join('playas', 'fk_playa', '=', 'id_playa')
+        ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo')
+        ->get();
+        $muestreos =Muestreo::where('fk_playa', 3)->get();
+        $residuos= tipo_residuo::all();
+
+        
+
+    return view('consultas',compact('anios', 'zonas','dias','playas','num_muestreos','hallazgos','muestreos','residuos'));
     }
 
    

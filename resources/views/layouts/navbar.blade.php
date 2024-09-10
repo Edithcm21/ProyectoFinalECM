@@ -19,7 +19,7 @@
         <a class="nav-link active" href="#">Quienes somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="#">Consultas</a>
+        <a class="nav-link active" href="{{route('resultados')}}">Resultados</a>
       </li>
     </ul>
     <div class="nav-item text" style="margin-right: 50px; " >
