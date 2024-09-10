@@ -32,26 +32,29 @@ class IndexController extends Controller
         return view('welcome', compact('puntos'));
       
     }
-    public function showResultados(){
-        $anios = DB::table('muestreos')->distinct()->pluck('anio');
-        $zonas = DB::table('muestreos')->distinct()->pluck('zona');
-        $dias = DB::table('muestreos')->distinct()->pluck('dia');
-        $num_muestreos = DB::table('muestreos')->distinct()->pluck('num_muestreo');
+    public function showResultados(int $id){
+        // $anios = DB::table('muestreos')->distinct()->pluck('anio');
+        // $zonas = DB::table('muestreos')->distinct()->pluck('zona');
+        // $dias = DB::table('muestreos')->distinct()->pluck('dia');
+        // $num_muestreos = DB::table('muestreos')->distinct()->pluck('num_muestreo');
         $playas= Playa::all();
-        // $hallazgos= hallazgo::all();
 
-        $hallazgos = DB::table('hallazgos')
-        ->select('nombre_playa','id_muestreo','zona','anio','dia', 'id_tipo', 'nombre_tipo', 'cantidad', 'porcentaje', 'num_muestreo',)
-        ->join('muestreos', 'fk_muestreo', '=', 'id_muestreo')
-        ->join('playas', 'fk_playa', '=', 'id_playa')
-        ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo')
-        ->get();
-        $muestreos =Muestreo::where('fk_playa', 3)->get();
+        // $hallazgos = DB::table('hallazgos')
+        // ->select('nombre_playa','id_muestreo','zona','anio','dia', 'id_tipo', 'nombre_tipo', 'cantidad', 'porcentaje', 'num_muestreo',)
+        // ->join('muestreos', 'fk_muestreo', '=', 'id_muestreo')
+        // ->join('playas', 'fk_playa', '=', 'id_playa')
+        // ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo')
+        // ->get();
+        $muestreos =Muestreo::where('fk_playa', $id)->get();
         $residuos= tipo_residuo::all();
+        if($id==0){
+            $muestreos =Muestreo::all();
+        }
+        $hallazgos= hallazgo::all();
 
         
 
-    return view('consultas',compact('anios', 'zonas','dias','playas','num_muestreos','hallazgos','muestreos','residuos'));
+    return view('consultas',compact('playas','hallazgos','muestreos','residuos'));
     }
 
    

@@ -30,7 +30,7 @@ use App\Http\Middleware\CheckRole;
 */
 //Pagina principal
 Route::resource('/',IndexController::class);
-Route::get('/resultados',[IndexController::class,'showResultados'])->name('resultados');
+Route::get('/resultados/{id}',[IndexController::class,'showResultados'])->name('resultados');
 Route::resource('/mapa',Controller::class);
 //Ruta que funciona para la llamada AJAX de obtener los datos de filtros
 Route::get('estados/{id_estado}', [MunicipioController::class, 'getMunicipios']);

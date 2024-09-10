@@ -1,34 +1,17 @@
 <div class="row justify-content-center align-items-center">
   <div class="filters ">
-    <label for="year">Selecciona la playa</label>
-      <select id="year" onchange="updateChart()">
-        @foreach ($playas as $playa)
-        <option value="{{$playa->id_playa}}">{{$playa->nombre_playa}}</option>
-        @endforeach
-      </select>
-    <label for="year">Selecciona el año:</label>
-    <select id="year" onchange="updateChart()">
-        @foreach ($anios as $anio)
-        <option value="{{$anio}}">{{$anio}}</option>
-        @endforeach
-    </select>
-  
-    <label for="muestreo">Número de muestreo:</label>
-    <select id="muestreo" onchange="updateChart()">
-        @foreach ($num_muestreos as $num_muestreo)
-        <option value="{{$num_muestreo}}">{{$num_muestreo}}</option>
-        @endforeach
-    </select>
-  
     
-
-    <label  class="">Zona:</label>
-    <select class=""  id="zona" onchange="updateChart()" aria-label="Default select example" name="zona"  required>
-        @foreach ($zonas as $zona)
-        <option value="{{$zona}}">{{$zona}}</option>
-        @endforeach
-     </select>
-  
+    <form action="" method="GET" id="playaForm">
+      <label for="residuo">Filtrar por playa</label>
+      <select  id="playaSelect" onchange="submitFormWithId(this.value)">
+          <option value="0">Selecciona playa</option>
+          @foreach ($playas as $playa)
+              <option value="{{ $playa->id_playa }}">{{ $playa->nombre_playa }}</option>
+          @endforeach
+          <option value="0">Todas</option>
+          
+      </select>
+  </form>
     <label for="residuo">Tipo de residuo:</label>
     <select id="residuo" onchange="updateChart()">
       <option value="total">Total residuos</option>
@@ -43,9 +26,26 @@
     <table class="table table-striped table-hover border text-center">
       <thead>
         <tr>
-          <th scope="col text-center" rowspan="3">Residuo</th>
+          <th scope="col text-center border " rowspan="5">Residuo</th>
         </tr>
-       
+        <tr class="border">
+          @php
+              // Agrupo por playa
+              $muestreosPorPlaya = $muestreos->groupBy('fk_playa');
+          @endphp
+
+          @foreach ($muestreosPorPlaya as $playaId => $muestreosDePlaya)
+              @php
+                  // Obtengo el primero nombre de esa playa
+                  $nombrePlaya = $muestreosDePlaya->first()->playa->nombre_playa;
+                  $totalMuestreos = $muestreosDePlaya->count();
+              @endphp
+              <th class="border text-center" colspan="{{ $totalMuestreos * 2 }}">
+                 <p> Playa {{ $nombrePlaya }}</p> 
+              </th>
+          @endforeach
+      </tr>
+        
         <tr class="border">
           @foreach ($muestreos as $muestreo )
           <th class="border" colspan="2">{{$muestreo->anio}} {{$muestreo->dia}} <br>{{$muestreo->zona}}</th>
@@ -53,8 +53,13 @@
         </tr>
         <tr class="border">
           @foreach ($muestreos as $muestreo )
-          <th class="border">cantidad</th>
-          <th class="border">porcentaje</th>
+          <th class="border" colspan="2">{{$muestreo->num_muestreo}}</th>
+          @endforeach
+        </tr>
+        <tr class="border">
+          @foreach ($muestreos as $muestreo )
+          <td class="border">cantidad</td>
+          <td class="border">porcentaje</td>
           @endforeach
         </tr>
       </thead>
@@ -63,7 +68,7 @@
         @foreach ($residuos as  $residuo)
         <tr>
           
-            <td>{{$residuo->nombre_tipo}}</td>
+            <td class="text-start">{{$residuo->nombre_tipo}}</td>
             @foreach ($muestreos as  $index => $muestreo)
 
             @php
@@ -100,5 +105,16 @@
       </tbody>
     </table>
   </div>
+  
 
 </div>
+
+<script>
+  function submitFormWithId(playaId) {
+      if (playaId) {
+          let form = document.getElementById('playaForm');
+          form.action = '/resultados/' + playaId; 
+          form.submit(); 
+      }
+  }
+</script>

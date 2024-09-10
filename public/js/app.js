@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       action= $('#formDelete').attr('data-action').slice(0,-1);
       action+=id;
       $('#formDelete').attr('action',action);
-      // console.console.log(action);
+      console.console.log(action);
        })
   }
 })

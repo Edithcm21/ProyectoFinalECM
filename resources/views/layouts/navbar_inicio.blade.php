@@ -33,7 +33,7 @@
                                   <a class="nav-link" href="#">Quienes somos</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link" href="{{route('resultados')}}">Consultas</a>
+                                  <a class="nav-link" href="{{route('resultados/{1}')}}">Consultas</a>
                               </li>
                           </ul>
                           <div class="nav-item" style="margin-right: 40px;">
