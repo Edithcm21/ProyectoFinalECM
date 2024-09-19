@@ -44,7 +44,6 @@ class hallazgosController extends Controller
      */
     public function store(Request $request)
     {
-        
         try{
             // Validar los datos del formulario de muestreo 
             $request->validate([

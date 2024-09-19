@@ -27,7 +27,12 @@
      /* Cambia el color del borde a azul */
 }
 
-
+.btn-largo{
+    width: 80%;
+    height: 38px;
+    align-items: center;
+    padding: 0 !important;
+}
 .btn-blue{
     background-color: var(--azul) ;/* Color azul */
     color: white;

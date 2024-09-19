@@ -42,9 +42,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const button = event.relatedTarget
       // Extract info from data-bs-* attributes
       const id = button.getAttribute('data-bs-id')
-      // If necessary, you could initiate an AJAX request here
-      // and then do the updating in a callback.
-      //
+   
       // Update the modal's content.
       const modalTitle = exampleModal.querySelector('.modal-title')
       modalTitle.textContent = `Se va a eliminar el registro : ${id}`
@@ -93,59 +91,4 @@ window.addEventListener('scroll', function() {
 });
 
 
-async function initMap() {
-  // Request needed libraries.
-  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker",
-  );
-  const puntos = window.puntos;
-  console.log(puntos);
-  
-  const map = new Map(document.getElementById("map"), {
-    zoom: 5,
-    center: { lat: 23.6345, lng: -102.5528 },
-    mapId: "a947c81ef05926d8",
-  });
-
-  
-  // Create an info window to share between markers.
-  const infoWindow = new InfoWindow();
-
-  // Create the markers.
-  puntos.forEach((punto) => {
-
-    const marker = new AdvancedMarkerElement({
-      position:{lat:parseFloat(punto.latitud), lng: parseFloat(punto.longitud)},
-      map,
-      title: `playa ${punto.nombre_playa}`,
-    });
-
-    // Add a click listener for each marker, and set up the info window.
-    marker.addListener("click", ({ domEvent, latLng }) => {
-      const { target } = domEvent;
-      
-      infoWindow.close();
-      var contenidoInfowindow=`<div class="info-window ">
-                                <h5 class="title "><strong>Playa ${punto.nombre_playa}</strong> </h5>
-                                <p class="details ">Estado: ${punto.nombre_estado}</p>
-                                <p class="details ">Municipio :${punto.nombre_municipio}</p>
-                                <p class="details ">Muestreos realizados: ${punto.muestreos}</p>
-                                <div class="info-buttons ">
-                                  <button type="button" class="btn-mostrarmas" >Ver piezas encontradas</button>
-                                
-                                </div>
-                                <br><br>
-                               </div>`;
-
-      infoWindow.setContent(contenidoInfowindow);
-      infoWindow.open(marker.map, marker);
-      
-    });
-
-     
-  });
-}
-
-initMap();
 
