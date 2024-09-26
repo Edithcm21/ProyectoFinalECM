@@ -110,7 +110,6 @@ class IndexController extends Controller
             $muestreos->where('zona',$id_zona);
         } 
         $muestreos = $muestreos->get();
-        echo($muestreos);
         $residuos= tipo_residuo::query();
         if($id_clasificacion > 0){
             $residuos->where('fk_clasificacion',$id_clasificacion);
