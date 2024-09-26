@@ -32,7 +32,9 @@ use App\Http\Middleware\CheckRole;
 Route::resource('/',IndexController::class);
 //Ruta para mostrar los resultados completos solo filtrar la playa
 Route::get('/resultados/{id}',[IndexController::class,'showResultados'])->name('resultados');
-Route::post('resultados/filtro',[IndexController::class,'showFilteredResults'])->name('resultados.filtro');
+// Route::post('resultados/filtro',[IndexController::class,'showFilteredResults1'])->name('resultados.filtro');
+Route::get('consulta/filtro',[IndexController::class,'showFilteredResults'])->name('consulta.filtro');
+
 // Obtiene el filtro de muestreo ne base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
 Route::resource('/mapa',Controller::class);

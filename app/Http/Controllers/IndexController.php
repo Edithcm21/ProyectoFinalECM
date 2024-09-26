@@ -50,19 +50,20 @@ class IndexController extends Controller
         return response()->json([
             'muestreos' => $muestreos,
             'num_muestreo' => $num_muestreo,
-            'zona'=>$zona
-
+            'zonas'=>$zona
         ]);
 
 
     }
     public function showResultados( $id){
         $playas= Playa::all();
+
         $hallazgos = DB::table('hallazgos')
-        ->select('nombre_playa','id_muestreo','zona','anio','dia', 'id_tipo', 'nombre_tipo', 'cantidad', 'porcentaje', 'num_muestreo',)
+        ->select('id_muestreo', 'id_tipo','cantidad', 'porcentaje')
         ->join('muestreos', 'fk_muestreo', '=', 'id_muestreo')
         ->join('playas', 'fk_playa', '=', 'id_playa')
         ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo')
+        ->where('id_playa',$id)
         ->get();
         $muestreos =Muestreo::where('fk_playa', $id)->get();
         $residuos= tipo_residuo::all();
@@ -72,15 +73,58 @@ class IndexController extends Controller
         $zonas= DB::table('muestreos')
             ->select('zona')->where('fk_playa',$id)->groupBy('zona')->get();
         
-        
-
     return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));
     }
 
     public function showFilteredResults(Request $request){
-        echo('Hola');
-    }
+        $id_playa = $request->playa;
+        $id_clasificacion=$request->clasificacion;
+        $num_muestreo = $request->muestreo;
+        $id_zona = $request->zona;
 
+        $playas= Playa::all();
+        $hallazgos = DB::table('hallazgos')
+        ->select('id_muestreo', 'id_tipo',  'cantidad', 'porcentaje')
+        ->join('muestreos', 'fk_muestreo', '=', 'id_muestreo')
+        ->join('playas', 'fk_playa', '=', 'id_playa')
+        ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo');
+        if($id_playa > 0){
+            $hallazgos->where('id_playa',$id_playa);
+        }
+        if($num_muestreo > 0){
+            $hallazgos->where('num_muestreo',$num_muestreo);
+        }
+        if($id_zona > 0){
+            $hallazgos->where('zona',$id_zona);
+        } 
+        $hallazgos = $hallazgos->get();
+
+        $muestreos =Muestreo::query();
+        if($id_playa > 0){
+            $muestreos->where('fk_playa',$id_playa);
+        }
+        if($num_muestreo > 0){
+            $muestreos->where('num_muestreo',$num_muestreo);
+        }
+        if($id_zona > 0){
+            $muestreos->where('zona',$id_zona);
+        } 
+        $muestreos = $muestreos->get();
+        echo($muestreos);
+        $residuos= tipo_residuo::query();
+        if($id_clasificacion > 0){
+            $residuos->where('fk_clasificacion',$id_clasificacion);
+        }
+        $residuos = $residuos->get();
+        $clasificaciones=Clasificacion::all();
+        $num_muestreos= DB::table('muestreos')
+        ->select('num_muestreo')->where('fk_playa',$id_playa)->groupBy('num_muestreo')->get();
+        $zonas= DB::table('muestreos')
+        ->select('zona')->where('fk_playa',$id_playa)->groupBy('zona')->get();
+        
+    return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));
+
+    }
 
    
 }

@@ -12,8 +12,8 @@
     <div class="row justify-content-center align-items-center">
       <div class="filters col-sm-10 m-4">
         
-        <form class="row " method="post" action="{{route('resultados.filtro')}}"  >
-          @csrf
+        <form class="row " method="GET" action="{{route('consulta.filtro')}}"  >
+          
           <div class="col-sm-2 m-1 p-1 ">
             <label for="playaSelect">Playa</label>
             <select  id="playaSelect" class="form-select" name="playa">
@@ -59,7 +59,7 @@
             <button  type="submit" class=" btn-blue btn-largo" > Filtrar</button>
           </div>   
       </form>
-      
+
       </div>
       <div class="col-sm-10 m-4 ">
     
@@ -181,8 +181,8 @@
           data.num_muestreo.forEach(muestreo => {
             muestreoSelected.innerHTML += '<option value="' + muestreo.num_muestreo + '"> ' + muestreo.num_muestreo + '</option>';
           });
-          data.zona.forEach(zona => {
-            zonaSelected.innerHTML += '<option value="' + zona.zona + '"> ' + zona.zona + '</option>';
+          data.zonas.forEach(zonas => {
+            zonaSelected.innerHTML += '<option value="' + zonas.zona + '"> ' + zonas.zona + '</option>';
           });
         })
         .catch(error => {
