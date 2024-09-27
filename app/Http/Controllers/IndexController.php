@@ -98,7 +98,6 @@ class IndexController extends Controller
             $hallazgos->where('zona',$id_zona);
         } 
         $hallazgos = $hallazgos->get();
-
         $muestreos =Muestreo::query();
         if($id_playa > 0){
             $muestreos->where('fk_playa',$id_playa);
@@ -108,18 +107,29 @@ class IndexController extends Controller
         }
         if($id_zona > 0){
             $muestreos->where('zona',$id_zona);
-        } 
+        }
+        $muestreos->orderBy('fk_playa'); 
         $muestreos = $muestreos->get();
         $residuos= tipo_residuo::query();
         if($id_clasificacion > 0){
             $residuos->where('fk_clasificacion',$id_clasificacion);
         }
+        $residuos = $residuos->orderBy('fk_clasificacion');
         $residuos = $residuos->get();
         $clasificaciones=Clasificacion::all();
-        $num_muestreos= DB::table('muestreos')
-        ->select('num_muestreo')->where('fk_playa',$id_playa)->groupBy('num_muestreo')->get();
-        $zonas= DB::table('muestreos')
-        ->select('zona')->where('fk_playa',$id_playa)->groupBy('zona')->get();
+        
+        if($id_playa>1){
+            $num_muestreos= DB::table('muestreos')
+            ->select('num_muestreo')->where('fk_playa',$id_playa)->groupBy('num_muestreo')->get();
+            $zonas= DB::table('muestreos')
+            ->select('zona')->where('fk_playa',$id_playa)->groupBy('zona')->get();
+        }
+        else{
+            $num_muestreos= DB::table('muestreos')
+            ->select('num_muestreo')->groupBy('num_muestreo')->get();
+            $zonas= DB::table('muestreos')
+            ->select('zona')->groupBy('zona')->get();
+        }
         
     return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));
 

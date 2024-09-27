@@ -4,11 +4,11 @@
 @section('title', 'Resultados')
 
 @section('navbar')
-    @include('layouts.navbar')
+    @include('layouts.navbar_inicio')
 @endsection
 
 @section('content')
-  <div class="container-fluid espacio " style="min-height: 80vh ; ">
+  <div class="container-fluid " style="min-height: 80vh ; ">
     <div class="row justify-content-center align-items-center">
       <div class="filters col-sm-10 m-4">
         
@@ -27,7 +27,7 @@
           <div class="col-sm-2 m-1 p-1">
             <label for="clasificacionSelected">Clasificacion</label>
             <select id="clasificacionSelected"  class="form-select" name="clasificacion">
-              <option value="0">Selecciona playa</option>
+              <option value="0">Selecciona la clasifiación</option>
               @foreach ($clasificaciones as $clasificacion)
               <option value="{{ $clasificacion->id_clasificacion }}">{{ $clasificacion->nombre_clasificacion }}</option>
               @endforeach
@@ -61,15 +61,15 @@
       </form>
 
       </div>
-      <div class="col-sm-10 m-4 ">
+      <div class="col-sm-10 m-4 table-responsive">
     
         @php
       $totales = array_fill(0, count($muestreos) * 2, 0);
       @endphp
-        <table class="table table-striped table-hover border text-center">
+        <table class="table table-striped  table-hover border text-center">
           <thead>
-            <tr>
-              <th scope="col text-center border " rowspan="5">Residuo</th>
+            <tr class=" text-center border">
+              <th   style="min-width: 300px; max-width: 300px ; position: sticky;" scope="col text-center border " class="col text-center border" rowspan="5">Residuo</th>
             </tr>
             <tr class="border">
               @php
@@ -107,11 +107,14 @@
             </tr>
           </thead>
           <tbody>
-          
-            @foreach ($residuos as  $residuo)
+            @foreach ($clasificaciones as $clasificacion)
+            @php
+              $residuoFiltrado= $residuos->where('fk_clasificacion',$clasificacion->id_clasificacion);
+            @endphp
+            @foreach ($residuoFiltrado as  $residuo )
             <tr>
               
-                <td class="text-start">{{$residuo->nombre_tipo}}</td>
+                <td class="text-start" style="background-color: {{$clasificacion->color}} ; position: sticky;">{{$residuo->nombre_tipo}}</td>
                 @foreach ($muestreos as  $index => $muestreo)
     
                 @php
@@ -119,6 +122,7 @@
                 $hallazgo = $hallazgos->firstWhere(function ($h) use ($muestreo, $residuo) {
                     return $h->id_muestreo == $muestreo->id_muestreo && $h->id_tipo == $residuo->id_tipo;
                 });
+
     
                 $cantidad = $hallazgo ? $hallazgo->cantidad : 0;
                 $porcentaje = $hallazgo ? $hallazgo->porcentaje : 0;
@@ -129,18 +133,19 @@
     
                 @endphp
                 @if ($hallazgo)
-                <td>{{ $hallazgo->cantidad }}</td>
+                <td >{{ $hallazgo->cantidad }}</td>
                 <td>{{ $hallazgo->porcentaje }}%</td>
                 @else
-                <td>0</td>
-                <td>0</td>
+                <td>--</td>
+                <td>--</td>
                 @endif
                 @endforeach
                   
             </tr>
             @endforeach
+            @endforeach
             <tr>
-              <td>Total</td>
+              <td style="position: sticky;">Total</td>
               @foreach ($totales as $total)
               <td><strong>{{ $total }}</strong></td>
               @endforeach
@@ -184,6 +189,9 @@
           data.zonas.forEach(zonas => {
             zonaSelected.innerHTML += '<option value="' + zonas.zona + '"> ' + zonas.zona + '</option>';
           });
+
+          muestreoSelected.innerHTML += '<option value="0">Todos</option>';
+          zonaSelected.innerHTML += '<option value="0">Todas</option>';
         })
         .catch(error => {
           console.error('Error:', error);

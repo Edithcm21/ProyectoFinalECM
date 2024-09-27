@@ -34,10 +34,12 @@ class ClasificacionesController extends Controller
         try{
             // Validar los datos del formulario
             $request->validate([
-                'nombre_clasificacion' => 'required|string|max:40'
+                'nombre_clasificacion' => 'required|string|max:40',
+                'color' => 'required|regex:/^#[0-9A-Fa-f]{6}$/',
             ]);
             $clasificacion= new Clasificacion();
             $clasificacion->nombre_clasificacion=$request->nombre_clasificacion;
+            $clasificacion->color= $request->color;
             $clasificacion->save();
             return redirect()->route('admin.Clasificacion')->with('success', 'Registro creado correctamente.');
 
@@ -76,10 +78,12 @@ class ClasificacionesController extends Controller
     {
         try{
             $request->validate([
-                'modalClasificacion' => 'required|string|max:40'
+                'modalClasificacion' => 'required|string|max:40',
+                'modalColor' => 'required|regex:/^#[0-9A-Fa-f]{6}$/'
             ]);
             $clasificacion=Clasificacion::findOrfail($id);
             $clasificacion->nombre_clasificacion=$request->modalClasificacion;
+            $clasificacion->color=$request->modalColor;
             $clasificacion->save();
             return redirect()->route('admin.Clasificacion')->with('success', 'Registro actualizado correctamente.');
 

@@ -11,10 +11,15 @@
     <div class="col-md-10 p-2 " style=" background-color:white;min-height: 74vh  " >
         <div class="container  " >
             <div class="row"  >
-                <div class="col-sm-12 col-lg-12 mt-4"   >
+                <div class="col-sm-8 col-lg-8 mt-4"   >
                     <h3 style="color: #B72223">Resultados de los muestreos</h3>
                    
                 </div>
+                <div class="col-sm-4 col-lg-4 mt-4"   >
+                  <a href="/admin/hallazgos/create">
+                    <button type="submit" class="btn  btn-outline-danger " style="width: 60%; ">Agregar muestreo</button> 
+                  </a> 
+              </div>
             </div>
             <div class="row">
                 <div class="col-12 mt-4 table-responsive">

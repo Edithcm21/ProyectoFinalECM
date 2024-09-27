@@ -120,3 +120,40 @@ color: var(--azul2);
     transform: scale(1);
     background-color: var(--cafe);
 }
+
+.accordion-button{
+    color: white !important;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:hover{
+    color: white !important;
+    outline: none;
+}
+.accordion-button:focus {
+    color: white !important;
+    box-shadow: none; 
+}
+.accordion-button.collapsed::after{
+    color: white !important;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+/* Estilo cuando el acordeón está expandido */
+.accordion-button:not(.collapsed)::after {
+    color: white !important;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Eliminar cualquier color azul en enlaces o texto al hacer clic */
+.accordion-button:not(.collapsed) {
+    color: white !important;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}

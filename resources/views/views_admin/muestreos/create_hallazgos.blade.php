@@ -28,11 +28,13 @@
             <div class="row">
                 <div class="col-12 " >
                     <h3 style="color: #B72223">Nuevo registro</h3>
+                </div>
+            </div>    
             <form class=" mb-3"method="POST" action="{{route('admin.hallazgos.store')}}" >
                 @csrf
                 <div class="row"  >
                     <div class="col-sm-12 col-lg-12 mt-4"   >
-                  
+
                         <div class="row">
                             <div class="col-sm-2 mb-3" >
                                 <label  class="form-label size15">Numero de muestreo:</label>
@@ -42,9 +44,9 @@
                                 <label  class="form-label ">Playa:</label>
                                 <select class="form-select" aria-label="Default select example" name="playa"  required>
                                     <option  >Selecciona playa</option>
-                                  @foreach ( $playas as $playa)
+                                    @foreach ( $playas as $playa)
                                     <option value="{{$playa->id_playa}}">{{ $playa->nombre_playa}}</option>
-                                  @endforeach
+                                    @endforeach
                                 </select>
                             </div>
                             <div class=" col-sm-2 mb-3" >
@@ -73,34 +75,44 @@
                     </div>
                 </div> 
                 <div class="row centrarh ">
-                    @foreach ($clasificaciones as $clasificacion)
-                        <div class="col-sm-8 col-lg-8 " >
+                    @foreach ($clasificaciones as $clasificacion)    
+
+                        <div  class="col-sm-8 col-lg-8 ">
                             @if(isset($residuosAgrupados[$clasificacion->id_clasificacion]))
-                            <table class="table table-striped border">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3" class="bg-dark text-white">{{ $clasificacion->nombre_clasificacion }}</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-8">Residuo</th>
-                                        <th class="col-2">Cantidad (pz)</th>
-                                        <th class="col-2">Porcentaje</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($residuosAgrupados[$clasificacion->id_clasificacion] as $residuo)
-                                    <tr class="size12">
-                                        <td>{{ $residuo->nombre_tipo}}</td>
-                                        <td><input class="inputC borde" type="number" name="cantidades[{{ $residuo->id_tipo }}] " value="0" min="0" onchange="updateTotals()"></td>
-                                        <td><input class="inputC borde" type="text"   name="porcentajes[{{ $residuo->id_tipo }}]" value="0 %" min="0" onchange="updateTotals()"></td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                <div class="accordion" id="accordionPanelsStayOpenExample">
+                                    <div class="accordion-item">
+                                        <table class="table table-striped border">
+                                            
+                                                <tr class="" id="panelsStayOpen-heading{{$clasificacion->id_clasificacion}}">
+                                                    <th  colspan="3" class="bg-dark ">
+                                                        <button  class="accordion-button bg-dark  " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}" aria-expanded="false" aria-controls="panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}">
+                                                            {{ $clasificacion->nombre_clasificacion }}
+                                                        </button> 
+                                                    </th>
+                                                </tr>
+                                            <tbody id="panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading{{$clasificacion->id_clasificacion}}">
+                                                <tr>
+                                                    <th class="col-8">Residuo</th>
+                                                    <th class="col-2">Cantidad (pz)</th>
+                                                    <th class="col-2">Porcentaje</th>
+                                                </tr>
+                                                @foreach($residuosAgrupados[$clasificacion->id_clasificacion] as $residuo)
+                                                <tr class="size12">
+                                                    <td>{{ $residuo->nombre_tipo}}</td>
+                                                    <td><input class="inputC borde" type="number" name="cantidades[{{ $residuo->id_tipo }}] " value="0" min="0" onchange="updateTotals()"></td>
+                                                    <td><input class="inputC borde" type="text"   name="porcentajes[{{ $residuo->id_tipo }}]" value="0 %" min="0" onchange="updateTotals()"></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             @endif
                         </div>
                     @endforeach
-                    <div class="col-sm-8 col-lg-8 " >
+                </div>
+                <div class="row centrarh ">
+                    <div class="col-sm-8 col-lg-8 centrarh " >
                         <table class="table table-striped border">
                             <tr>
                                 <th class="col-8">Total</th>
@@ -108,9 +120,7 @@
                                 <td class="col-2" id="totalP"><label>0%</label></td>
                             </tr>
                         </table>
-
-                    </div>
-                    
+                    </div>   
                 </div> 
                 <div class="row  centrarh">
                     <div class="col-8 m-4  centrarh"  >
@@ -121,8 +131,7 @@
                 </div>
             </div>
             
-    </div>       
-    </div>
+    </div>  
 
 
 

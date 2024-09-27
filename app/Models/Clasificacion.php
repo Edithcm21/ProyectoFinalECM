@@ -10,6 +10,6 @@ class Clasificacion extends Model
     use HasFactory;
     protected $table = 'clasificaciones';
     protected $primaryKey='id_clasificacion';
-    protected $fillable=['nombre_clasificacion'];
+    protected $fillable=['nombre_clasificacion','color'];
 
 }

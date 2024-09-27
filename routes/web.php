@@ -34,6 +34,7 @@ Route::resource('/',IndexController::class);
 Route::get('/resultados/{id}',[IndexController::class,'showResultados'])->name('resultados');
 // Route::post('resultados/filtro',[IndexController::class,'showFilteredResults1'])->name('resultados.filtro');
 Route::get('consulta/filtro',[IndexController::class,'showFilteredResults'])->name('consulta.filtro');
+// Route::get('resultados/filtro',[IndexController::class,'showFilteredResults'])->name('resultados.filtro');
 
 // Obtiene el filtro de muestreo ne base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
@@ -56,41 +57,41 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/usuarios',[UsersController::class,'index'])->name('admin.usuarios');
         Route::post('/admin/usuarios/create',[UsersController::class,'store'])->name('admin.usuarios.store');
         Route::put('/admin/usuarios/update/{id}',[UsersController::class,'update'])->name('admin.usuarios.update');
-        Route::delete('/admin/usuarios/delete/{id}',[UsersController::class,'destroy'])->name('admin.usuarios.delete');
+        Route::post('/admin/usuarios/delete/{id}',[UsersController::class,'destroy'])->name('admin.usuarios.delete');
         //gestion de municipios
         Route::get('/admin/municipios',[MunicipioController::class,'index'])->name('admin.municipios');
         Route::post('/admin/municipios/create',[MunicipioController::class,'store'])->name('admin.municipios.store');
         Route::put('/admin/municipios/update/{id}',[MunicipioController::class,'update'])->name('admin.municipios.update');
-        Route::delete('/admin/municipios/delete/{id}',[MunicipioController::class,'destroy'])->name('admin.municipios.delete');
+        Route::post('/admin/municipios/delete/{id}',[MunicipioController::class,'destroy'])->name('admin.municipios.delete');
         //Gestion de localidades
         Route::get('/admin/localidades',[LocalidadesController::class,'index'])->name('admin.localidades');
         Route::post('/admin/localidades/create',[LocalidadesController::class,'store'])->name('admin.localidades.store');
         Route::put('/admin/localidades/update/{id}',[LocalidadesController::class,'update'])->name('admin.localidades.update');
-        Route::delete('/admin/localidades/delete/{id}',[LocalidadesController::class,'destroy'])->name('admin.localidades.delete');
+        Route::post('/admin/localidades/delete/{id}',[LocalidadesController::class,'destroy'])->name('admin.localidades.delete');
         //Region Marina
         Route::get('/admin/RegionMarina',[RegionesController::class,'index'])->name('admin.RegionMarina');
         Route::post('/admin/RegionMarina/create',[RegionesController::class,'store'])->name('admin.RegionMarina.store');
         Route::put('/admin/RegionMarina/update/{id}',[RegionesController::class,'update'])->name('admin.RegionMarina.update');
-        Route::delete('/admin/RegionMarina/delete/{id}',[RegionesController::class,'destroy'])->name('admin.RegionMarina.delete');
+        Route::post('/admin/RegionMarina/delete/{id}',[RegionesController::class,'destroy'])->name('admin.RegionMarina.delete');
         //Clasificacion de reisuos
         Route::get('/admin/Clasificacion',[ClasificacionesController::class,'index'])->name('admin.Clasificacion');
         Route::post('/admin/Clasificacion/create',[ClasificacionesController::class,'store'])->name('admin.Clasificacion.store');
         Route::put('/admin/Clasificacion/update/{id}',[ClasificacionesController::class,'update'])->name('admin.Clasificacion.update');
-        Route::delete('/admin/Clasificacion/delete/{id}',[ClasificacionesController::class,'destroy'])->name('admin.Clasificacion.delete');
+        Route::post('/admin/Clasificacion/delete/{id}',[ClasificacionesController::class,'destroy'])->name('admin.Clasificacion.delete');
         //Playas
         Route::get('/admin/Playas',[PlayasController::class,'index'])->name('admin.Playas');
         Route::post('/admin/Playas/create',[PlayasController::class,'store'])->name('admin.Playas.store');
         Route::put('/admin/Playas/update/{id}',[PlayasController::class,'update'])->name('admin.Playas.update');
-        Route::delete('/admin/Playas/delete/{id}',[PlayasController::class,'destroy'])->name('admin.Playas.delete');
+        Route::post('/admin/Playas/delete/{id}',[PlayasController::class,'destroy'])->name('admin.Playas.delete');
         //
         Route::get('/admin/Tipo_residuos',[tipo_residuosController::class,'index'])->name('admin.Tipo_residuos');
         Route::post('/admin/Tipo_residuos/create',[tipo_residuosController::class,'store'])->name('admin.Tipo_residuos.store');
         Route::put('/admin/Tipo_residuos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
-        Route::delete('/admin/Tipo_residuos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
+        Route::post('/admin/Tipo_residuos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
 
         Route::get('/admin/hallazgos',[hallazgosController::class,'index'])->name('admin.hallazgos');
-        Route::post('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
-        Route::delete('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
+        Route::get('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
+        Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
         // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
         // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
         

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('clasificaciones', function (Blueprint $table) {
             $table->unsignedInteger('id_clasificacion')->autoIncrement();
             $table->string('nombre_clasificacion', 40); 
+            $table->string('color',7);
             $table->timestamps();
         });
     }

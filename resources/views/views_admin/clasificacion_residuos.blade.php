@@ -21,6 +21,10 @@
                                 <div class=" col-sm-12 mb-3 pt-4">
                                     <input type="text" class="form-control" id="nombre_clasificacion" name="nombre_clasificacion" placeholder="Nombre de la clasificacion" maxlength="40">
                                 </div>
+                                <div class="col-sm-12 mb-3 pt-4">
+                                    <label for="color">Elige un color:</label>
+                                    <input type="color" id="color" name="color" value="#ffffff">
+                                </div>
                                 <div class="col-sm-12 col-8 pt-4" >
                                     <button type="submit" class="btn btn-secondary btn-sm">Agregar</button>  
                                 </div>
@@ -52,13 +56,14 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Clasificacion</th>
-                                    </tr>
+                                        <th>Color</th>                                   </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($clasificaciones as $clasificacion)
                                     <tr>
                                         <td>{{$clasificacion->id_clasificacion}}</td>
-                                        <td>{{$clasificacion->nombre_clasificacion}}</td>
+                                        <td style="background-color: {{$clasificacion->color}}">{{$clasificacion->nombre_clasificacion}}</td>
+                                       
                                         
                                         <td>
                                             <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$clasificacion->id_clasificacion}}" data-bs-id="{{$clasificacion->id_clasificacion}}">Editar</button>
@@ -75,8 +80,12 @@
                                                               @csrf @method('PUT')
                                                               <div class="mb-3">
                                                                 <label  class="form-label">Clasificación de residuos</label>
-                                                                <input type="text" class="form-control"  name="modalClasificacion" placeholder="Clasificación" required value="{{$clasificacion->nombre_clasificacion}}">
+                                                                <input type="text" class="form-control"  name="modalClasificacion" placeholder="Clasificación"  value="{{$clasificacion->nombre_clasificacion}}">
                                                               </div>
+                                                              <div class="mb-3 ">
+                                                                <label for="modalColor">Elige un color:</label>
+                                                                <input type="color" id="modalcolor" name="modalColor" value="{{$clasificacion->color}}">
+                                                            </div>
                                                               
                                                               <div class="mb-3 text-end">
                                                                 <button type="submit" class="btn btn-danger btn-largo "> Actualizar </button>

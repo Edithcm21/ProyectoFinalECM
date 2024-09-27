@@ -6,16 +6,18 @@
      --azul2: #0C404D;
     --gris: #5E5C5C;
     --cafe:#96785B;
-    /* --rojo: #B72223;
+    /* --rojo: #B72223;  */
     --negro:#000000;
     --rojo:#ac0e28;
-    
+/*     
     --celeste:#6B99C3;
     --cafe2: #65483D;
     --gris: #9E8279;
-    --gris2: #564C55; */
+    --gris2: #564C55; */ 
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
 }
+
+
 body{
     justify-content: center;
      align-items: center;
