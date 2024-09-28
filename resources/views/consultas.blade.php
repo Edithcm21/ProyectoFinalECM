@@ -64,12 +64,12 @@
       <div class="col-sm-10 m-4 table-responsive">
     
         @php
-      $totales = array_fill(0, count($muestreos) * 2, 0);
-      @endphp
+          $totales = array_fill(0, count($muestreos) * 2, 0);
+        @endphp
         <table class="table table-striped  table-hover border text-center">
           <thead>
             <tr class=" text-center border">
-              <th   style="min-width: 300px; max-width: 300px ; position: sticky;" scope="col text-center border " class="col text-center border" rowspan="5">Residuo</th>
+              <th   style="min-width: 300px; max-width: 300px ; " scope="col text-center border " class="col text-center border" rowspan="5">Residuo</th>
             </tr>
             <tr class="border">
               @php
@@ -110,11 +110,21 @@
             @foreach ($clasificaciones as $clasificacion)
             @php
               $residuoFiltrado= $residuos->where('fk_clasificacion',$clasificacion->id_clasificacion);
+              $totalResiduos = $residuoFiltrado->count();
+              $contador = 0
             @endphp
-            @foreach ($residuoFiltrado as  $residuo )
-            <tr>
+            @foreach ($residuoFiltrado  as   $residuo )
+            @php
+                // Verifica si es la última fila de la clasificación
+                $contador++; // Incrementa el contador en cada iteración
+                $ultimaFila = ($contador === $totalResiduos);
+               
+            @endphp
+            <tr style="{{ $ultimaFila ? 'border-bottom: 3px solid black;' : '' }}">
               
-                <td class="text-start" style="background-color: {{$clasificacion->color}} ; position: sticky;">{{$residuo->nombre_tipo}}</td>
+              <td class="text-start" style=" position: sticky;">{{$residuo->nombre_tipo}}</td>
+                  
+              {{-- <td class="text-start" style="background-color: {{$clasificacion->color}} ; position: sticky;">{{$residuo->nombre_tipo}}</td> --}}
                 @foreach ($muestreos as  $index => $muestreo)
     
                 @php

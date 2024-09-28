@@ -58,18 +58,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 //Cambio de color del navbar al hacer scroll 
 window.addEventListener('scroll', function() {
-  const navbar = document.getElementById('navbar');
-  const btn=this.document.getElementById('navbutton');
-  if (window.scrollY > 50) {
-    navbar.classList.remove('navbar-dark');
-    navbar.classList.add('navbar-light', 'border');
-    btn.classList.remove('btn-white')
-    btn.classList.add('btn-blue')
-  } else {
-    navbar.classList.remove('navbar-light','border');
-    navbar.classList.add('navbar-dark');
-    btn.classList.remove('btn-blue')
-    btn.classList.add('btn-white')
+  const navbar = document.getElementById('navbar1');
+  const btn=this.document.getElementById('navbutton1');
+  if (navbar && btn) {
+
+    if (window.scrollY > 50) {
+      navbar.classList.remove('navbar-dark');
+      navbar.classList.add('navbar-light', 'border');
+      btn.classList.remove('btn-white')
+      btn.classList.add('btn-blue')
+    } else {
+      navbar.classList.remove('navbar-light','border');
+      navbar.classList.add('navbar-dark');
+      btn.classList.remove('btn-blue')
+      btn.classList.add('btn-white')
+    }
   }
 });
 

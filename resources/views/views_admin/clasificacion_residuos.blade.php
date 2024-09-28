@@ -56,7 +56,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Clasificacion</th>
-                                        <th>Color</th>                                   </tr>
+                                        <th>Color</th>                                   
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($clasificaciones as $clasificacion)

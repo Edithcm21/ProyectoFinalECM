@@ -23,8 +23,16 @@ class hallazgosController extends Controller
      */
     public function index()
     {
-        $muestreos=muestreo::all();
-        return view('views_admin.muestreos.index',compact('muestreos'));
+        
+    }
+    public function viewHallazgos($id){
+        $muestreo=muestreo::where('id_muestreo',$id)->first();
+
+        
+        $hallazgos= hallazgo::where('fk_muestreo',$id)->get();
+        echo($hallazgos);
+        return view('views_admin.muestreos.hallazgos',compact('muestreo','hallazgos'));
+
     }
 
     /**

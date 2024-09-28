@@ -89,7 +89,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/Tipo_residuos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
         Route::post('/admin/Tipo_residuos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
 
-        Route::get('/admin/hallazgos',[hallazgosController::class,'index'])->name('admin.hallazgos');
+        //Muestra los datos del muestreo seleccionado 
+        Route::get('/admin/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('admin.hallazgos');
         Route::get('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
         Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
         // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');

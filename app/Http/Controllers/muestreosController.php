@@ -14,19 +14,8 @@ class muestreosController extends Controller
     {
         // $playaId = $request->input('playa');
         
-        // $query = Muestreo::query();
-    
-        // if ($playaId) {
-        //     $query->where('fk_playa', $playaId);
-        // }
-        // $muestreos = $query->get();
-        // $playas = Playa::all();
-        // $puntos = Playa::all(['latitud', 'longitud', 'nombre', 'muestreo', 'fecha', 'dia_muestreo', 'zona', 'piezas']);
-        $puntos = Playa::all(['latitud','longitud','nombre_playa']);
-        return response()->json($puntos);
-        
-    
-        // return view('views_admin.muestreos.view_muestreo', compact('muestreos', 'playas'));
+        $muestreos=muestreo::orderBy('fk_playa')->get();
+        return view('views_admin.admin',compact('muestreos'));
     }
     /**
      * Show the form for creating a new resource.

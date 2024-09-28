@@ -9,6 +9,7 @@
     --negro:#000000;
     --cafe:#96785B;
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
+  
 }
 .btn-white {
     background-color: white;
@@ -126,12 +127,10 @@ color: var(--azul2);
     outline: none;
     border: none;
     box-shadow: none;
+    padding: 2;
 }
 
-.accordion-button:hover{
-    color: white !important;
-    outline: none;
-}
+
 .accordion-button:focus {
     color: white !important;
     box-shadow: none; 
@@ -145,9 +144,11 @@ color: var(--azul2);
 /* Estilo cuando el acordeón está expandido */
 .accordion-button:not(.collapsed)::after {
     color: white !important;
+    background-image: var(--bs-accordion-btn-active-icon);
     outline: none;
     border: none;
     box-shadow: none;
+
 }
 
 /* Eliminar cualquier color azul en enlaces o texto al hacer clic */

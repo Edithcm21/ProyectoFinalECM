@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar_inicio navbar-expand-lg navbar-dark fixed-top  ">
+<nav id="navbar1" class="navbar navbar_inicio navbar-expand-lg navbar-dark fixed-top  ">
   <div class="d-flex mr-3 col-sm-4 justify-content-center" >
     <img class="al img-fluid" style="max-height: 90px;" src="{{ asset('images/Logo3.png') }}">
   </div>
@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Inicio</a>
+        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="#">Informacion</a>
@@ -26,8 +26,8 @@
           Fecha de consulta
     </div>
     <div class="navbar-item  " style="margin-right: 30px">
-      <a href="{{ route('login') }}">
-        <button id="navbutton" type="button" class=" btn-white">Iniciar sesión</button>
+      <a href="/login">
+        <button id="navbutton1" type="button" class=" btn-white">Iniciar sesión</button>
        
 
       </a>

@@ -34,7 +34,7 @@ class LoginController extends Controller
         //Redireccionar al usuario según su rol
             if ($user->rol === 'admin') {
                 Log::info('Usuario autenticado como admin.');
-                return redirect()->route('admin');
+                return redirect()->route('admin.muestreos');
             } elseif ($user->rol === 'capturista') {
                 Log::info('Usuario autenticado como capturista.');
                 return redirect()->route('capturista');

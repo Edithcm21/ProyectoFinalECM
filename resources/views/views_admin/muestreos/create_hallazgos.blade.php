@@ -85,7 +85,7 @@
                                             
                                                 <tr class="" id="panelsStayOpen-heading{{$clasificacion->id_clasificacion}}">
                                                     <th  colspan="3" class="bg-dark ">
-                                                        <button  class="accordion-button bg-dark  " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}" aria-expanded="false" aria-controls="panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}">
+                                                        <button style="color: white"  class="accordion-button bg-dark " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}" aria-expanded="false" aria-controls="panelsStayOpen-collapse{{$clasificacion->id_clasificacion}}">
                                                             {{ $clasificacion->nombre_clasificacion }}
                                                         </button> 
                                                     </th>

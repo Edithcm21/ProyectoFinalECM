@@ -75,4 +75,9 @@
 .imagen-fade-in.show {
     opacity: 1; /* Se hace visible */
 }
+.vertical-text {
+    writing-mode: vertical-rl; 
+    transform: rotate(180deg); 
+    white-space: nowrap; 
+}
 
