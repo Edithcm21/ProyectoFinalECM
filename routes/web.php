@@ -35,7 +35,7 @@ Route::get('/resultados/{id}',[IndexController::class,'showResultados'])->name('
 // Route::post('resultados/filtro',[IndexController::class,'showFilteredResults1'])->name('resultados.filtro');
 Route::get('consulta/filtro',[IndexController::class,'showFilteredResults'])->name('consulta.filtro');
 // Route::get('resultados/filtro',[IndexController::class,'showFilteredResults'])->name('resultados.filtro');
-
+       
 // Obtiene el filtro de muestreo ne base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
 Route::resource('/mapa',Controller::class);
@@ -88,10 +88,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/Tipo_residuos/create',[tipo_residuosController::class,'store'])->name('admin.Tipo_residuos.store');
         Route::put('/admin/Tipo_residuos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
         Route::post('/admin/Tipo_residuos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
-
+        
         //Muestra los datos del muestreo seleccionado 
         Route::get('/admin/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('admin.hallazgos');
-        Route::get('/admin/hallazgos/create1',[hallazgosController::class,'create'])->name('admin.hallazgos.create1');
+        Route::get('admin/hallazgo/create',[hallazgosController::class,'create'])->name('admin.hallazgo.create');
         Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
         Route::get('/admin/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('admin.hallazgos.edit');
         Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.hallazgos.update');
