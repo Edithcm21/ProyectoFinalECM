@@ -52,7 +52,7 @@ Route::post('login', [LoginController::class, 'login']);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(CheckRole::class . ':admin')->group(function () {
         //vista principal
-        Route::get('/admin',[MenuController::class,'index'])->name('admin');
+        // Route::get('/admin',[MenuController::class,'index'])->name('admin');
         //vistas para la gestion de usuarios
         Route::get('/admin/usuarios',[UsersController::class,'index'])->name('admin.usuarios');
         Route::post('/admin/usuarios/create',[UsersController::class,'store'])->name('admin.usuarios.store');
@@ -91,9 +91,10 @@ Route::middleware(['auth'])->group(function () {
 
         //Muestra los datos del muestreo seleccionado 
         Route::get('/admin/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('admin.hallazgos');
-        Route::get('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
+        Route::get('/admin/hallazgos/create1',[hallazgosController::class,'create'])->name('admin.hallazgos.create1');
         Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
-        // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
+        Route::get('/admin/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('admin.hallazgos.edit');
+        Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.hallazgos.update');
         // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
         
         

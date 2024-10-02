@@ -120,9 +120,9 @@
                 $ultimaFila = ($contador === $totalResiduos);
                
             @endphp
-            <tr style="{{ $ultimaFila ? 'border-bottom: 3px solid black;' : '' }}">
+            <tr style="{{ $ultimaFila ? 'border-bottom: 2px solid black;' : '' }}">
               
-              <td class="text-start" style=" position: sticky;">{{$residuo->nombre_tipo}}</td>
+              <td class="text-start" style=" position: sticky; border-right: 2px solid black;">{{$residuo->nombre_tipo}}</td>
                   
               {{-- <td class="text-start" style="background-color: {{$clasificacion->color}} ; position: sticky;">{{$residuo->nombre_tipo}}</td> --}}
                 @foreach ($muestreos as  $index => $muestreo)

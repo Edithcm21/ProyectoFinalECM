@@ -6,7 +6,6 @@ async function initMap() {
       "marker",
     );
     const puntos = window.puntos;
-    console.log(puntos);
     
     const map = new Map(document.getElementById("map"), {
       zoom: 5,

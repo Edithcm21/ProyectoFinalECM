@@ -15,7 +15,7 @@ class IndexAdmin extends Controller
     public function index()
     {
         $opcion = Estado::all();
-        return view('views_admin/admin', compact('opcion'));
+        return view('views_admin/muestreos', compact('opcion'));
   
     }
 

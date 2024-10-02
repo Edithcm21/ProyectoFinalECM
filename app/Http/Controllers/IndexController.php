@@ -26,6 +26,7 @@ class IndexController extends Controller
         ->join('playas', 'playas.id_playa', '=', 'muestreos.fk_playa')
         ->join('municipios', 'municipios.id_municipio', '=', 'playas.fk_municipio')
         ->join('estados', 'estados.id_estado', '=', 'municipios.fk_estado')
+        ->where('muestreos.autorizado','1')
         ->groupBy( 'id_playa','nombre_playa','latitud','longitud','nombre_municipio','nombre_estado')
         ->get();
         return view('welcome', compact('puntos'));

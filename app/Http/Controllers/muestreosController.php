@@ -15,7 +15,7 @@ class muestreosController extends Controller
         // $playaId = $request->input('playa');
         
         $muestreos=muestreo::orderBy('fk_playa')->get();
-        return view('views_admin.admin',compact('muestreos'));
+        return view('views_admin.muestreos',compact('muestreos'));
     }
     /**
      * Show the form for creating a new resource.

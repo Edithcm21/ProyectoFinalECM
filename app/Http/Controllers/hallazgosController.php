@@ -11,6 +11,7 @@ use App\Models\tipo_residuo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PgSql\Lob;
 use PhpParser\Node\Stmt\Foreach_;
@@ -25,21 +26,15 @@ class hallazgosController extends Controller
     {
         
     }
-    public function viewHallazgos($id){
-        $muestreo=muestreo::where('id_muestreo',$id)->first();
 
-        
-        $hallazgos= hallazgo::where('fk_muestreo',$id)->get();
-        echo($hallazgos);
-        return view('views_admin.muestreos.hallazgos',compact('muestreo','hallazgos'));
-
-    }
+   
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        Log::info('entro a la funcion de create');
         $playas=Playa::all();
         $residuos=tipo_residuo::all();
         $clasificaciones= Clasificacion::all();
@@ -61,7 +56,7 @@ class hallazgosController extends Controller
                 'dia' => 'required|string',
                 'zona' => 'required|string',
             ]);
-            
+            Log::info('entro a la funcion store');
             // Crear el registro de muestreo
             $muestreo=new muestreo();
             $muestreo->num_muestreo=$request->Nmuestreo;
@@ -124,9 +119,16 @@ class hallazgosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(hallazgo $hallazgo)
+    public function edit( $id)
     {
-        //
+        Log::info('entro a la funcion de edit');
+        $muestreo=muestreo::where('id_muestreo',$id)->first();
+        $hallazgos=hallazgo::where('fk_muestreo',$id)->get();
+        $playas=Playa::all();
+        $residuos=tipo_residuo::orderBy('nombre_tipo')->get();
+        $clasificaciones= Clasificacion::all();
+        $autorizado= $muestreo->autorizado == 1 ? 'Habilitado' : 'Desabilitado';
+        return view('views_admin.muestreos.update_hallazgos',compact('playas','residuos','clasificaciones','muestreo','hallazgos','autorizado'));
     }
 
     /**
@@ -143,5 +145,22 @@ class hallazgosController extends Controller
     public function destroy(hallazgo $hallazgo)
     {
         //
+    }
+
+    public function viewHallazgos($id){
+        Log::info('entro a la funcion de viewHallazgos');
+        $muestreo=muestreo::where('id_muestreo',$id)->first();
+        $hallazgos= DB::table('hallazgos')
+        ->select('cantidad','porcentaje','nombre_tipo','id_clasificacion')
+        ->join('muestreos' ,'id_muestreo', '=', 'fk_muestreo')
+        ->join('tipo_residuos','id_tipo', '=', 'fk_tipo')
+        ->join('clasificaciones','id_clasificacion','=','fk_clasificacion')
+        ->where('fk_muestreo',$id)
+        ->orderBy('nombre_clasificacion')
+        ->get();
+        $autorizado=$muestreo->autorizado == 1 ? 'Habilitado' : 'Desabilitado';
+        $clasificaciones= Clasificacion::orderBy('nombre_clasificacion')->get();
+        return view('views_admin.muestreos.hallazgos',compact('muestreo','hallazgos','autorizado','clasificaciones'));
+
     }
 }

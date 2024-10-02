@@ -1,4 +1,4 @@
- @extends('views_admin.app')
+ {{-- @extends('views_admin.app')
 
 @section('title', 'Hallazgos')
 
@@ -133,10 +133,7 @@
             
     </div>  
 
-
-
 @endsection
-
 <script>
     function updateTotals() {
         let totalCantidad = 0;
@@ -163,4 +160,6 @@
         document.getElementById('totalP').innerText = '100%';
     }
     </script>
-    
+     --}}
+
+     <h1>Hola</h1>

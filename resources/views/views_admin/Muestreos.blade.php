@@ -16,7 +16,7 @@
                    
                 </div>
                 <div class="col-sm-4 col-lg-4 mt-4"   >
-                  <a href="/admin/hallazgos/create">
+                  <a href="/admin/hallazgos/create1">
                     <button type="submit" class="btn  btn-outline-danger " style="width: 60%; ">Agregar muestreo</button> 
                   </a> 
               </div>

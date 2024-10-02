@@ -23,13 +23,11 @@
       </li>
     </ul>
     <div class="nav-item text" style="margin-right: 50px; " >
-          Fecha de consulta
+      {{ \Carbon\Carbon::parse(now()->toDateString())->locale('es')->isoFormat('D [de] MMMM [del] YYYY') }}
     </div>
     <div class="navbar-item  " style="margin-right: 30px">
       <a href="/login">
         <button id="navbutton1" type="button" class=" btn-white">Iniciar sesión</button>
-       
-
       </a>
     </div>
   </div> 
