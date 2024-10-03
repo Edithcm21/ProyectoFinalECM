@@ -96,7 +96,7 @@
             </tr>
             <tr class="border">
               @foreach ($muestreos as $muestreo )
-              <th class="border" colspan="2">{{$muestreo->num_muestreo}}</th>
+              <th class="border" colspan="2"># de muestreo {{$muestreo->num_muestreo}}</th>
               @endforeach
             </tr>
             <tr class="border">

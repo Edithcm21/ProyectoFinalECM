@@ -33,19 +33,26 @@ class IndexController extends Controller
       
     }
     public function getMuestreo($id_playa){
-        $muestreos=Muestreo::where('fk_playa',$id_playa)->get();
+        $muestreos=Muestreo::where('fk_playa',$id_playa)
+        ->where('muestreos.autorizado','1')
+        ->get();
         $num_muestreo= DB::table('muestreos')
-            ->select('num_muestreo')->where('fk_playa',$id_playa)->groupBy('num_muestreo')->get();
+            ->select('num_muestreo')
+            ->where('fk_playa',$id_playa)
+            ->where('muestreos.autorizado','1')
+            ->groupBy('num_muestreo')
+            ->get();
         $zona= DB::table('muestreos')
-            ->select('zona')->where('fk_playa',$id_playa)->groupBy('zona')->get();
+            ->select('zona')->where('fk_playa',$id_playa)->where('muestreos.autorizado','1')->groupBy('zona')->get();
         
         if($id_playa==0){
-            $muestreos= Muestreo::all();
+            $muestreos= Muestreo::where('muestreos.autorizado','1');
             $num_muestreo= DB::table('muestreos')
-            ->select('num_muestreo')->groupBy('num_muestreo')
+            ->select('num_muestreo')->groupBy('num_muestreo')->where('muestreos.autorizado','1')
             ->get();
             $zona= DB::table('muestreos')
             ->select('zona')->groupBy('zona')
+            ->where('muestreos.autorizado','1')
             ->get();
         }
         return response()->json([
@@ -65,14 +72,15 @@ class IndexController extends Controller
         ->join('playas', 'fk_playa', '=', 'id_playa')
         ->join('tipo_residuos', 'fk_tipo', '=', 'id_tipo')
         ->where('id_playa',$id)
+        ->where('muestreos.autorizado','1')
         ->get();
-        $muestreos =Muestreo::where('fk_playa', $id)->get();
+        $muestreos =Muestreo::where('fk_playa', $id)->where('muestreos.autorizado','1')->get();
         $residuos= tipo_residuo::all();
         $clasificaciones=Clasificacion::all();
         $num_muestreos= DB::table('muestreos')
-            ->select('num_muestreo')->where('fk_playa',$id)->groupBy('num_muestreo')->get();
+            ->select('num_muestreo')->where('fk_playa',$id)->where('muestreos.autorizado','1')->groupBy('num_muestreo')->get();
         $zonas= DB::table('muestreos')
-            ->select('zona')->where('fk_playa',$id)->groupBy('zona')->get();
+            ->select('zona')->where('fk_playa',$id)->where('muestreos.autorizado','1')->groupBy('zona')->get();
         
     return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));
     }
@@ -109,6 +117,7 @@ class IndexController extends Controller
         if($id_zona > 0){
             $muestreos->where('zona',$id_zona);
         }
+        $muestreos->where('muestreos.autorizado','1');
         $muestreos->orderBy('fk_playa'); 
         $muestreos = $muestreos->get();
         $residuos= tipo_residuo::query();
@@ -119,17 +128,17 @@ class IndexController extends Controller
         $residuos = $residuos->get();
         $clasificaciones=Clasificacion::all();
         
-        if($id_playa>1){
+        if($id_playa>0){
             $num_muestreos= DB::table('muestreos')
-            ->select('num_muestreo')->where('fk_playa',$id_playa)->groupBy('num_muestreo')->get();
+            ->select('num_muestreo')->where('fk_playa',$id_playa)->where('muestreos.autorizado','1')->groupBy('num_muestreo')->get();
             $zonas= DB::table('muestreos')
-            ->select('zona')->where('fk_playa',$id_playa)->groupBy('zona')->get();
+            ->select('zona')->where('fk_playa',$id_playa)->where('muestreos.autorizado','1')->groupBy('zona')->get();
         }
         else{
             $num_muestreos= DB::table('muestreos')
-            ->select('num_muestreo')->groupBy('num_muestreo')->get();
+            ->select('num_muestreo')->where('muestreos.autorizado','1')->groupBy('num_muestreo')->get();
             $zonas= DB::table('muestreos')
-            ->select('zona')->groupBy('zona')->get();
+            ->select('zona')->where('muestreos.autorizado','1')->groupBy('zona')->get();
         }
         
     return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));

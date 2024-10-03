@@ -56,7 +56,6 @@ class hallazgosController extends Controller
                 'dia' => 'required|string',
                 'zona' => 'required|string',
             ]);
-            Log::info('entro a la funcion store');
             // Crear el registro de muestreo
             $muestreo=new muestreo();
             $muestreo->num_muestreo=$request->Nmuestreo;
@@ -67,12 +66,12 @@ class hallazgosController extends Controller
             $muestreo->autorizado=true;
             $muestreo->fk_capturista=Auth::user()->id;
             $carbonDate = Carbon::parse($muestreo->fecha);
-            // Obtner año
+            // Obtener año
             $anio = $carbonDate->year;
             $muestreo->anio=$anio;
             $muestreo->save();
             $muestreo_id=$muestreo->id_muestreo;
-//Guardar los registros de los muestreos 
+            //Guardar los registros de los muestreos 
             $cantidades=$request->input('cantidades',[]);
             $porcentajes=$request->input('porcentajes',[]);
 
@@ -121,6 +120,7 @@ class hallazgosController extends Controller
      */
     public function edit( $id)
     {
+
         Log::info('entro a la funcion de edit');
         $muestreo=muestreo::where('id_muestreo',$id)->first();
         $hallazgos=hallazgo::where('fk_muestreo',$id)->get();
@@ -134,17 +134,98 @@ class hallazgosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, hallazgo $hallazgo)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            // Validar los datos del formulario de muestreo 
+            $request->validate([
+                'Nmuestreo' => 'required|integer',
+                'playa' => 'required|integer',
+                'date' => 'required|date',
+                'dia' => 'required|string',
+                'zona' => 'required|string',
+                'autorizado' => 'required|integer',
+            ]);
+            //Buscar el muestreo
+            $muestreo= muestreo::findOrfail($id);
+            $muestreo->num_muestreo=$request->Nmuestreo;
+            $muestreo->zona=$request->zona;
+            $muestreo->dia=$request->dia;
+            $muestreo->fecha=$request->date;
+            $muestreo->fk_playa=$request->playa;
+            $muestreo->autorizado=$request->autorizado;
+            $muestreo->fk_capturista=Auth::user()->id;
+            $carbonDate = Carbon::parse($muestreo->fecha);
+            // Obtner año
+            $anio = $carbonDate->year;
+            $muestreo->anio=$anio;
+            $muestreo->save();
+
+            //Actualizar los registros del muestreo 
+            $hallazgos=$request->input('hallazgosE',[]);
+            $cantidadesE=$request->input('cantidadesE',[]);
+            $porcentajesE=$request->input('porcentajesE',[]);
+
+            foreach ($hallazgos as $id_hallazgo => $id_tipo) {
+                if($cantidadesE[$id_hallazgo]>0){
+                    $porcentaje=str_replace('%','',$porcentajesE[$id_hallazgo]);
+                    //guardar en la bd
+                     $hallazgo= hallazgo::findOrfail($id_hallazgo);
+                     $hallazgo->fk_tipo=$id_tipo;
+                     $hallazgo->cantidad=$cantidadesE[$id_hallazgo];
+                     $hallazgo->porcentaje=$porcentaje;
+                     $hallazgo->save();
+                     Log::info("Registro modificado", $hallazgo->toArray());
+                }
+                else{
+                    hallazgo::destroy($id_hallazgo);
+                }
+            }
+            $residuos=$request->input('residuos',[]);
+            $cantidades=$request->input('cantidades',[]);
+            $porcentajes=$request->input('porcentajes',[]);
+            foreach ($residuos as $index => $residuo) {
+                if($cantidades[$index]>0){
+                    $porcentaje= isset($porcentajes[$index])? $porcentajes[$index]: '0%';
+                    //quitar el %
+                    $porcentaje=str_replace('%','',$porcentaje);
+
+                    //guardar en la bd
+                    $hallazgo= new hallazgo();
+                    $hallazgo->fk_tipo=$residuo;
+                    $hallazgo->cantidad=$cantidades[$index];
+                    $hallazgo->porcentaje=$porcentaje;
+                    $hallazgo->fk_muestreo=$id;
+                    $hallazgo->save();
+                    Log::info("Registro creado", $hallazgo->toArray());
+
+                }
+            }
+            return redirect()->route('admin.hallazgos',$id)->with('success', 'Registro Actualizado correctamente.');
+
+        }catch (\Exception $e) {
+            // Imprimir el error en el registro
+            Log::error('Error al crear el muestreo: ' . $e->getMessage());
+            // Redireccionar con un mensaje de error
+            return redirect()->route('admin.hallazgos',$id)->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
+        }
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(hallazgo $hallazgo)
+    public function destroy($id)
     {
-        //
+        try {
+            hallazgo::where('fk_muestreo',$id)->delete();
+            muestreo::destroy($id);
+            return redirect()->route('admin.muestreos')->with('success','Registro eliminado correctamente');
+        } catch (\Exception $e) {
+            // Imprimir el error en el registro
+            Log::error('Error al eliminar municipio: ' . $e->getMessage());
+            return redirect()->route('admin.municipios')->with('error','Ocurrió un error al eliminar registro');
+        }  
     }
 
     public function viewHallazgos($id){

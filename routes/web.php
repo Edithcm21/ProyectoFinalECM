@@ -94,8 +94,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/hallazgo/create',[hallazgosController::class,'create'])->name('admin.hallazgo.create');
         Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
         Route::get('/admin/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('admin.hallazgos.edit');
-        Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.hallazgos.update');
-        // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
+        Route::put('/admin/hallazgos/update/{id}',[hallazgosController::class,'update'])->name('admin.hallazgos.update');
+        Route::post('/admin/hallazgos/delete/{id}',[hallazgosController::class,'destroy'])->name('admin.hallazgos.delete');
         
         
         Route::get('/admin/muestreos',[muestreosController::class,'index'])->name('admin.muestreos');

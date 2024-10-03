@@ -10,10 +10,24 @@
   <div class="row justify-content-center align-items-center p-4"  >
     <div class="col-md-10 p-2 " style=" background-color:white;min-height: 74vh  " >
         <div class="container  " >
+            <div class="row">
+                <div class="col-12 "  style=" height: 10vh">
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show myAlert" role="alert" id="myAlert"> 
+                             {{ session('error') }}
+                        </div>
+                    @endif
+                    <!-- Mensajes de éxito -->
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show myAlert" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
             <div class="row"  >
                 <div class="col-sm-8 col-lg-8 mt-4"   >
                     <h3 style="color: #B72223">Resultados de los muestreos</h3>
-                   
                 </div>
                 <div class="col-sm-4 col-lg-4 mt-4"   >
                   <a href="/admin/hallazgo/create">

@@ -17,7 +17,14 @@
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
 }
 
-
+@media (min-width: 576px) {
+    .col-sm-1-5 {
+        width: 12.5%; /* 1.5/12 es equivalente al 12.5% */
+    }
+    .col-sm-2-5 {
+        width: 20.83%; /* 1.5/12 es equivalente al 12.5% */
+    }
+}
 body{
     justify-content: center;
      align-items: center;

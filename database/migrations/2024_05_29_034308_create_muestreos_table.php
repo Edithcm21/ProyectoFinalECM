@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('zona',45);
             $table->string('dia',10); #Representa el dia de la semana
             $table->unsignedInteger('anio');
-            $table->dateTime('fecha')->nullable();
+            $table->date('fecha')->nullable();
             $table->unsignedInteger('fk_playa');
             $table->foreign('fk_playa')->references('id_playa')->on('playas');
             $table->unsignedBigInteger('fk_capturista');
