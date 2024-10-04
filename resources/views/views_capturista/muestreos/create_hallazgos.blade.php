@@ -30,12 +30,12 @@
                     <h3 style="color: #B72223">Nuevo registro</h3>
                 </div>
                 <div class="col-2 " >
-                    <a href="/admin/muestreos" class="btn btn-dark">
+                    <a href="/capturista/muestreos" class="btn btn-dark">
                         <i class="bi bi-arrow-left"></i> Regresar
                     </a>
                 </div>
             </div>    
-            <form class=" mb-3"method="POST" action="{{route('admin.hallazgos.store')}}" >
+            <form class=" mb-3"method="POST" action="{{route('capturista.hallazgos.store')}}" >
                 @csrf
                 <div class="row"  >
                     <div class="col-sm-12 col-lg-12 mt-4"   >

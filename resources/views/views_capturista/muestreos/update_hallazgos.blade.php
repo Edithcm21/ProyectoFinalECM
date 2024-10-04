@@ -29,17 +29,17 @@
                     <h3 style="color: #B72223">Editar registro</h3>
                 </div>
                 <div class="col-2 " >
-                    <a href="/admin/hallazgos/{{$muestreo->id_muestreo}}" class="btn btn-dark">
+                    <a href="/capturista/hallazgos/{{$muestreo->id_muestreo}}" class="btn btn-dark">
                         <i class="bi bi-arrow-left"></i> Regresar
                     </a>
                 </div> 
             </div>
             <div class="row centrarh ">
                 <div class="col-sm-12  mb-3 centrarh " >
-                    <form id="residuosForm" method="POST" action="{{route('admin.hallazgos.update',$muestreo->id_muestreo)}}">
+                    <form id="residuosForm" method="POST" action="{{route('capturista.hallazgos.update',$muestreo->id_muestreo)}}">
                         @csrf @method('PUT')
                         <div class="row ">
-                            <div class="col-sm-1-5 mb-3 " >
+                            <div class="col-sm-2 mb-3 " >
                                 <label  class="form-label size15"># de muestreo:</label>
                                 <input type="number" class="form-control"  name="Nmuestreo" placeholder="# muestreo" required value="{{$muestreo->num_muestreo}}">
                             </div>
@@ -64,23 +64,13 @@
                                     <option value="domingo" {{$muestreo->dia=='domingo'?'selected':''}}>domingo</option>
                                 </select>
                             </div>
-                            <div class=" col-sm-2-5 mb-3 ">
+                            <div class=" col-sm-3 mb-3 ">
                                 <label  class="form-label">Zona:</label>
                                 <select class="form-select" aria-label="Default select example" name="zona"  required>
                                     <option value="Debajo pleamar" {{$muestreo->zona=='Debajo pleamar'?'selected':''}}>Debajo pleamar</option>
                                     <option value="Encima pleamar" {{$muestreo->zona=='Encima pleamar'?'selected':''}}>Encima pleamar</option>
                                     <option value="Encima de la pleamar, hasta estructura fija" {{$muestreo->zona=='Encima de la pleamar, hasta estructura fija'?'selected':''}}>Encima de la pleamar, hasta estructura fija</option>
                                     <option value="Sobre y debajo de la pleamar" {{$muestreo->zona=='Sobre y debajo de la pleamar'?'selected':''}}>Sobre y debajo de la pleamar</option>
-                                </select>
-                            </div>
-                            <div class=" col-sm-2 mb-3 " >
-                                <label  class="form-label">Visible: 
-                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visible: Muestra los datos en el mapa principal"></i>
-                                </label>
-                                <select class="form-select" aria-label="Default select example" name="autorizado"  required>
-                                    <option  >Selecciona opción</option>
-                                    <option value="1" {{$muestreo->autorizado=='1'?'selected':''}}>Habilitado</option>
-                                    <option value="0" {{$muestreo->autorizado=='0'?'selected':''}}>Deshabilitado</option>
                                 </select>
                             </div>
                         </div>
@@ -100,7 +90,7 @@
                                     </div> 
                                 </div>
                                 @php
-                                $totalC=0
+                                    $totalC=0
                                 @endphp
                                 @foreach ($hallazgos as $hallazgo)
                                 <div class="row mb-3 row1">

@@ -13,8 +13,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         
-        //$users=User::all();
-        //return view('login',compact('users'));
         return view('view_login');
         
     }
@@ -22,8 +20,8 @@ class LoginController extends Controller
     //public function login(Request $request)
     public function login(Request $request)
     {
-        
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
@@ -37,14 +35,21 @@ class LoginController extends Controller
                 return redirect()->route('admin.muestreos');
             } elseif ($user->rol === 'capturista') {
                 Log::info('Usuario autenticado como capturista.');
-                return redirect()->route('capturista');
+                return redirect()->route('capturista.muestreos');
             }
         } else {
             // Autenticación fallida
             Log::info('Autenticación fallida para usuario: ' . $request->input('email'));
+            // return back()->withErrors(['email' => 'Las credenciales proporcionadas no son válidas']);
             return back()->withErrors(['email' => 'Las credenciales proporcionadas no son válidas']);
             
         } 
+        } catch (\Throwable $th) {
+            return redirect()->route('login')->withErrors(['email' => 'Las credenciales proporcionadas no son válidas']);
+
+        }
+        
+        
 }
 
 

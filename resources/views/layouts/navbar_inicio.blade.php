@@ -28,9 +28,7 @@
       </div>
       <div class="navbar-item  " style="margin-right: 30px">
         <a href="/login">
-          <button id="navbutton2" type="button" class=" btn-blue">Iniciar sesión</button>
-         
-  
+          <button id="navbutton2" type="button"  class=" btn-blue">Iniciar sesión</button>
         </a>
       </div>
     </div> 

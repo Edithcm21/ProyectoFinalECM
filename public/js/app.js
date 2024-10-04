@@ -1,12 +1,5 @@
 //alertas
 
-
-
-// setTimeout(function() {
-//   var alertElement = document.getElementById('myAlert');
-//   var alert = new bootstrap.Alert(alertElement);
-//   alert.close();
-// }, 3000); // 5000 milisegundos = 5 segundos
 setTimeout(function() {
   var alertElements = document.querySelectorAll('.myAlert'); // Selecciona todos los elementos con la clase 'mi-clase'
   alertElements.forEach(function(alertElement) {
@@ -91,6 +84,44 @@ window.addEventListener('scroll', function() {
 
     const elements = document.querySelectorAll('.fade-in-text, .slide-in-left, .zoom-in, .rotate-in, .bounce-in, .imagen-fade-in');
     elements.forEach(element => observer.observe(element));
+});
+
+
+document.addEventListener('DOMContentLoaded', function(){
+  // Detecta cuando se selecciona una playa
+  document.getElementById('playaSelect').addEventListener('change', function(){
+    var playa_id = this.value;
+
+    // Hace la llamada con fetch
+    fetch('/getMuestreo/' + playa_id)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta de la red');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Limpiar el selector de muestreo y zona
+        const muestreoSelected = document.getElementById('muestreoSelected');
+        const zonaSelected = document.getElementById('zonaSelected');
+        muestreoSelected.innerHTML = '<option value="0">Selecciona Muestreo</option>';
+        zonaSelected.innerHTML = '<option value="0">Selecciona Zona</option>';
+        console.log(data.num_muestreo);
+        // Añade nuevas opciones
+        data.num_muestreo.forEach(muestreo => {
+          muestreoSelected.innerHTML += '<option value="' + muestreo.num_muestreo + '"> ' + muestreo.num_muestreo + '</option>';
+        });
+        data.zonas.forEach(zonas => {
+          zonaSelected.innerHTML += '<option value="' + zonas.zona + '"> ' + zonas.zona + '</option>';
+        });
+
+        muestreoSelected.innerHTML += '<option value="0">Todos</option>';
+        zonaSelected.innerHTML += '<option value="0">Todas</option>';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
 });
 
 

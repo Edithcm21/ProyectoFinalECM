@@ -43,7 +43,6 @@ class PlayasController extends Controller
                 'region' => 'required|integer'
             ]);
 
-           
             $playa= new Playa();
             $playa->nombre_playa=$request->nombre_playa;
             $playa->latitud=$request->latitud;

@@ -6,16 +6,12 @@ use App\Models\Clasificacion;
 use App\Models\hallazgo;
 use App\Models\muestreo;
 use App\Models\Playa;
-use App\Models\residuo;
 use App\Models\tipo_residuo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use PgSql\Lob;
-use PhpParser\Node\Stmt\Foreach_;
-use Psy\Readline\Hoa\Console;
 
 class hallazgosController extends Controller
 {
@@ -34,12 +30,14 @@ class hallazgosController extends Controller
      */
     public function create()
     {   
-        Log::info('entro a la funcion de create');
         $playas=Playa::all();
         $residuos=tipo_residuo::all();
         $clasificaciones= Clasificacion::all();
         $residuosAgrupados = tipo_residuo::all()->groupBy('fk_clasificacion');
-        return view('views_admin.muestreos.create_hallazgos',compact('playas','residuos','clasificaciones','residuosAgrupados'));
+        
+        return Auth::user()->rol == 'admin'
+        ? view('views_admin.muestreos.create_hallazgos',compact('playas','residuos','clasificaciones','residuosAgrupados'))
+        : view('views_capturista.muestreos.create_hallazgos',compact('playas','residuos','clasificaciones','residuosAgrupados'));
     }
 
     /**
@@ -63,7 +61,7 @@ class hallazgosController extends Controller
             $muestreo->dia=$request->dia;
             $muestreo->fecha=$request->date;
             $muestreo->fk_playa=$request->playa;
-            $muestreo->autorizado=true;
+            $muestreo->autorizado = Auth::user()->rol == 'admin' ? 1 : 2;
             $muestreo->fk_capturista=Auth::user()->id;
             $carbonDate = Carbon::parse($muestreo->fecha);
             // Obtener año
@@ -76,7 +74,7 @@ class hallazgosController extends Controller
             $porcentajes=$request->input('porcentajes',[]);
 
             //filtrar solo los valores que no sean 0
-
+            Log::info('Va a entrar al for a crear hallazgos');
             foreach ($cantidades as $id_tipo => $cantidad) {
                 if($cantidad>0){
                     $porcentaje= isset($porcentajes[$id_tipo])? $porcentajes[$id_tipo]: '0%';
@@ -90,20 +88,25 @@ class hallazgosController extends Controller
                     $hallazgo->porcentaje=$porcentaje;
                     $hallazgo->fk_muestreo=$muestreo_id;
                     $hallazgo->save();
-                    Log::info("Registro creado", $hallazgo->toArray());
 
                 }
             }
-
-            
-            return redirect()->route('admin.hallazgos.create')->with('success', 'Registro creado correctamente.');
-
-            }catch (\Exception $e) {
+            return Auth::user()->rol == 'admin'
+                ? redirect()->route('admin.hallazgo.create')->with('success', 'Registro creado correctamente.')
+                : redirect()->route('capturista.hallazgo.create',)->with('success', 'Registro creado correctamente.');
+   
+           
+            }
+            catch (\Exception $e) 
+            {
                 // Imprimir el error en el registro
                 Log::error('Error al crear el muestreo: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.hallazgos.create')->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol == 'admin'
+                ? redirect()->route('admin.hallazgo.create')->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.hallazgo.create')->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
             }
+
         
     }
 
@@ -113,6 +116,7 @@ class hallazgosController extends Controller
     public function show(hallazgo $hallazgo)
     {
         //
+       
     }
 
     /**
@@ -128,7 +132,12 @@ class hallazgosController extends Controller
         $residuos=tipo_residuo::orderBy('nombre_tipo')->get();
         $clasificaciones= Clasificacion::all();
         $autorizado= $muestreo->autorizado == 1 ? 'Habilitado' : 'Desabilitado';
-        return view('views_admin.muestreos.update_hallazgos',compact('playas','residuos','clasificaciones','muestreo','hallazgos','autorizado'));
+
+        return Auth::user()->rol == 'admin'
+                ? view('views_admin.muestreos.update_hallazgos',compact('playas','residuos','clasificaciones','muestreo','hallazgos','autorizado'))
+                : view('views_capturista.muestreos.update_hallazgos',compact('playas','residuos','clasificaciones','muestreo','hallazgos','autorizado'));
+   
+
     }
 
     /**
@@ -144,7 +153,6 @@ class hallazgosController extends Controller
                 'date' => 'required|date',
                 'dia' => 'required|string',
                 'zona' => 'required|string',
-                'autorizado' => 'required|integer',
             ]);
             //Buscar el muestreo
             $muestreo= muestreo::findOrfail($id);
@@ -153,7 +161,7 @@ class hallazgosController extends Controller
             $muestreo->dia=$request->dia;
             $muestreo->fecha=$request->date;
             $muestreo->fk_playa=$request->playa;
-            $muestreo->autorizado=$request->autorizado;
+            $muestreo->autorizado=$request->has('autorizado') ? $request->autorizado: 0 ;
             $muestreo->fk_capturista=Auth::user()->id;
             $carbonDate = Carbon::parse($muestreo->fecha);
             // Obtner año
@@ -201,14 +209,21 @@ class hallazgosController extends Controller
 
                 }
             }
-            return redirect()->route('admin.hallazgos',$id)->with('success', 'Registro Actualizado correctamente.');
+
+            return Auth::user()->rol == 'admin'
+                ? redirect()->route('admin.hallazgos',$id)->with('success', 'Registro Actualizado correctamente.')
+                : redirect()->route('capturista.hallazgos',$id)->with('success', 'Registro Actualizado correctamente.');
+   
 
         }catch (\Exception $e) {
             // Imprimir el error en el registro
             Log::error('Error al crear el muestreo: ' . $e->getMessage());
             // Redireccionar con un mensaje de error
-            return redirect()->route('admin.hallazgos',$id)->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
-        }
+            return Auth::user()->rol == 'admin'
+                ? redirect()->route('admin.hallazgos',$id)->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.hallazgos',$id)->with('error','Ocurrió un error al guardar el registro. Por favor, inténtalo de nuevo.');
+   
+              }
         
     }
 
@@ -229,7 +244,7 @@ class hallazgosController extends Controller
     }
 
     public function viewHallazgos($id){
-        Log::info('entro a la funcion de viewHallazgos');
+        // muestra todos los residuos encontrados en el muestreo seleccionado
         $muestreo=muestreo::where('id_muestreo',$id)->first();
         $hallazgos= DB::table('hallazgos')
         ->select('cantidad','porcentaje','nombre_tipo','id_clasificacion')
@@ -241,7 +256,12 @@ class hallazgosController extends Controller
         ->get();
         $autorizado=$muestreo->autorizado == 1 ? 'Habilitado' : 'Desabilitado';
         $clasificaciones= Clasificacion::orderBy('nombre_clasificacion')->get();
-        return view('views_admin.muestreos.hallazgos',compact('muestreo','hallazgos','autorizado','clasificaciones'));
+
+        return Auth::user()->rol == 'admin'
+                ? view('views_admin.muestreos.hallazgos',compact('muestreo','hallazgos','autorizado','clasificaciones'))
+                : view('views_capturista.muestreos.hallazgos',compact('muestreo','hallazgos','autorizado','clasificaciones'));
+   
+        
 
     }
 }

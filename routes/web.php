@@ -63,11 +63,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/municipios/create',[MunicipioController::class,'store'])->name('admin.municipios.store');
         Route::put('/admin/municipios/update/{id}',[MunicipioController::class,'update'])->name('admin.municipios.update');
         Route::post('/admin/municipios/delete/{id}',[MunicipioController::class,'destroy'])->name('admin.municipios.delete');
-        //Gestion de localidades
-        Route::get('/admin/localidades',[LocalidadesController::class,'index'])->name('admin.localidades');
-        Route::post('/admin/localidades/create',[LocalidadesController::class,'store'])->name('admin.localidades.store');
-        Route::put('/admin/localidades/update/{id}',[LocalidadesController::class,'update'])->name('admin.localidades.update');
-        Route::post('/admin/localidades/delete/{id}',[LocalidadesController::class,'destroy'])->name('admin.localidades.delete');
         //Region Marina
         Route::get('/admin/RegionMarina',[RegionesController::class,'index'])->name('admin.RegionMarina');
         Route::post('/admin/RegionMarina/create',[RegionesController::class,'store'])->name('admin.RegionMarina.store');
@@ -91,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
         
         //Muestra los datos del muestreo seleccionado 
         Route::get('/admin/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('admin.hallazgos');
-        Route::get('admin/hallazgo/create',[hallazgosController::class,'create'])->name('admin.hallazgo.create');
+        Route::get('/admin/hallazgo/create',[hallazgosController::class,'create'])->name('admin.hallazgo.create');
         Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
         Route::get('/admin/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('admin.hallazgos.edit');
         Route::put('/admin/hallazgos/update/{id}',[hallazgosController::class,'update'])->name('admin.hallazgos.update');
@@ -119,7 +114,15 @@ Route::middleware(['auth'])->group(function () {
         // })->name('usuarios');
     });
     Route::middleware(CheckRole::class . ':capturista')->group(function () {
-        Route::get('/capturista', [IndexCapturista::class, 'index'])->name('capturista');
+        Route::get('/capturista/muestreos',[muestreosController::class,'index'])->name('capturista.muestreos');
+
+        Route::get('/capturista/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('capturista.hallazgos');
+        Route::get('/capturista/hallazgo/create',[hallazgosController::class,'create'])->name('capturista.hallazgo.create');
+        Route::post('/capturista/hallazgos/store',[hallazgosController::class,'store'])->name('capturista.hallazgos.store');
+        Route::get('/capturista/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('capturista.hallazgos.edit');
+        Route::put('/capturista/hallazgos/update/{id}',[hallazgosController::class,'update'])->name('capturista.hallazgos.update');
+ 
+
     });
 });
 

@@ -26,20 +26,17 @@
                 </div>
             </div>
             <div class="row m-4"  >
-                <div class="col-sm-5 mt-4"   >
+                <div class="col-sm-6 mt-4"   >
                     <h3 style="color: #B72223">Playa {{$muestreo->playa->nombre_playa}}</h3>   
                 </div>
-                <div class="col-sm-2  mt-4 "  >
-                    <a href="/admin/hallazgos/edit/{{$muestreo->id_muestreo}}">
+                <div class="col-sm-3  mt-4 "  >
+                    <a href="/capturista/hallazgos/edit/{{$muestreo->id_muestreo}}">
                         <button type="submit" class="btn  btn-secondary " style="width: 100%; ">Editar</button>
                     </a>
                 </div> 
-                <div class="col-sm-2-5 mt-4 "  >
-                    <button class="btn  btn-danger " type="button" data-bs-toggle="modal" data-bs-target="#deleteModalHallazgos"  style="width: 100%; ">Eliminar Registro</button>
-                   
-                </div> 
-                <div class="col-sm-2 mt-4" >
-                    <a href="/admin/muestreos" class="btn btn-dark"  style="width: 100%; ">
+                
+                <div class="col-sm-3 mt-4" >
+                    <a href="/capturista/muestreos" class="btn btn-dark"  style="width: 100%; ">
                         <i class="bi bi-arrow-left"></i> Regresar
                     </a>
                 </div>
@@ -121,27 +118,4 @@
     </div>
 </div>
 
- {{-- Modal de advertencia  --}}
- <div class="modal fade" id="deleteModalHallazgos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="border: none">
-          <h5 class="modal-title" id="exampleModalLabel">Se eliminarán todos los datos del muestreo </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h6>¿Estas seguro de eliminar el registro?</h6>
-          
-        </div>
-        
-        <div class="modal-footer" style="border: none">
-          <form id="formDelete"  action="{{route('admin.hallazgos.delete',$muestreo->id_muestreo)}}" method="POST">
-            @csrf 
-            <button type="submit" class="btn btn-secondary btn-sm" >Eliminar</button>
-          </form>
-          <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div> 
 @endsection

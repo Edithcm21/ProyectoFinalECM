@@ -171,41 +171,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function(){
-    // Detecta cuando se selecciona una playa
-    document.getElementById('playaSelect').addEventListener('change', function(){
-      var playa_id = this.value;
-
-      // Hace la llamada con fetch
-      fetch('/getMuestreo/' + playa_id)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error en la respuesta de la red');
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Limpiar el selector de muestreo y zona
-          const muestreoSelected = document.getElementById('muestreoSelected');
-          const zonaSelected = document.getElementById('zonaSelected');
-          muestreoSelected.innerHTML = '<option value="0">Selecciona Muestreo</option>';
-          zonaSelected.innerHTML = '<option value="0">Selecciona Zona</option>';
-          console.log(data.num_muestreo);
-          // Añade nuevas opciones
-          data.num_muestreo.forEach(muestreo => {
-            muestreoSelected.innerHTML += '<option value="' + muestreo.num_muestreo + '"> ' + muestreo.num_muestreo + '</option>';
-          });
-          data.zonas.forEach(zonas => {
-            zonaSelected.innerHTML += '<option value="' + zonas.zona + '"> ' + zonas.zona + '</option>';
-          });
-
-          muestreoSelected.innerHTML += '<option value="0">Todos</option>';
-          zonaSelected.innerHTML += '<option value="0">Todas</option>';
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    });
-  });
-</script>
+{{-- <script type="text/javascript">
+ 
+</script> --}}
