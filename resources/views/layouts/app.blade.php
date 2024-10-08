@@ -26,8 +26,6 @@
       </div>
       
     </main>
-  <br>
-  <br>
   <footer>
         <p>COPYRIGHT © 2024 UNIVERSIDAD VERACRUZANA</p>
     </footer>

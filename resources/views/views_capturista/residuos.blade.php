@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Residuos')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -15,7 +15,7 @@
                         <h2 style="color: #B72223" class="m-2 aling-center">Residuos</h2>
                         <div class="row" >
                             <div class="col-sm-12 col-lg-12 mt-4 card"   >
-                                <form class="row mb-4"method="POST" action="{{route('admin.Tipo_residuos.store')}}">
+                                <form class="row mb-4"method="POST" action="{{route('capturista.Tipo_residuos.store')}}">
                                     @csrf
                                     <div class=" col-sm-12 mb-3 pt-4">
                                         <input type="text" class="form-control" id="nombre_tipo" name="nombre_tipo" placeholder="Residuo" maxlength="100" required>
@@ -28,7 +28,7 @@
                                         @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-sm-12 col-8 pt-4" >
+                                    <div class="col-sm-12 col-8 pt-4  " >
                                         <button type="submit" class="btn btn-secondary btn-sm">Agregar</button>  
                                     </div>
                                 </form>
@@ -71,7 +71,7 @@
                                             <td>{{$tipo_residuo->nombre_tipo}}</td>
                                             <td>{{$tipo_residuo->clasificacion->nombre_clasificacion }}</td>
                                             <td>
-                                                <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$tipo_residuo->id_tipo}}" data-bs-id="{{$tipo_residuo->id_tipo}}">Editar</button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$tipo_residuo->id_tipo}}" data-bs-id="{{$tipo_residuo->id_tipo}}">Editar</button>
                                                 <!-- Modal Edit -->
                                                 <div class="modal fade" id="editModal{{$tipo_residuo->id_tipo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
@@ -81,7 +81,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form class=" mb-3 "method="POST" action="{{route('admin.Tipo_residuos.update',$tipo_residuo->id_tipo)}}">
+                                                                <form class=" mb-3 "method="POST" action="{{route('capturista.Tipo_residuos.update',$tipo_residuo->id_tipo)}}">
                                                                     @csrf @method('PUT')
                                                                     <div class="mb-3">
                                                                         <label  class="form-label">Tipo de residuo</label>
@@ -105,7 +105,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-danger    btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$tipo_residuo->id_tipo}}">Eliminar</button> 
                                             </td>
                                         </tr>
                                         @endforeach 
@@ -121,29 +120,5 @@
             </div>
         </div>
     </div>
-
-  {{-- Modal de advertencia  --}}
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="border: none">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>¿Estas seguro de eliminar el registro?</h6>
-          
-                </div>
-        
-                <div class="modal-footer" style="border: none">
-                    <form id="formDelete"  data-action="{{route('admin.Tipo_residuos.delete',1)}}" method="POST">
-                        @csrf 
-                        <button type="submit" class="btn btn-secondary btn-sm" >Eliminar</button>
-                    </form>
-                    <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div> 
 @endsection
 

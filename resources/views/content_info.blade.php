@@ -1,5 +1,5 @@
 
-<div class="video-background">
+<div class="video-background" >
   <video class="background-video" autoplay muted loop>
     <source src="{{asset('video/portada.mp4')}}" type="video/mp4">
     Tu navegador no soporta la reproducción de video.

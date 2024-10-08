@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Hallazgo')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )

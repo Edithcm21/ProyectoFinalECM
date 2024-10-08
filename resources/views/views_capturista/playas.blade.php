@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Playas')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -28,8 +28,8 @@
                 <div class="row"  >
                     <div class="col-sm-12 col-lg-12 mt-4"   >
                         <h3 style="color: #B72223">Playas</h3>
-                        <form class="row mb-3"method="POST" action="{{route('admin.Playas.store')}}">
-                        @csrf
+                        <form class="row mb-3"method="POST" action="{{route('capturista.Playas.store')}}">
+                            @csrf
                             <div class=" col-sm-2 mb-3" >
                                 <input type="text" class="form-control" id="nombre_playa" name="nombre_playa" placeholder="Nombre" required maxlength="25">
                             </div>
@@ -84,7 +84,7 @@
                                     <td>{{$playa->latitud}}</td>
                                     <td>{{$playa->longitud}}</td>
                                     <td>
-                                        <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$playa->id_playa}}" data-bs-id="{{$playa->id_playa}}">Editar</button>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$playa->id_playa}}" data-bs-id="{{$playa->id_playa}}">Editar</button>
                                         <!-- Modal Edit -->
                                         <div class="modal fade" id="editModal{{$playa->id_playa}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -94,8 +94,8 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class=" mb-3 "method="POST" action="{{route('admin.Playas.update',$playa->id_playa)}}">
-                                                          @csrf @method('PUT')
+                                                        <form class=" mb-3 "method="POST" action="{{route('capturista.Playas.update',$playa->id_playa)}}">
+                                                            @csrf @method('PUT')
                                                             <div class="mb-3">
                                                                 <label  class="form-label">Nombre</label>
                                                                 <input type="text" class="form-control"  name="modalNombre_playa" placeholder="Nombre" required value="{{$playa->nombre_playa}}">
@@ -135,7 +135,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-danger    btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$playa->id_playa}}">Eliminar</button> 
                                     </td>
                                     </tr>
                                 @endforeach 
@@ -147,27 +146,6 @@
         </div>
     </div>
 
-{{-- Modal de advertencia  --}}
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="border: none">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h6>¿Estas seguro de eliminar el registro?</h6>
-            </div>
-            <div class="modal-footer" style="border: none">
-                <form id="formDelete"  data-action="{{route('admin.Playas.delete',1)}}" method="POST">
-                @csrf 
-                    <button type="submit" class="btn btn-secondary btn-sm" >Eliminar</button>
-                </form>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div> 
 @endsection
 
 

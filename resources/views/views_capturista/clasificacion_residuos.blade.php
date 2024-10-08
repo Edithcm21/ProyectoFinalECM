@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Clasificacion de residuos')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -15,7 +15,7 @@
                     <h2 style="color: #B72223" class="mt-2 aling-center">Clasificación de residuos </h2>
                     <div class="row" >
                       <div class="col-sm-12 col-lg-12 mt-4 card"   >
-                            <form class="row mb-4"method="POST" action="{{route('admin.Clasificacion.store')}}">
+                            <form class="row mb-4"method="POST" action="{{route('capturista.Clasificacion.store')}}">
                                 @csrf
                                 <h4 style="color: var(--negro)" class="m-2 aling-center">Agregar nueva clasificacion</h4>
                                 <div class=" col-sm-12 mb-3 pt-4">
@@ -67,7 +67,7 @@
                                        
                                         
                                         <td>
-                                            <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$clasificacion->id_clasificacion}}" data-bs-id="{{$clasificacion->id_clasificacion}}">Editar</button>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$clasificacion->id_clasificacion}}" data-bs-id="{{$clasificacion->id_clasificacion}}">Editar</button>
                                                 <!-- Modal Edit -->
                                             <div class="modal fade" id="editModal{{$clasificacion->id_clasificacion}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -77,7 +77,7 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form class=" mb-3 "method="POST" action="{{route('admin.Clasificacion.update',$clasificacion->id_clasificacion)}}">
+                                                            <form class=" mb-3 "method="POST" action="{{route('capturista.Clasificacion.update',$clasificacion->id_clasificacion)}}">
                                                               @csrf @method('PUT')
                                                               <div class="mb-3">
                                                                 <label  class="form-label">Clasificación de residuos</label>
@@ -97,8 +97,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-danger    btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$clasificacion->id_clasificacion}}">Eliminar</button> 
-                                        </td>
+                                            </td>
                                     </tr>
                                 @endforeach 
                                 </tbody>
@@ -114,27 +113,4 @@
     </div>
 </div>
 
-  {{-- Modal de advertencia  --}}
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="border: none">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h6>¿Estas seguro de eliminar el registro?</h6>
-          
-        </div>
-        
-        <div class="modal-footer" style="border: none">
-          <form id="formDelete"  data-action="{{route('admin.Clasificacion.delete',1)}}" method="POST">
-            @csrf 
-            <button type="submit" class="btn btn-secondary btn-sm" >Eliminar</button>
-          </form>
-          <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div> 
 @endsection

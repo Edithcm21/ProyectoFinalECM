@@ -18,10 +18,10 @@
                             <form class="row mb-4"method="POST" action="{{route('admin.municipios.store')}}">
                             @csrf
                                 <div class=" col-sm-12 mb-3 pt-4">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de municipio" maxlength="23">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de municipio" maxlength="23" required>
                                 </div>
                                 <div class=" col-sm-12 mb-4 pt-4">
-                                    <select class="form-select" aria-label="Default select example" name="estado">
+                                    <select class="form-select" aria-label="Default select example" name="estado" required>
                                         <option value="" selected>Selecciona Estado</option>
                                         @foreach ( $estados as $estado)
                                         <option value="{{$estado->id_estado}}">{{ $estado->nombre_estado }}</option>
@@ -60,8 +60,8 @@
                                   <thead>
                                       <tr>
                                           <th>ID</th>
-                                          <th>Estado</th>
                                           <th>Municipio</th>
+                                          <th>Estado</th>
                                       </tr>
                                   </thead>
                                   <tbody>

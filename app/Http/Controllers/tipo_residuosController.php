@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clasificacion;
 use App\Models\tipo_residuo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class tipo_residuosController extends Controller
@@ -13,7 +14,10 @@ class tipo_residuosController extends Controller
     { 
         $tipo_residuos=tipo_residuo::paginate(6);
         $clasificaciones=Clasificacion::all();
-        return view('views_admin.residuos',compact('tipo_residuos','clasificaciones'));
+        return Auth::user()->rol== 'admin'  
+        ? view('views_admin.residuos',compact('tipo_residuos','clasificaciones'))
+        : view('views_capturista.residuos',compact('tipo_residuos','clasificaciones'));
+
     }
 
     /**
@@ -41,14 +45,20 @@ class tipo_residuosController extends Controller
             $tipo_residuo->nombre_tipo=$request->nombre_tipo;
             $tipo_residuo->fk_clasificacion=$request->fk_clasificacion;
             $tipo_residuo->save();
-            return redirect()->route('admin.Tipo_residuos')->with('success', 'Registro creado correctamente.');
+            return Auth::user()->rol== 'admin'  
+                ? redirect()->route('admin.Tipo_residuos')->with('success', 'Registro creado correctamente.')
+                : redirect()->route('capturista.Tipo_residuos')->with('success', 'Registro creado correctamente.');
+
 
             }catch (\Exception $e) {
                 
                 // Imprimir el error en el registro
                 Log::error('Error al crear tipo_residuo : ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Tipo_residuos')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol== 'admin'  
+                    ? redirect()->route('admin.Tipo_residuos')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.')
+                    : redirect()->route('capturista.Tipo_residuos')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.');
+
             }
         
     
@@ -85,14 +95,20 @@ class tipo_residuosController extends Controller
             $tipo_residuo->nombre_tipo=$request->modalTipo_residuo;
             $tipo_residuo->fk_clasificacion=$request->modalFk_clasificacion;
             $tipo_residuo->save();
-            return redirect()->route('admin.Tipo_residuos')->with('success', 'Registro actualizado correctamente.');
+            return Auth::user()->rol== 'admin'  
+                    ? redirect()->route('admin.Tipo_residuos')->with('success', 'Registro actualizado correctamente.')
+                    : redirect()->route('capturista.Tipo_residuos')->with('success', 'Registro actualizado correctamente.');
+
 
 
         }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al actualizar el tipo de residuo: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Tipo_residuos')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol== 'admin'  
+                    ? redirect()->route('admin.Tipo_residuos')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.')
+                    : redirect()->route('capturista.Tipo_residuos')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+
             }  
     }
 

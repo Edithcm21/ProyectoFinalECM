@@ -16,6 +16,35 @@
     z-index: 1050; 
   }
 
+  
+.navbar_admin{
+  background-color: black;
+  
+}
+
+.navbar_admin .active{
+  color: white; 
+
+}
+/* Estilo para el enlace activo */
+.navbar_admin a.nav-link.active {
+  font-weight: bold;
+  color: white;
+}
+.dropdown-item{
+  background-color: var(--negro);
+  color: white;
+}
+.dropdown-menu{
+  border: 0;
+  background-color: var(--negro);
+}
+.dropdown-menu a:hover{
+  color: var(--negro);
+  border: 0;
+}
+
+
 
 
 .navbar-light {

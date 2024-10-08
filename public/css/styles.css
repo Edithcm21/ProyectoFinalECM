@@ -30,21 +30,10 @@ body{
      align-items: center;
 }
 
-
-  /* .navbar_inicio{
-    min-height: 80px;
-    font-family: "Cera Pro", Sans-serif;
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
-    text-transform: uppercase;
-    z-index: 1050; 
-  } */
-  
   .n-transparent{
     background-color: rgba(1, 115,175, 0.5); 
   }
- .navbar_user{
+ /* .navbar_user{
     position:fixed;
     background-color:white; 
     width: 100%;
@@ -64,14 +53,14 @@ body{
 }
 .navbar_user .navbar-nav .nav-item {
     margin-right: 15px; 
-}
+} */
 
 .espacio{
     margin-top: 25vh; 
     padding-top: 1rem ;  
 }
 
-.navbar_user a{
+/* .navbar_user a{
     font-size: 1.2rem;
     color: var(--negro);
     padding: 0 10px;
@@ -91,46 +80,19 @@ body{
     font-weight: bold;
     color: var(--rojo);
     border-bottom: 2px solid var(--rojo);
-} 
+}  */
 
-.navbar_admin{
-    background-color: black;
-    
-}
-
-.navbar_admin .active{
-    color: white; 
-
-}
-/* Estilo para el enlace activo */
-.navbar_admin a.nav-link.active {
-    font-weight: bold;
-    color: white;
-}
-.dropdown-item{
-    background-color: var(--negro);
-    color: white;
-}
-.dropdown-menu{
-    border: 0;
-    background-color: var(--negro);
-}
-.dropdown-menu a:hover{
-    color: var(--negro);
-    border: 0;
-}
-
-.portada{
+/* .portada{
     background-image: url("../images/portada4.jpg");
-    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; Ajusta la imagen para que cubra toda la pantalla
+    background-position: center; Centra la imagen
+    background-repeat: no-repeat; Evita que la imagen se repita
     width: 100%;
-    /* background-color: var(--azul); */
+    background-color: var(--azul);
     background-size: cover;
     background-position:center center;
    
-} 
+}  */
 .contenido_portada {
     color:white;
     font-weight: bold; 
@@ -139,13 +101,13 @@ body{
     z-index: 1;
     text-align: center;
     padding: 40px;
+    
 
 }
 
 .video-background {
     position: relative;
     height: 130vh;
-    /* width: 100%; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -161,6 +123,7 @@ body{
     width: auto;
     height: auto;
     z-index: -1;
+    background-color: var(--azul);
     transform: translate(-50%, -50%);
   }
 
@@ -202,34 +165,6 @@ body{
     font-style: normal;
 }
 
-
-.card_consultas{
-    background-color: var(--azul);
-    color: white;
-
-}
-
-.btn-filtro {
-    color: white; /* Color del texto */
-    border: 2px solid white;
-    width: 200px;
-    
-  }
-  
-  /* Estilo al pasar el cursor sobre el botón */
-.btn-filtro:hover {
-    /*color: var(--color-5); /* Color del texto al pasar el cursor */
-    color: var();
-    background-color: var(--rojo); /* Color de fondo al pasar el cursor */
-  }
-  
-  /* Estilo cuando el botón está activo (haciendo clic) */
-.btn-filtro:active{
-    /*color: var(--color-5); /* Color del texto al hacer clic */
-    color: #b84f0b;
-    background-color: var(--color-4); /* Color de fondo al hacer clic */
-    border-color: var(--color-5); /* Color del borde al hacer clic */
-  }
 
 footer {
     background-color: var(--negro);

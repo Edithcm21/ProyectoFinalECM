@@ -22,7 +22,7 @@ class muestreosController extends Controller
         else {
             return view('views_capturista.muestreos',compact('muestreos'));
         }
-        return Auth::user()->resourcebundle_locales 
+        return Auth::user()->rol=='admin' 
         ? view('views_admin.muestreos',compact('muestreos'))
         : view('views_capturista.muestreos',compact('muestreos'));
        

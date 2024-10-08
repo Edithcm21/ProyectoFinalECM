@@ -19,14 +19,14 @@
         <a class="nav-link active" href="#">Quienes somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="/consulta/filtro">Resultados</a>
+        <a class="nav-link active" href="{{route('consulta.filtro')}}">Resultados</a>
       </li>
     </ul>
     <div class="nav-item text" style="margin-right: 50px; " >
       {{ \Carbon\Carbon::parse(now()->toDateString())->locale('es')->isoFormat('D [de] MMMM [del] YYYY') }}
     </div>
     <div class="navbar-item  " style="margin-right: 30px">
-      <a href="/login">
+      <a href="{{route('login')}}">
         <button id="navbutton1" type="button" class=" btn-white">Iniciar sesión</button>
       </a>
     </div>

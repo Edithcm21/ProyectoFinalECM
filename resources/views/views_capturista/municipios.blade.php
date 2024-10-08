@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+ @extends('views_capturista.app')
 
 @section('title', 'Municipios')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -15,13 +15,13 @@
                     <h2 style="color: #B72223" class="m-2 aling-center">Municipios</h2>
                     <div class="row" >
                         <div class="col-sm-12 col-lg-12 mt-4 card"   >
-                            <form class="row mb-4"method="POST" action="{{route('admin.municipios.store')}}">
+                            <form class="row mb-4"method="POST" action="{{route('capturista.municipios.store')}}">
                             @csrf
                                 <div class=" col-sm-12 mb-3 pt-4">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de municipio" maxlength="23">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de municipio" maxlength="23" required>
                                 </div>
                                 <div class=" col-sm-12 mb-4 pt-4">
-                                    <select class="form-select" aria-label="Default select example" name="estado">
+                                    <select class="form-select" aria-label="Default select example" name="estado" required>
                                         <option value="" selected>Selecciona Estado</option>
                                         @foreach ( $estados as $estado)
                                         <option value="{{$estado->id_estado}}">{{ $estado->nombre_estado }}</option>
@@ -60,8 +60,8 @@
                                   <thead>
                                       <tr>
                                           <th>ID</th>
-                                          <th>Estado</th>
                                           <th>Municipio</th>
+                                          <th>Estado</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -71,7 +71,7 @@
                                           <td>{{$municipio->nombre_municipio}}</td>
                                           <td>{{$municipio->estado->nombre_estado }}</td>
                                           <td>
-                                              <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$municipio->id_municipio}}" data-bs-id="{{$municipio->id_municipio}}">Editar</button>
+                                              <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$municipio->id_municipio}}" data-bs-id="{{$municipio->id_municipio}}">Editar</button>
                                                 <!-- Modal Edit -->
                                               <div class="modal fade" id="editModal{{$municipio->id_municipio}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -81,7 +81,7 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form class=" mb-3 "method="POST" action="{{route('admin.municipios.update',$municipio->id_municipio)}}">
+                                                            <form class=" mb-3 "method="POST" action="{{route('capturista.municipios.update',$municipio->id_municipio)}}">
                                                             @csrf @method('PUT')
                                                             <div class="mb-3">
                                                                 <label  class="form-label">Municipio</label>
@@ -105,7 +105,6 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                              <button class="btn btn-danger    btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$municipio->id_municipio}}">Eliminar</button> 
                                           </td>
                                       </tr>
                                   @endforeach 
@@ -122,28 +121,6 @@
     </div>
 </div>
 
-  {{-- Modal de advertencia  --}}
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="border: none">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h6>¿Estas seguro de eliminar el registro?</h6>
-            </div>
-        
-            <div class="modal-footer" style="border: none">
-                <form id="formDelete"  data-action="{{route('admin.municipios.delete',1)}}" method="POST">
-                    @csrf 
-                    <button type="submit" class="btn btn-secondary btn-sm" >Eliminar</button>
-                </form>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div> 
 @endsection
 
 

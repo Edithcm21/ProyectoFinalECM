@@ -34,9 +34,8 @@ Route::resource('/',IndexController::class);
 Route::get('/resultados/{id}',[IndexController::class,'showResultados'])->name('resultados');
 // Route::post('resultados/filtro',[IndexController::class,'showFilteredResults1'])->name('resultados.filtro');
 Route::get('consulta/filtro',[IndexController::class,'showFilteredResults'])->name('consulta.filtro');
-// Route::get('resultados/filtro',[IndexController::class,'showFilteredResults'])->name('resultados.filtro');
        
-// Obtiene el filtro de muestreo ne base a la playa seleccionada
+// Obtiene el filtro de muestreo en base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
 Route::resource('/mapa',Controller::class);
 //Ruta que funciona para la llamada AJAX de obtener los datos de filtros
@@ -94,24 +93,7 @@ Route::middleware(['auth'])->group(function () {
         
         
         Route::get('/admin/muestreos',[muestreosController::class,'index'])->name('admin.muestreos');
-        // Route::get('/admin/hallazgos/create',[hallazgosController::class,'create'])->name('admin.hallazgos.create');
-        // Route::post('/admin/hallazgos/store',[hallazgosController::class,'store'])->name('admin.hallazgos.store');
-        // // Route::put('/admin/hallazgos/update/{id}',[tipo_residuosController::class,'update'])->name('admin.Tipo_residuos.update');
-        // // Route::post('/admin/hallazgos/delete/{id}',[tipo_residuosController::class,'destroy'])->name('admin.Tipo_residuos.delete');
-        
-        
-
-
-
        
-        // Route::get('/admin/{opcion}', [IndexAdmin::class, 'index'])->name('admin');
-        // Route::get('/admin/{opcion}',[MenuController::class,'index'])->name('admin');
-        // Route::get('/admin1/usuarios',[UsersController::class,'index'])->name('admin.usuarios');
-        // Route::post('/admin1/usuarios',[UsersController::class,'store'])->name('admin1.usuarios.store');
-
-        // Route::get('/usuarios', function () {
-        //     return view('views_admin.admin')->with('seleccion', 'usuarios');
-        // })->name('usuarios');
     });
     Route::middleware(CheckRole::class . ':capturista')->group(function () {
         Route::get('/capturista/muestreos',[muestreosController::class,'index'])->name('capturista.muestreos');
@@ -121,8 +103,32 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/capturista/hallazgos/store',[hallazgosController::class,'store'])->name('capturista.hallazgos.store');
         Route::get('/capturista/hallazgos/edit/{id}',[hallazgosController::class,'edit'])->name('capturista.hallazgos.edit');
         Route::put('/capturista/hallazgos/update/{id}',[hallazgosController::class,'update'])->name('capturista.hallazgos.update');
- 
 
+        //gestion de municipios
+        Route::get('/capturista/municipios',[MunicipioController::class,'index'])->name('capturista.municipios');
+        Route::post('/capturista/municipios/create',[MunicipioController::class,'store'])->name('capturista.municipios.store');
+        Route::put('/capturista/municipios/update/{id}',[MunicipioController::class,'update'])->name('capturista.municipios.update');
+        
+        //Region Marina
+        Route::get('/capturista/RegionMarina',[RegionesController::class,'index'])->name('capturista.RegionMarina');
+        Route::post('/capturista/RegionMarina/create',[RegionesController::class,'store'])->name('capturista.RegionMarina.store');
+        Route::put('/capturista/RegionMarina/update/{id}',[RegionesController::class,'update'])->name('capturista.RegionMarina.update');
+        
+        //Clasificacion de reisuos
+        Route::get('/capturista/Clasificacion',[ClasificacionesController::class,'index'])->name('capturista.Clasificacion');
+        Route::post('/capturista/Clasificacion/create',[ClasificacionesController::class,'store'])->name('capturista.Clasificacion.store');
+        Route::put('/capturista/Clasificacion/update/{id}',[ClasificacionesController::class,'update'])->name('capturista.Clasificacion.update');
+        
+        //Playas
+        Route::get('/capturista/Playas',[PlayasController::class,'index'])->name('capturista.Playas');
+        Route::post('/capturista/Playas/create',[PlayasController::class,'store'])->name('capturista.Playas.store');
+        Route::put('/capturista/Playas/update/{id}',[PlayasController::class,'update'])->name('capturista.Playas.update');
+       
+        //Tipo de residuos
+        Route::get('/capturista/Tipo_residuos',[tipo_residuosController::class,'index'])->name('capturista.Tipo_residuos');
+        Route::post('/capturista/Tipo_residuos/create',[tipo_residuosController::class,'store'])->name('capturista.Tipo_residuos.store');
+        Route::put('/capturista/Tipo_residuos/update/{id}',[tipo_residuosController::class,'update'])->name('capturista.Tipo_residuos.update');
+        
     });
 });
 

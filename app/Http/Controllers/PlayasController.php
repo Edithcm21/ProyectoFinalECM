@@ -6,16 +6,21 @@ use App\Models\Municipio;
 use App\Models\Playa;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class PlayasController extends Controller
 {
     public function index()
     { 
-        $playas= Playa::paginate(6);
-        $municipios=Municipio::all();
-        $regiones=Region::all();
-        return view('views_admin.playas',compact('playas','municipios','regiones'));
+        $playas= Playa::orderBy('nombre_playa','asc')->paginate(6);
+        $municipios=Municipio::orderBy('nombre_municipio')->get();
+        $regiones=Region::orderBy('nombre_region')->get();
+
+        return Auth::user()->rol== 'admin'
+        ? view('views_admin.playas',compact('playas','municipios','regiones'))
+        : view('views_capturista.playas',compact('playas','municipios','regiones'));
+      
     }
 
     /**
@@ -51,14 +56,20 @@ class PlayasController extends Controller
             $playa->fk_region=$request->region;
 
             $playa->save();
-            return redirect()->route('admin.Playas')->with('success', 'Registro creado correctamente.');
+            return Auth::user()->rol== 'admin'
+            ? redirect()->route('admin.Playas')->with('success', 'Registro creado correctamente.')
+            : redirect()->route('capturista.Playas')->with('success', 'Registro creado correctamente.');
+          
 
             }catch (\Exception $e) {
                 
                 // Imprimir el error en el registro
                 Log::error('Error al crear nueva playa ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Playas')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol== 'admin'
+                    ? redirect()->route('admin.Playas')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.')
+                    : redirect()->route('capturista.Playas')->with('error','Ocurrió un error al crear el registro. Por favor, inténtalo de nuevo.');
+          
             }
         
     
@@ -101,14 +112,21 @@ class PlayasController extends Controller
             $playa->fk_municipio=$request->modalMunicipio;
             $playa->fk_region=$request->modalRegion;
             $playa->save();
-            return redirect()->route('admin.Playas')->with('success', 'Registro actualizado correctamente.');
+
+            return Auth::user()->rol== 'admin'
+                    ? redirect()->route('admin.Playas')->with('success', 'Registro actualizado correctamente.')
+                    : redirect()->route('capturista.Playas')->with('success', 'Registro actualizado correctamente.');
+          
 
 
         }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al actualizar La playa: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Playas')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol== 'admin'
+                    ? redirect()->route('admin.Playas')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.')
+                    : redirect()->route('capturista.Playas')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+          
             }  
     }
 

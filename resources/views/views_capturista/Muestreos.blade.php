@@ -1,9 +1,9 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Muestreos')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -30,7 +30,7 @@
                     <h3 style="color: #B72223">Resultados de los muestreos</h3>
                 </div>
                 <div class="col-sm-4 col-lg-4 mt-4"   >
-                  <a href="/capturista/hallazgo/create">
+                  <a href="{{route('capturista.hallazgo.create')}}">
                     <button type="submit" class="btn  btn-outline-danger " style="width: 60%; ">Agregar muestreo</button> 
                   </a> 
               </div>
@@ -65,7 +65,7 @@
                                 <td>{{$muestreo->zona}}</td>
                                 <td>{{$muestreo->fecha}}</td>
                                 <td>{{$muestreo->dia}}</td>
-                                <td><a href="/capturista/hallazgos/{{$muestreo->id_muestreo}}"> Más...</a> </td>
+                                <td><a href="{{route('capturista.hallazgos',$muestreo->id_muestreo)}}"> Más...</a> </td>
                             </tr>
                                 
                             @endforeach 

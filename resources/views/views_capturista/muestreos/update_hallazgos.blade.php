@@ -1,8 +1,8 @@
-@extends('views_admin.app')
+@extends('views_capturista.app')
 
 @section('title', 'Editar Hallazgos')
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )
@@ -29,7 +29,8 @@
                     <h3 style="color: #B72223">Editar registro</h3>
                 </div>
                 <div class="col-2 " >
-                    <a href="/capturista/hallazgos/{{$muestreo->id_muestreo}}" class="btn btn-dark">
+
+                    <a href="{{route('capturista.hallazgos',$muestreo->id_muestreo)}}" class="btn btn-dark">
                         <i class="bi bi-arrow-left"></i> Regresar
                     </a>
                 </div> 

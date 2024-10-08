@@ -7,6 +7,7 @@ use App\Models\Municipio;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 class MunicipioController extends Controller
@@ -22,7 +23,9 @@ class MunicipioController extends Controller
    
         $municipios = Municipio::with('estado')->orderBy('fk_estado')->paginate(6);
         
-        return view('views_admin.municipios',compact('estados','municipios'));
+        return Auth::user()->rol== 'admin'
+        ? view('views_admin.municipios',compact('estados','municipios'))
+        : view('views_capturista.municipios',compact('estados','municipios'));
     }
 
     /**
@@ -52,13 +55,19 @@ class MunicipioController extends Controller
             $municipio->nombre_municipio=$request->name;
             $municipio->fk_estado=$request->estado;
             $municipio->save();
-            return redirect()->route('admin.municipios')->with('success', 'Municipio creado correctamente.');
+
+            return Auth::user()->rol== 'admin'
+                ? redirect()->route('admin.municipios')->with('success', 'Municipio creado correctamente.')
+                : redirect()->route('capturista.municipios')->with('success', 'Municipio creado correctamente.');
 
             }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al crear municipio: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.municipios')->with('error','Ocurrió un error al registrar municipio. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol== 'admin'
+                ? redirect()->route('admin.municipios')->with('error','Ocurrió un error al registrar municipio. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.municipios')->with('error','Ocurrió un error al registrar municipio. Por favor, inténtalo de nuevo.');
+
             }
         
     
@@ -96,14 +105,23 @@ class MunicipioController extends Controller
             $municipio->nombre_municipio=$request->modalName;
             $municipio->fk_estado=$request->modalEstado;
             $municipio->save();
-            return redirect()->route('admin.municipios')->with('success', 'Municipio actualizado correctamente.');
+
+            return Auth::user()->rol== 'admin'
+                ? redirect()->route('admin.municipios')->with('success', 'Municipio actualizado correctamente.')
+                : redirect()->route('capturista.municipios')->with('success', 'Municipio actualizado correctamente.');
+
 
 
         }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al actualizar municipio: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.municipios')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+
+                return Auth::user()->rol== 'admin'
+                ? redirect()->route('admin.municipios')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.municipios')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+
+                
             }  
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clasificacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ClasificacionesController extends Controller
@@ -13,7 +14,9 @@ class ClasificacionesController extends Controller
     public function index()
     { 
         $clasificaciones=Clasificacion::paginate(6);
-        return view('views_admin.clasificacion_residuos',compact('clasificaciones'));
+         return Auth::user()->rol=='admin'
+         ? view('views_admin.clasificacion_residuos',compact('clasificaciones'))
+         : view('views_capturista.clasificacion_residuos',compact('clasificaciones'));
     }
 
     /**
@@ -41,14 +44,21 @@ class ClasificacionesController extends Controller
             $clasificacion->nombre_clasificacion=$request->nombre_clasificacion;
             $clasificacion->color= $request->color;
             $clasificacion->save();
-            return redirect()->route('admin.Clasificacion')->with('success', 'Registro creado correctamente.');
+
+            return Auth::user()->rol=='admin'
+                ? redirect()->route('admin.Clasificacion')->with('success', 'Registro creado correctamente.')
+                : redirect()->route('capturista.Clasificacion')->with('success', 'Registro creado correctamente.');
+        
 
             }catch (\Exception $e) {
                 
                 // Imprimir el error en el registro
                 Log::error('Error al crear Clasificacion de reisuos: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Clasificacion')->with('error','Ocurrió un error al crear un registro. Por favor, inténtalo de nuevo.');
+                return Auth::user()->rol=='admin'
+                ? redirect()->route('admin.Clasificacion')->with('error','Ocurrió un error al crear un registro. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.Clasificacion')->with('error','Ocurrió un error al crear un registro. Por favor, inténtalo de nuevo.');
+        
             }
         
     
@@ -85,14 +95,22 @@ class ClasificacionesController extends Controller
             $clasificacion->nombre_clasificacion=$request->modalClasificacion;
             $clasificacion->color=$request->modalColor;
             $clasificacion->save();
-            return redirect()->route('admin.Clasificacion')->with('success', 'Registro actualizado correctamente.');
+
+            return Auth::user()->rol=='admin'
+                ? redirect()->route('admin.Clasificacion')->with('success', 'Registro actualizado correctamente.')
+                : redirect()->route('capturista.Clasificacion')->with('success', 'Registro actualizado correctamente.');
+        
 
 
         }catch (\Exception $e) {
                 // Imprimir el error en el registro
                 Log::error('Error al actualizar La clasificación: ' . $e->getMessage());
                 // Redireccionar con un mensaje de error
-                return redirect()->route('admin.Clasificacion')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+
+                return Auth::user()->rol=='admin'
+                ? redirect()->route('admin.Clasificacion')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.')
+                : redirect()->route('capturista.Clasificacion')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+        
             }  
     }
 
