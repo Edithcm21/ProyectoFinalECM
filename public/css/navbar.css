@@ -27,24 +27,45 @@
 
 }
 /* Estilo para el enlace activo */
-.navbar_admin a.nav-link.active {
+  a.nav-link.active {
   font-weight: bold;
   color: white;
 }
-.dropdown-item{
+/* .nav-item{
+  color: white !important;
+}
+.nav-link{
+  color: white;
+
+} */
+ .dropdown-menu{
   background-color: var(--negro);
   color: white;
-}
-.dropdown-menu{
   border: 0;
-  background-color: var(--negro);
 }
-.dropdown-menu a:hover{
+ .dropdown-menu a:hover{
   color: var(--negro);
   border: 0;
+  background-color: white;
+}
+.dropdown-item{
+  color: white ;
 }
 
-
+.user-circle {
+  width: 30px;               /* Ajusta según el tamaño que necesites */
+  height: 30px;
+  background-color: #0C404D ;     /* Cambia el color según tus necesidades */
+  color: white;               /* Color de la letra */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;         /* Esto hace que el div sea redondo */
+  font-size: 20px;            /*Tamaño de la letra*/
+  font-weight: bold;          /* Negrita para la letra */
+  text-transform: uppercase;  /* Asegura que la letra esté en mayúscula */
+  margin: auto;
+}
 
 
 .navbar-light {

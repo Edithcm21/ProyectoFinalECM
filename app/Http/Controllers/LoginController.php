@@ -46,11 +46,16 @@ class LoginController extends Controller
         } 
         } catch (\Throwable $th) {
             return redirect()->route('login')->withErrors(['email' => 'Las credenciales proporcionadas no son válidas']);
+        }   
+    }
+    
+    public function logout( Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
 
-        }
-        
-        
-}
+    }
 
 
 

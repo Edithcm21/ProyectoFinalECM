@@ -26,7 +26,7 @@
       <div class="nav-item text" style="margin-right: 50px; " >
         {{ \Carbon\Carbon::parse(now()->toDateString())->locale('es')->isoFormat('D [de] MMMM [del] YYYY') }}
       </div>
-      <div class="navbar-item  " style="margin-right: 30px">
+      <div class="nav-item  " style="margin-right: 30px">
         <a href="route}}">
           <button id="navbutton2" type="button"  class=" btn-blue">Iniciar sesión</button>
         </a>
@@ -34,4 +34,3 @@
     </div> 
   
   </nav>
-  

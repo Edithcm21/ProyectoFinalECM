@@ -11,7 +11,8 @@ setTimeout(function() {
 //Resalta el elemento activo
    // Obtén todos los elementos de enlace dentro del navbar
    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
+    console.log('entro a reslatar');
+    
    // Para cada enlace, agrega un evento de clic
    navLinks.forEach(link => {
      link.addEventListener('click', () => {
