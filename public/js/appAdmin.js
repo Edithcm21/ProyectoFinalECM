@@ -79,4 +79,21 @@
 }
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('form_perfilEdit').addEventListener('submit',function(e){
+        console.log('entro a la funcion ');
+        
+        var password= document.getElementById('password').value;
+        var password_confirmation= document.getElementById('password_confirmation').value;
+        var igual= document.getElementById('igual');
 
+        if(password !== password_confirmation){
+            e.preventDefault(); 
+            igual.style.display = 'block';
+        }
+        else{
+            igual.style.display='none';
+        }
+
+    });
+});

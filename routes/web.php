@@ -44,11 +44,14 @@ Route::get('estados/{id_estado}', [MunicipioController::class, 'getMunicipios'])
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 //ruta para la logica del formulario
 Route::post('login', [LoginController::class, 'login']);
-Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
+
 
 
 //manejador de rutas con permisos 
 Route::middleware(['auth'])->group(function () {
+    Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
+    Route::get('perfil',[Logincontroller::class,'perfilEdit'])->name('perfil.edit');
+    Route::post('perfil/editar',[Logincontroller::class,'perfilUpdate'])->name('perfil.update');
     Route::middleware(CheckRole::class . ':admin')->group(function () {
         //vista principal
         // Route::get('/admin',[MenuController::class,'index'])->name('admin');

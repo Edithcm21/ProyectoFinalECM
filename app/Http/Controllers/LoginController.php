@@ -50,11 +50,20 @@ class LoginController extends Controller
     }
     
     public function logout( Request $request){
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
+            if(Auth::check()){
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect('/');
+            }
+    }
 
+    public function perfilEdit(Request $request){
+        return view('views_admin.perfilEdit');
+    }
+
+    public function perfilUpdate() {
+        echo('realizo el edit');
     }
 
 
