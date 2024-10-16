@@ -68,7 +68,7 @@
         @endphp
         <table class="table table-striped  table-hover border text-center">
           <thead>
-            <tr class=" text-center border">
+            <tr class=" text-center border ">
               <th   style="min-width: 300px; max-width: 300px ; " scope="col text-center border " class="col text-center border" rowspan="5">Residuo</th>
             </tr>
             <tr class="border">
@@ -122,7 +122,7 @@
             @endphp
             <tr style="{{ $ultimaFila ? 'border-bottom: 2px solid black;' : '' }}">
               
-              <td class="text-start" style=" position: sticky; border-right: 2px solid black;">{{$residuo->nombre_tipo}}</td>
+              <td class="text-start" style=" position: sticky; border-right: 2px solid black; min-width: 300px; max-width: 300px ; " >{{$residuo->nombre_tipo}}</td>
                   
               {{-- <td class="text-start" style="background-color: {{$clasificacion->color}} ; position: sticky;">{{$residuo->nombre_tipo}}</td> --}}
                 @foreach ($muestreos as  $index => $muestreo)

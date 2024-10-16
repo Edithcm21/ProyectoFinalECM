@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 class UsersController extends Controller
@@ -128,4 +129,53 @@ class UsersController extends Controller
             return redirect()->route('admin.usuarios')->with('error','Ocurrió un error al eliminar registro');
         }  
     }
+
+    public function logout( Request $request){
+        if(Auth::check()){
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect('/');
+        }
+}
+
+
+public function perfilEdit(){
+    return view('views_admin.perfilEdit');
+}
+public function perfilEditc(){
+    return view('views_capturista.perfilEdit');
+}
+
+public function perfilUpdate(Request $request) {
+    try{
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'correo' => 'required|string|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|confirmed|min:8'
+        ]);
+    
+        $user->name =$request->nombre;
+        $user->email =$request->correo;
+        if($request->filled('password')){
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return Auth::user()->rol == 'admin' 
+        ? redirect()->route('admin.perfil.edit')->with('success','Datos actualizados correctamente')
+        : redirect()->route('capturista.perfil.edit')->with('success','Datos actualizados correctamente');
+
+    }catch (\Exception $e) {
+            // Imprimir el error en el registro
+            Log::error('Error al actualizar los datos: ' . $e->getMessage());
+            // Redireccionar con un mensaje de error
+            return Auth::user()->rol == 'admin' 
+            ? redirect()->route('admin.perfil.edit')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.')
+            : redirect()->route('capturista.perfil.edit')->with('error','Ocurrió un error al actualizar. Por favor, inténtalo de nuevo.');
+        }  
+}
+
+
 }

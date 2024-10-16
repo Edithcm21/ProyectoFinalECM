@@ -48,7 +48,7 @@
               </div>
             </div>
           </li>
-          <li><a class="dropdown-item" href="{{route('perfil.edit')}}"> 
+          <li><a class="dropdown-item" href="{{route('admin.perfil.edit')}}"> 
             <i class="bi bi-pencil-square"></i> Editar datos</a></li>
           <li>
             <form action="{{route('logout')}} " method="POST">

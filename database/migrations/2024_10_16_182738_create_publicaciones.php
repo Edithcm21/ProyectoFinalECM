@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articulos', function (Blueprint $table) {
+        Schema::create('publicaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('NombreArticulo');
-            $table->date('Fecha');
-            $table->binary('file');
-            $table->unsignedBigInteger('fk_user');
-            $table->foreign('fk_user')->references('id')->on('users');
+            $table->string('titulo',100);
+            $table->string('descripcion',500);
+            $table->string('autores',100);
+            $table->date('fecha');
+            $table->string('file');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('articulos');
+        Schema::dropIfExists('publicaciones');
     }
 };

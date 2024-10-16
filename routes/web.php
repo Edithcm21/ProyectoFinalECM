@@ -12,6 +12,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\muestreosController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PlayasController;
+use App\Http\Controllers\publicacionesController;
 use App\Http\Controllers\RegionesController;
 use App\Http\Controllers\tipo_residuosController;
 use App\Http\Controllers\UsersController;
@@ -49,12 +50,12 @@ Route::post('login', [LoginController::class, 'login']);
 
 //manejador de rutas con permisos 
 Route::middleware(['auth'])->group(function () {
-    Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
-    Route::get('perfil',[Logincontroller::class,'perfilEdit'])->name('perfil.edit');
-    Route::post('perfil/editar',[Logincontroller::class,'perfilUpdate'])->name('perfil.update');
+    Route::post('logout',[UsersController::class,'logout'])->name('logout');
+    Route::post('perfil/editar',[UsersController::class,'perfilUpdate'])->name('perfil.update');
     Route::middleware(CheckRole::class . ':admin')->group(function () {
         //vista principal
         // Route::get('/admin',[MenuController::class,'index'])->name('admin');
+        Route::get('/admin/perfil',[UsersController::class,'perfilEdit'])->name('admin.perfil.edit');
         //vistas para la gestion de usuarios
         Route::get('/admin/usuarios',[UsersController::class,'index'])->name('admin.usuarios');
         Route::post('/admin/usuarios/create',[UsersController::class,'store'])->name('admin.usuarios.store');
@@ -94,11 +95,19 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/hallazgos/update/{id}',[hallazgosController::class,'update'])->name('admin.hallazgos.update');
         Route::post('/admin/hallazgos/delete/{id}',[hallazgosController::class,'destroy'])->name('admin.hallazgos.delete');
         
-        
         Route::get('/admin/muestreos',[muestreosController::class,'index'])->name('admin.muestreos');
+
+        Route::get('/admin/publicaciones',[publicacionesController::class,'index'])->name('admin.publicaciones');
+        Route::post('/admin/publicaciones/create',[publicacionesController::class,'store'])->name('admin.publicaciones.store');
+        Route::put('/admin/publicaciones/update/{id}',[publicacionesController::class,'update'])->name('admin.publicaciones.update');
+        Route::post('/admin/publicaciones/delete/{id}',[publicacionesController::class,'destroy'])->name('admin.publicaciones.delete');
+        
        
     });
     Route::middleware(CheckRole::class . ':capturista')->group(function () {
+
+        Route::get('/capturista/perfil',[UsersController::class,'perfilEditc'])->name('capturista.perfil.edit');
+
         Route::get('/capturista/muestreos',[muestreosController::class,'index'])->name('capturista.muestreos');
 
         Route::get('/capturista/hallazgos/{id}',[hallazgosController::class,'viewHallazgos'])->name('capturista.hallazgos');

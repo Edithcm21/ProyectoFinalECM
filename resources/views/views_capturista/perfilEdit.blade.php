@@ -3,7 +3,7 @@
 @section('title', 'Editar perfil')
 
 @section('navbar')
-    @include('layouts.navbar_admin')
+    @include('layouts.navbar_capturista')
 @endsection
 
 @section('content' )

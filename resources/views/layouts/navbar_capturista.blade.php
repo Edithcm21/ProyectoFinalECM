@@ -1,6 +1,6 @@
 <nav class="navbar  navbar_admin navbar-expand-lg navbar-dark  ">
   <div class="container-fluid">
-    <a class="navbar-brand active" >Administrador</a>
+    <a class="navbar-brand active" >Capturista</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" ></span>
       </button>
@@ -25,9 +25,38 @@
           </ul>
         </li>
       </ul>
-      <span class="navbar-text" style="color: white; font-weight: bold;">
-        {{ Auth::user()->name }}
-      </span>
+      <div class="nav-item" style="margin-right: 30px; color:white">
+        <a class=" nav-link dropdown-toggle d-flex align-items-center" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+         <div class="user-circle me-2">
+           {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+         </div> 
+         <span>{{ Auth::user()->name }}</span>
+       </a>
+       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser" style="margin-right: 30px;">
+         <li class="px-3 py-2">
+           <div class="d-flex align-items-center">
+             <div class="user-circle "  style="width: 50px;height: 50px; font-size:30px">
+               {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+             </div> 
+             <div class="m-1"></div>
+             <div>
+               <strong>{{Auth::user()->name}}</strong>
+               <p class="small mb-0">{{Auth::user()->email}}</p>
+             </div>
+           </div>
+         </li>
+         <li><a class="dropdown-item" href="{{route('capturista.perfil.edit')}}"> 
+           <i class="bi bi-pencil-square"></i> Editar datos</a></li>
+         <li>
+           <form action="{{route('logout')}} " method="POST">
+             @csrf
+             <button class="dropdown-item d-flex align-items-center" type="submit">
+               <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+             </button>
+           </form>
+         </li>
+       </ul> 
+     </div>
     </div>
   </div>
 </nav>

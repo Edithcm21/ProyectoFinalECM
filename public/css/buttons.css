@@ -11,6 +11,9 @@
     --biryani:font-family: 'Berlin Sans FB', sans-serif;
   
 }
+.btn-modal{
+    width: 40%;
+}
 .btn-white {
     background-color: white;
     color: var(--azul2);
