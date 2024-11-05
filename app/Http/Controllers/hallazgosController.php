@@ -125,7 +125,6 @@ class hallazgosController extends Controller
     public function edit( $id)
     {
 
-        Log::info('entro a la funcion de edit');
         $muestreo=muestreo::where('id_muestreo',$id)->first();
         $hallazgos=hallazgo::where('fk_muestreo',$id)->get();
         $playas=Playa::all();

@@ -1,4 +1,4 @@
-<nav class="navbar  navbar_admin navbar-expand-lg navbar-dark  ">
+<nav class="navbar  navbar_capturista navbar-expand-lg navbar-dark  ">
   <div class="container-fluid">
     <a class="navbar-brand active" >Capturista</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('capturista.muestreos')}}">Muestreos</a>
+          <a class="nav-link {{Request::is('capturista/muestreos') ? 'active': ''}}" aria-current="page" href="{{ route('capturista.muestreos')}}">Muestreos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">Articulos</a>
+          <a class="nav-link {{Request::is('capturista/articulos') ? 'active': ''}} " href="{{route('capturista.publicaciones')}}">Articulos</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {{Request::is('capturista/Playas','capturista/municipios','capturista/RegionMarina','capturista/Tipo_residuos','capturista/Clasificacion') ? 'active': ''}}" href="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Playas
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

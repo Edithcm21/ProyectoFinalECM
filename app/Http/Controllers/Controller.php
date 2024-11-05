@@ -11,7 +11,7 @@ class Controller extends BaseController
     public function index()
     {
         
-        return view('Mapa/index');
+        return view('welcome.blade');
    
     }
 }

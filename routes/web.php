@@ -140,6 +140,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/capturista/Tipo_residuos',[tipo_residuosController::class,'index'])->name('capturista.Tipo_residuos');
         Route::post('/capturista/Tipo_residuos/create',[tipo_residuosController::class,'store'])->name('capturista.Tipo_residuos.store');
         Route::put('/capturista/Tipo_residuos/update/{id}',[tipo_residuosController::class,'update'])->name('capturista.Tipo_residuos.update');
+
+        Route::get('/capturista/publicaciones',[publicacionesController::class,'index'])->name('capturista.publicaciones');
+        Route::post('/capturista/publicaciones/create',[publicacionesController::class,'store'])->name('capturista.publicaciones.store');
+        Route::put('/capturista/publicaciones/update/{id}',[publicacionesController::class,'update'])->name('capturista.publicaciones.update');
+        Route::post('/capturista/publicaciones/delete/{id}',[publicacionesController::class,'destroy'])->name('capturista.publicaciones.delete');
+       
         
     });
 });

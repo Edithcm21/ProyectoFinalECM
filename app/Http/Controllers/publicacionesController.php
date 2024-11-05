@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\publicacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\Catch_;
@@ -16,7 +17,9 @@ class publicacionesController extends Controller
     public function index()
     {
         $publicaciones= publicacion::all();
-        return view('views_admin.publicaciones',compact('publicaciones'));
+        return Auth::user()->rol== 'admin' 
+        ? view('views_admin.publicaciones',compact('publicaciones'))
+        : view('views_capturista.publicaciones',compact('publicaciones'));
     }
 
     /**
@@ -49,9 +52,15 @@ class publicacionesController extends Controller
             $publicacion->file= $filePath;
             $publicacion->save();
 
+            return Auth::user()->rol== 'admin' 
+        ? view('views_admin.publicaciones',compact('publicaciones'))
+        : view('views_capturista.publicaciones',compact('publicaciones'));
             return redirect()->route('admin.publicaciones')->with('success','se creó correctamente el registro.');
         } catch (\Exception $e) {
             Log::error('Error al crear el registro : ' . $e->getMessage());
+            return Auth::user()->rol== 'admin' 
+        ? view('views_admin.publicaciones',compact('publicaciones'))
+        : view('views_capturista.publicaciones',compact('publicaciones'));
             return redirect()->route('admin.publicaciones')->with('error','Hubo un error al crear el registro, intentalo de nuevo.');
         }
         
@@ -96,10 +105,18 @@ class publicacionesController extends Controller
             $publicacion->autores= $request->modalAutores;
             $publicacion->fecha= $request->modalFecha;
             $publicacion->save();
+
+            return Auth::user()->rol== 'admin' 
+        ? view('views_admin.publicaciones',compact('publicaciones'))
+        : view('views_capturista.publicaciones',compact('publicaciones'));
             
             return redirect()->route('admin.publicaciones')->with('success','Datos actualizados correctamente');
         } catch (\Exception $e) {
             Log::error('Error al crear el registro : ' . $e->getMessage());
+
+            return Auth::user()->rol== 'admin' 
+        ? view('views_admin.publicaciones',compact('publicaciones'))
+        : view('views_capturista.publicaciones',compact('publicaciones'));
             return redirect()->route('admin.publicaciones')->with('error','Hubo un error al crear el registro, intentalo de nuevo.');
         }
     }
@@ -111,13 +128,20 @@ class publicacionesController extends Controller
     {
         try {
             $publicacion= publicacion::findorFail($id);
-            Storage::disk('public')->delete($publicacion->archivo);
+            Storage::disk('public')->delete($publicacion->file);
             $publicacion->delete();
-            return redirect()->route('admin.publicaciones')->with('success','Registro eliminado');
+
+            return Auth::user()->rol== 'admin' 
+                ?redirect()->route('admin.publicaciones')->with('success','Registro eliminado')
+                :redirect()->route('admin.publicaciones')->with('success','Registro eliminado');
+
         } catch (\Exception $e) {
             // Imprimir el error en el registro
             Log::error('Error al eliminar usuario: ' . $e->getMessage());
-            return redirect()->route('admin.publicaciones')->with('error','Ocurrió un error al eliminar registro');
+
+            return Auth::user()->rol== 'admin' 
+                ? redirect()->route('admin.publicaciones')->with('error','Ocurrió un error al eliminar registro')
+                : redirect()->route('capturista.publicaciones')->with('error','Ocurrió un error al eliminar registro');
         }  
     }
 }

@@ -10,7 +10,7 @@
           <a class="nav-link {{Request::is('admin/muestreos') ? 'active': ''}}" aria-current="page" href="{{ route('admin.muestreos')}}">Muestreos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{Request::is('admin/articulos') ? 'active': ''}}" href="#">Articulos</a>
+          <a class="nav-link {{Request::is('admin/articulos') ? 'active': ''}}" href="{{route('admin.publicaciones')}}">Articulos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{Request::is('admin/usuarios') ? 'active': ''}}" href="{{ route('admin.usuarios')}}">Usuarios</a>

@@ -131,16 +131,21 @@ class UsersController extends Controller
     }
 
     public function logout( Request $request){
-        if(Auth::check()){
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        try {
+            if(Auth::check()){
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect('/');
+            }
+        } catch (\Exception $e) {
             return redirect('/');
         }
-}
+    }
+        
 
 
-public function perfilEdit(){
+    public function perfilEdit(){
     return view('views_admin.perfilEdit');
 }
 public function perfilEditc(){
