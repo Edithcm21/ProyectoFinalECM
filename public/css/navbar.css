@@ -1,3 +1,19 @@
+:root{
+  /* --azul:#31869A; */
+   --azul:#31869A; 
+   --azul2: #0C404D;
+  --gris: #5E5C5C;
+  --cafe:#96785B;
+  /* --rojo: #B72223;  */
+  --negro:#000000;
+  --rojo:#ac0e28;
+/*     
+  --celeste:#6B99C3;
+  --cafe2: #65483D;
+  --gris: #9E8279;
+  --gris2: #564C55; */ 
+  --biryani:font-family: 'Berlin Sans FB', sans-serif;
+}
 .navbar_inicio{
     min-height: 80px;
     font-family: "Cera Pro", Sans-serif;
@@ -5,6 +21,9 @@
     font-weight: 600;
     text-transform: uppercase;
     z-index: 1050; 
+  }
+  .navbar_inicio a:hover{
+    font-size: 16px;
   }
 
   .navbar_inicio2{
@@ -70,14 +89,24 @@
 
 .navbar-light {
     background-color: white !important; /* Fondo blanco para el navbar-light */
-    color: #0C404D !important; /* Color de texto personalizado */
+    color: var(--negro)!important; /* Color de texto personalizado */
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #0C404D !important; /* Asegura que el color de los enlaces se aplique */
+    color: var(--negro) !important; /* Asegura que el color de los enlaces se aplique */
 }
 
 .navbar-light .navbar-nav .nav-link.active {
-    color: #0C404D !important; /* Color para el enlace activo */
+    color: var(--negro) !important; /* Color para el enlace activo */
+}
+.navbar-dark{
+  color: var(--gris);
+}
+.navbar-dark .navbar-nav .nav-link {
+  font-weight: bold;
+  color: var(--gris) !important; /* Asegura que el color de los enlaces se aplique */
 }
 
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--gris) !important; /* Color para el enlace activo */
+}

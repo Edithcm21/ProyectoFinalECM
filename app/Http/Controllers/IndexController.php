@@ -144,6 +144,5 @@ class IndexController extends Controller
     return view('consultas',compact('playas','hallazgos','muestreos','residuos','clasificaciones','num_muestreos','zonas'));
 
     }
-
-   
+  
 }

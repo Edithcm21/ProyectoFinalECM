@@ -12,8 +12,8 @@
     <div class="row justify-content-center align-items-center">
       <div class="filters col-sm-10 m-4">
         
-        <form class="row " method="GET" action="{{route('consulta.filtro')}}"  >
-          
+        <form class="row " method="POST" action="{{route('consulta.filtro')}}"  >
+          @csrf
           <div class="col-sm-2 m-1 p-1 ">
             <label for="playaSelect">Playa</label>
             <select  id="playaSelect" class="form-select" name="playa">

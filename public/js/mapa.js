@@ -16,7 +16,15 @@ async function initMap() {
     
     // Create an info window to share between markers.
     const infoWindow = new InfoWindow();
-  
+    
+    // A marker with a with a URL pointing to a PNG.
+    const iconMaps = document.createElement("img");
+
+    iconMaps.src ="/images/Iconomaps.png";
+    iconMaps.style.width="40px";
+    iconMaps.style.height="40px";
+
+
     // Create the markers.
     puntos.forEach((punto) => {
   
@@ -24,6 +32,7 @@ async function initMap() {
         position:{lat:parseFloat(punto.latitud), lng: parseFloat(punto.longitud)},
         map,
         title: `playa ${punto.nombre_playa}`,
+        content: iconMaps,
       });
   
       // Add a click listener for each marker, and set up the info window.
@@ -50,6 +59,7 @@ async function initMap() {
   
        
     });
+  
   }
   
   initMap();

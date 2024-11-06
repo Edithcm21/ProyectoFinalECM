@@ -14,10 +14,10 @@
                 <a class="nav-link active" href="#">Informacion</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Quienes somos</a>
+                <a class="nav-link active" href="{{route('Integrantes')}}">Quienes somos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('consulta.filtro')}}">Resultados</a>
+                <a class="nav-link active" href="{{route('consulta')}}">Resultados</a>
             </li>
         </ul>
         <div class="nav-item text" style="margin-right: 50px; " >

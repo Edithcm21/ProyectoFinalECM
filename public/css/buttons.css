@@ -15,8 +15,8 @@
     width: 40%;
 }
 .btn-white {
-    background-color: white;
-    color: var(--azul2);
+    background-color: var(--negro);
+    color: white;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
@@ -26,7 +26,7 @@
 
 .btn-white:hover {
     transform: scale(1.1); /* Aumenta el tamaño del botón */
-    color:var(--azul) /* Cambia el color de la letra a azul */
+    color:white /* Cambia el color de la letra a azul */
     /* background-color: #f0f0f0; Ligera variación del fondo para el efecto hover */
      /* Cambia el color del borde a azul */
 }
@@ -38,9 +38,9 @@
     padding: 0 !important;
 }
 .btn-blue{
-    background-color: var(--azul) ;/* Color azul */
+    background-color: var(--rojo) ;/* Color azul */
     color: white;
-    border: 2px solid var(--azul); /* Borde del mismo color que el fondo */
+    border: 2px solid var(--rojo); /* Borde del mismo color que el fondo */
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
@@ -63,6 +63,9 @@ color: var(--azul);
 }
 .text-blue2{
 color: var(--azul2);
+}
+.text-rojo{
+    color: var(--rojo);
 }
 
 .titulo{

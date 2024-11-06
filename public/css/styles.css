@@ -82,17 +82,16 @@ body{
     border-bottom: 2px solid var(--rojo);
 }  */
 
-/* .portada{
-    background-image: url("../images/portada4.jpg");
-    background-size: cover; Ajusta la imagen para que cubra toda la pantalla
-    background-position: center; Centra la imagen
-    background-repeat: no-repeat; Evita que la imagen se repita
-    width: 100%;
+.portada{
+    background-image: url("../images/Banner.jpg");
+    background-position:center; /* Centra la imagen*/
+    background-repeat: no-repeat; /*Evita que la imagen se repita*/
+  width: 100%;
     background-color: var(--azul);
     background-size: cover;
     background-position:center center;
    
-}  */
+} 
 .contenido_portada {
     color:white;
     font-weight: bold; 
@@ -273,5 +272,53 @@ footer {
 
 .inputC{
     width: 80%;
-
 }
+/* seccion de integrantes */
+
+/* Estilos personalizados */
+.card-team{
+    border-radius: 10px;
+    color: white;
+    background-color: var(--gris);
+}
+
+.team-title{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.team-description {
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1rem;
+    color: white;
+}
+
+
+
+.integrante-card img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    padding: 2px;
+}
+
+
+  .integrante-card h2 {
+    color: var(--rojo);
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+
+  
+
+  .integrante-card .description {
+    color: #333;
+    font-size: 16px;
+  }
+  .integrante-card .email{
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 1rem;
+  }

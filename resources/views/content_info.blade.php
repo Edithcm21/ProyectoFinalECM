@@ -1,24 +1,36 @@
 
-<div class="video-background" >
+{{-- <div class="video-background" >
   <video class="background-video" autoplay muted loop>
     <source src="{{asset('video/portada.mp4')}}" type="video/mp4">
     Tu navegador no soporta la reproducción de video.
   </video>
   <div class="contenido_portada espacio">
     <!-- Aquí va tu contenido -->
-    <h1 class="titulo fade-in-text">Residuos Costeros</h1>
+    <h1 class="titulo fade-in-text">ResiPlay</h1>
     <p class="fs-2 fade-in-text">Por un litoral más limpio y sustentable</p>
   </div>
   <div class="curva container-fluid p-0 m-0 ">
     <img src="{{asset('images/curva.svg')}}" alt="">
   
   </div>
+</div> --}}
+
+{{-- <section id="banner">
+  <img src="{{ asset('images/Banner.jpg') }}" style="width:100%" alt="Descripción de la imagen">
+ 
+</section> --}}
+<div class="portada " style="height: 125vh">
+  <div class="" style="height: 92vh"></div> 
+  <div class="curva container-fluid p-0 m-0 " style="height: 50vh">
+    <img src="{{asset('images/curva.svg')}}" alt="" style="min-height: 100%; width:100%">
+  </div>
 </div>
+<br><br>
 <div class=" container ">
   <div class=" row">
     <div class="col-12 col-sm-7">
-      <h1 class="text-blue text-center mb-4 fs-1 h1">Residuos Costeros</h1>
-      <p class="fade-in-text fs-5  text-blue2">Es una  plataforma que presenta 
+      <h1 class="text-rojo text-center mb-4 fs-1 h1">Residuos Costeros</h1>
+      <p class="fade-in-text fs-5  ">Es una  plataforma que presenta 
         los resultados de los muestreos realizados por investigadores 
         de la UAM Azcapotzalco, dedicados a monitorear la contaminación 
         por residuos sólidos en las playas mexicanas. A través de esta 

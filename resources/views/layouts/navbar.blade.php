@@ -1,6 +1,6 @@
-<nav id="navbar1" class="navbar navbar_inicio navbar-expand-lg navbar-dark fixed-top  ">
+<nav id="navbar1" class="navbar navbar_inicio navbar-expand-lg  fixed-top  ">
   <div class="d-flex mr-3 col-sm-4 justify-content-center" >
-    <img class="al img-fluid" style="max-height: 90px;" src="{{ asset('images/Logo3.png') }}">
+    <img class="al img-fluid" style="max-height: 90px;" src="{{ asset('images/Logo-ResiPlay.png') }}">
   </div>
 
 
@@ -16,10 +16,10 @@
         <a class="nav-link active" href="#">Informacion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="#">Quienes somos</a>
+        <a class="nav-link active" href="{{route('Integrantes')}}">Quienes somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="{{route('consulta.filtro')}}">Resultados</a>
+        <a class="nav-link active" href="{{route('consulta')}}">Resultados</a>
       </li>
     </ul>
     <div class="nav-item text" style="margin-right: 50px; " >
