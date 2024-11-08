@@ -21,7 +21,8 @@
     </div>
     
     {{-- <img style="height: 20vh; width:100%" class="p-0 m-0" src="{{asset('images/triangulo-inferior.jpg')}}" > --}}
+    <br><br><br>
   </div>
 
-
+  
 @endsection

@@ -25,6 +25,7 @@
   .navbar_inicio a:hover{
     font-size: 16px;
   }
+  
 
   .navbar_inicio2{
     min-height: 80px;
@@ -99,6 +100,7 @@
 .navbar-light .navbar-nav .nav-link.active {
     color: var(--negro) !important; /* Color para el enlace activo */
 }
+
 .navbar-dark{
   color: var(--gris);
 }
@@ -109,4 +111,28 @@
 
 .navbar-dark .navbar-nav .nav-link.active {
   color: var(--gris) !important; /* Color para el enlace activo */
+}
+
+
+.menu .dropdown-menu{
+  background-color: var(--rojo);
+  color: white;
+  border: 0;
+    font-family: "Cera Pro", Sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 1050; 
+  
+}
+.menu .dropdown-menu a:hover{
+  color: var(--negro);
+  background-color: white;
+  border: 0;
+    font-family: "Cera Pro", Sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 1050; 
+}
+.menu .dropdown-item{
+  color: white ;
 }

@@ -10,9 +10,16 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Informacion</a>
-            </li>
+            <li class="nav-item dropdown menu">
+                <a class="nav-link dropdown-toggle " href="{{route('Costas')}}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Las playas 
+                </a>
+                <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{{route('Costas')}}">Las playas </a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.Playas')}}">Residuos en playas</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.municipios')}}">Monitoreos</a></li>
+                </ul>
+              </li>
             <li class="nav-item">
                 <a class="nav-link active" href="{{route('Integrantes')}}">Quienes somos</a>
             </li>

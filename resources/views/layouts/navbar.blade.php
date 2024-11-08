@@ -1,5 +1,5 @@
 <nav id="navbar1" class="navbar navbar_inicio navbar-expand-lg  fixed-top  ">
-  <div class="d-flex mr-3 col-sm-4 justify-content-center" >
+  <div class="d-flex mr-3 col-sm-3 justify-content-center" >
     <img class="al img-fluid" style="max-height: 90px;" src="{{ asset('images/Logo-ResiPlay.png') }}">
   </div>
 
@@ -12,8 +12,15 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="/">Inicio</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Informacion</a>
+      <li class="nav-item dropdown menu">
+        <a class="nav-link dropdown-toggle " href="{{route('Costas')}}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Las playas 
+        </a>
+        <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{{route('Costas')}}">Las playas </a></li>
+          <li><a class="dropdown-item" href="{{route('admin.Playas')}}">Residuos en playas</a></li>
+          <li><a class="dropdown-item" href="{{route('admin.municipios')}}">Monitoreos</a></li>
+        </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="{{route('Integrantes')}}">Quienes somos</a>

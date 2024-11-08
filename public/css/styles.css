@@ -317,8 +317,56 @@ footer {
     color: #333;
     font-size: 16px;
   }
+  .integrante-card .rol{
+    color: var(--negro);
+    font-size: 18px;
+    font-weight: bold;
+  }
   .integrante-card .email{
     text-decoration: none;
-    color: var(--negro);
+    color: var(--rojo);
     font-size: 1rem;
+    font-weight: bold;
   }
+  .email:hover{
+    font-size: 1.02rem;
+  }
+  .integrante-card .mas{
+    text-decoration: none;
+    color: var(--gris);
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .mas:hover{
+    font-size: 1.02rem;
+  }
+
+  .text-red{
+    color: var(--rojo);
+  }
+  .text-gray{
+        color: var(--gris); 
+        
+  }
+  .text-bold{
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .text-normal{
+    font-weight: 460;
+    font-family: "Cera Pro", Sans-serif;
+    font-size: 19px;
+    color:var(--negro);
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 30px;
+}
+
+.referencias{
+ background-color: #f9f9f9;
+ padding: 20px;
+ border-radius: 10px;
+ font-family: Arial, Helvetica, sans-serif;
+ margin-top: 20px;
+}

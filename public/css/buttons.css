@@ -114,18 +114,18 @@ color: var(--azul2);
 }
 
 .btn-mostrarmas{
-    background-color: var(--azul) ;
+    background-color: var(--rojo) ;
     color: white;
-    border: 1px solid var(--azul); 
+    border: 1px solid var(--rojo); 
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 8px;
 }
 
 .btn-mostrarmas:hover{
-    border: var(--cafe);
+    border: var(--gris);
     transform: scale(1);
-    background-color: var(--cafe);
+    background-color: var(--gris);
 }
 
 .accordion-button{
