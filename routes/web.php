@@ -42,6 +42,12 @@ Route::get('Integrantes', function(){
 Route::get('Costas', function(){
     return view('viewCostas');
 })->name('Costas');
+Route::get('Residuos-playas', function(){
+    return view('Residuos_playas');
+})->name('Residuos_playas');
+Route::get('Monitoreos', function(){
+    return view('Monitoreos');
+})->name('Monitoreos');
 // Obtiene el filtro de muestreo en base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
 Route::resource('/mapa',Controller::class);

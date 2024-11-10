@@ -25,7 +25,42 @@
   .navbar_inicio a:hover{
     font-size: 16px;
   }
-  
+  .navbar-dark1{
+    font-size: 14px;
+    background-color: var(--negro);
+    color: rgb(251, 250, 250);
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .navbar-dark1 .nav-link{
+    color: rgb(251, 250, 250) !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding-right: 20px;
+    margin-right: 25px;
+    padding-left: 20px;
+  }
+
+  .navbar-dark1 .nav-link:hover{
+    color: var(--rojo);
+  }
+
+  .navbar-nav{
+    margin-left: auto;
+  }
+  .navbar-dark1 .nav-link.active{
+    color: white;
+    font-weight: bold;
+  }
+  /* Ajuste del color del ícono del botón hamburguesa */
+.navbar-dark1 .navbar-toggler {
+  border-color: rgb(250, 244, 244); /* Color del borde del botón */
+}
+
+.navbar-dark1 .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(250, 244, 244)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  /* Cambia el valor `stroke` a cualquier color que prefieras */
+}
 
   .navbar_inicio2{
     min-height: 80px;
@@ -135,4 +170,35 @@
 }
 .menu .dropdown-item{
   color: white ;
+}
+/*************************************************/
+.header-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+.buttons .btn{
+  background-color: var(--rojo);
+  color: white;
+  margin-left: 10px;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.espaciado{
+  height: 100px;
+}
+
+.navbar-top{
+  position: fixed;
+  min-height: 80px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }

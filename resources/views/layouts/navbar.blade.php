@@ -18,8 +18,8 @@
         </a>
         <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
           <li><a class="dropdown-item" href="{{route('Costas')}}">Las playas </a></li>
-          <li><a class="dropdown-item" href="{{route('admin.Playas')}}">Residuos en playas</a></li>
-          <li><a class="dropdown-item" href="{{route('admin.municipios')}}">Monitoreos</a></li>
+          <li><a class="dropdown-item" href="{{route('Residuos_playas')}}">Residuos en playas</a></li>
+          <li><a class="dropdown-item" href="{{route('Monitoreos')}}">Monitoreos</a></li>
         </ul>
       </li>
       <li class="nav-item">

@@ -68,6 +68,19 @@ window.addEventListener('scroll', function() {
       btn.classList.add('btn-white')
     }
   }
+  console.log('entro al navbar1');
+  const navbar3 = document.getElementById('navbar3');
+  // const btn=this.document.getElementById('navbutton1');
+  if (navbar3) {
+    console.log('entro al navbar');
+
+    if (window.scrollY > 110) {
+      console.log('agrego la clase')
+      navbar3.classList.add('navbar-top');
+    } else {
+      navbar3.classList.remove('navbar-top');
+    }
+  }
 });
 
 
