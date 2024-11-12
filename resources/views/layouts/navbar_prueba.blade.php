@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-<nav id="navbar3" class="navbar   navbar-expand-lg  navbar-dark1 ">
+<nav id="navbar3" class="navbar   navbar-expand-lg  navbar-dark1 " style="">
     <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

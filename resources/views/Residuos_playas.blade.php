@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Playas de México')
+@section('title', 'Residuos en playas')
 
 @section('navbar')
     @include('layouts.navbar_prueba')
@@ -11,7 +11,7 @@
 <div class="espaciado">
 
 </div>
-<div class="row  p-4">
+<div class="row container-fluid p-4">
     <div class=" col-sm-10 mx-auto ">
         <div class="row">
            <div class="col-md-8 ">

@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('navbar')
-    @include('layouts.navbar_login')
+    @include('layouts.navbar_prueba')
 @endsection
 
 @section('content')

@@ -4,7 +4,7 @@
 @section('title', 'Resultados')
 
 @section('navbar')
-    @include('layouts.navbar_inicio')
+    @include('layouts.navbar_prueba')
 @endsection
 
 @section('content')
