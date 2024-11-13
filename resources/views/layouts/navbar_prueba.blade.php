@@ -35,8 +35,14 @@
         <li class="nav-item">
           <a class="nav-link active" href="{{route('Integrantes')}}">¿QUIENES SOMOS?</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{route('consulta')}}">RESULTADOS</a>
+        <li class="nav-item dropdown " >
+          <a class="nav-link dropdown-toggle " href="{{route('consulta')}}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            RESULTADOS
+          </a>
+          <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item "  href="{{route('consulta')}}">Resultados</a></li>
+            <li><a class="dropdown-item" href="{{route('publicaciones')}}">Publicaciones</a></li>
+          </ul>
         </li>
       </ul>
       <div class="nav-item text ms-3 me-2" style=" " >

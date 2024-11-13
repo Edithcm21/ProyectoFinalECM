@@ -48,6 +48,7 @@ Route::get('Residuos-playas', function(){
 Route::get('Monitoreos', function(){
     return view('Monitoreos');
 })->name('Monitoreos');
+Route::get('Publicaciones',[publicacionesController::class,'getPublicaciones'])->name('publicaciones');
 // Obtiene el filtro de muestreo en base a la playa seleccionada
 Route::get('getMuestreo/{id}',[IndexController::class,'getMuestreo'])->name('getMuestreo');
 Route::resource('/mapa',Controller::class);

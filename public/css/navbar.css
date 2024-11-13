@@ -4,6 +4,7 @@
    --azul2: #0C404D;
   --gris: #5E5C5C;
   --cafe:#96785B;
+  --blanco: #f1f1f1;
   /* --rojo: #B72223;  */
   --negro:#000000;
   --rojo:#ac0e28;
@@ -113,7 +114,7 @@
 .user-circle {
   width: 30px;               /* Ajusta según el tamaño que necesites */
   height: 30px;
-  background-color: #0C404D ;     /* Cambia el color según tus necesidades */
+  background-color: var(--rojo);     /* Cambia el color según tus necesidades */
   color: white;               /* Color de la letra */
   display: flex;
   align-items: center;
@@ -140,15 +141,16 @@
 }
 
 .navbar-dark{
-  color: var(--gris);
+  color: var(--blanco);
 }
 .navbar-dark .navbar-nav .nav-link {
   font-weight: bold;
-  color: var(--gris) !important; /* Asegura que el color de los enlaces se aplique */
+  color: var(--blanco); 
 }
 
 .navbar-dark .navbar-nav .nav-link.active {
-  color: var(--gris) !important; /* Color para el enlace activo */
+  color: var(--blanco);
+
 }
 
 
