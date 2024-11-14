@@ -23,8 +23,8 @@ class muestreosController extends Controller
             return view('views_capturista.muestreos',compact('muestreos'));
         }
         return Auth::user()->rol=='admin' 
-        ? view('views_admin.muestreos',compact('muestreos'))
-        : view('views_capturista.muestreos',compact('muestreos'));
+        ? view('views_admin.Muestreos',compact('muestreos'))
+        : view('views_capturista.Muestreos',compact('muestreos'));
        
         
     }

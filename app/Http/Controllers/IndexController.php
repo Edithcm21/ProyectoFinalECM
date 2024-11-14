@@ -107,7 +107,7 @@ class IndexController extends Controller
             $hallazgos->where('zona',$id_zona);
         } 
         $hallazgos = $hallazgos->get();
-        $muestreos =Muestreo::query();
+        $muestreos= Muestreo::query();
         if($id_playa > 0){
             $muestreos->where('fk_playa',$id_playa);
         }
