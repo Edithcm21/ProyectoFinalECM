@@ -19,8 +19,8 @@ async function initMap() {
     
     // A marker with a with a URL pointing to a PNG.
     const iconMaps = document.createElement("img");
-
-    iconMaps.src ="/images/Iconomaps.png";
+    
+    iconMaps.src ="/images/iconoMaps.png";
     iconMaps.style.width="40px";
     iconMaps.style.height="40px";
 
