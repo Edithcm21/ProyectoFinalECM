@@ -16,12 +16,6 @@ class muestreosController extends Controller
         // $playaId = $request->input('playa');
         
         $muestreos=muestreo::orderBy('fk_playa')->get();
-        if(Auth::user()->rol=='admin'){
-            return view('views_admin.muestreos',compact('muestreos'));
-        }
-        else {
-            return view('views_capturista.muestreos',compact('muestreos'));
-        }
         return Auth::user()->rol=='admin' 
         ? view('views_admin.Muestreos',compact('muestreos'))
         : view('views_capturista.Muestreos',compact('muestreos'));
