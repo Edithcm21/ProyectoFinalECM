@@ -6,7 +6,7 @@ use App\Models\Clasificacion;
 use App\Models\Estado;
 use App\Models\hallazgo;
 use App\Models\Index;
-use App\Models\Muestreo;
+use App\Models\muestreo;
 use App\Models\Municipio; // Importa el modelo Municipio
 use App\Models\Playa;
 use App\Models\tipo_residuo;
@@ -33,7 +33,7 @@ class IndexController extends Controller
       
     }
     public function getMuestreo($id_playa){
-        $muestreos=Muestreo::where('fk_playa',$id_playa)
+        $muestreos=muestreo::where('fk_playa',$id_playa)
         ->where('muestreos.autorizado','1')
         ->get();
         $num_muestreo= DB::table('muestreos')
@@ -46,7 +46,7 @@ class IndexController extends Controller
             ->select('zona')->where('fk_playa',$id_playa)->where('muestreos.autorizado','1')->groupBy('zona')->get();
         
         if($id_playa==0){
-            $muestreos= Muestreo::where('muestreos.autorizado','1');
+            $muestreos= muestreo::where('muestreos.autorizado','1');
             $num_muestreo= DB::table('muestreos')
             ->select('num_muestreo')->groupBy('num_muestreo')->where('muestreos.autorizado','1')
             ->get();
@@ -74,7 +74,7 @@ class IndexController extends Controller
         ->where('id_playa',$id)
         ->where('muestreos.autorizado','1')
         ->get();
-        $muestreos =Muestreo::where('fk_playa', $id)->where('muestreos.autorizado','1')->get();
+        $muestreos =muestreo::where('fk_playa', $id)->where('muestreos.autorizado','1')->get();
         $residuos= tipo_residuo::all();
         $clasificaciones=Clasificacion::all();
         $num_muestreos= DB::table('muestreos')
@@ -107,7 +107,7 @@ class IndexController extends Controller
             $hallazgos->where('zona',$id_zona);
         } 
         $hallazgos = $hallazgos->get();
-        $muestreos= Muestreo::query();
+        $muestreos= muestreo::query();
         if($id_playa > 0){
             $muestreos->where('fk_playa',$id_playa);
         }
