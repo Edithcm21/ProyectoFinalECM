@@ -20,6 +20,8 @@ async function initMap() {
     // A marker with a with a URL pointing to a PNG.
     const iconMaps = document.createElement("img");
     iconMaps.src ="public/images/iconoMaps.png";
+
+
     iconMaps.style.width="40px";
     iconMaps.style.height="40px";
 
@@ -30,6 +32,7 @@ async function initMap() {
       const marker = new AdvancedMarkerElement({
         position:{lat:parseFloat(punto.latitud), lng: parseFloat(punto.longitud)},
         map,
+        
         title: `playa ${punto.nombre_playa}`,
         content: iconMaps,
       });
