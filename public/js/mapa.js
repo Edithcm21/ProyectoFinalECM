@@ -19,7 +19,8 @@ async function initMap() {
     
     // A marker with a with a URL pointing to a PNG.
     const iconMaps = document.createElement("img");
-    iconMaps.src ="/images/iconoMaps.png";
+  
+    iconMaps.src ="images/Logo-ResiPlay.png";
 
 
     iconMaps.style.width="40px";
