@@ -12,7 +12,7 @@ class tipo_residuosController extends Controller
 {
     public function index()
     { 
-        $tipo_residuos=tipo_residuo::paginate(6);
+        $tipo_residuos=tipo_residuo::all();
         $clasificaciones=Clasificacion::all();
         return Auth::user()->rol== 'admin'  
         ? view('views_admin.residuos',compact('tipo_residuos','clasificaciones'))
