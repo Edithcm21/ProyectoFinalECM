@@ -18,13 +18,13 @@ async function initMap() {
     const infoWindow = new InfoWindow();
     
     // A marker with a with a URL pointing to a PNG.
-    const iconMaps = document.createElement("img");
+    // const iconMaps = document.createElement("img");
   
-    iconMaps.src ="images/Logo-ResiPlay.png";
+    // iconMaps.src ="images/Logo-ResiPlay.png";
 
 
-    iconMaps.style.width="40px";
-    iconMaps.style.height="40px";
+    // iconMaps.style.width="40px";
+    // iconMaps.style.height="40px";
 
 
     // Create the markers.
@@ -35,7 +35,7 @@ async function initMap() {
         map,
         
         title: `playa ${punto.nombre_playa}`,
-        content: iconMaps,
+        // content: iconMaps,
       });
   
       // Add a click listener for each marker, and set up the info window.
